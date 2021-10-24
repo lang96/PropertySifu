@@ -9,7 +9,8 @@ module com.kuthingalas.propertysifu {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires json.simple;
 
-    opens com.kuthingalas.propertysifu to javafx.fxml;
     exports com.kuthingalas.propertysifu;
+    opens com.kuthingalas.propertysifu to javafx.fxml;
 }
