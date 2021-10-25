@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx"  xmlns:fx="http://javafx.com/fxml" fx:controller="com.kuthingalas.propertysifu.addPropController">
+   <children>
+      <ImageView fitHeight="601.0" fitWidth="716.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../raw/housez.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="288.0" layoutY="14.0" text="Add Property">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="88.0" text="Residential" />
+      <Label layoutX="159.0" layoutY="88.0" text="Bedrooms" />
+      <Label layoutX="266.0" layoutY="88.0" text="Bathrooms" />
+      <Label layoutX="374.0" layoutY="88.0" text="Amenities" />
+      <Label layoutX="469.0" layoutY="88.0" text="Label" />
+      <CheckBox layoutX="56.0" layoutY="115.0" mnemonicParsing="false" text="Bungalow" />
+      <CheckBox layoutX="56.0" layoutY="147.0" mnemonicParsing="false" text="Terrace" />
+      <CheckBox layoutX="56.0" layoutY="177.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="56.0" layoutY="209.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="56.0" layoutY="241.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="159.0" layoutY="115.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="159.0" layoutY="147.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="159.0" layoutY="177.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="159.0" layoutY="209.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="159.0" layoutY="241.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="266.0" layoutY="115.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="266.0" layoutY="147.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="266.0" layoutY="177.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="266.0" layoutY="209.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="266.0" layoutY="241.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="374.0" layoutY="115.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="374.0" layoutY="147.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="374.0" layoutY="177.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="374.0" layoutY="209.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="374.0" layoutY="241.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="469.0" layoutY="115.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="469.0" layoutY="147.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="469.0" layoutY="177.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="469.0" layoutY="209.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="469.0" layoutY="241.0" mnemonicParsing="false" text="CheckBox" />
+   </children>
+</AnchorPane>

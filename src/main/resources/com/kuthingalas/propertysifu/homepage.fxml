@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="279.0" prefWidth="538.0" xmlns="http://javafx.com/javafx"  xmlns:fx="http://javafx.com/fxml"  fx:controller="com.kuthingalas.propertysifu.HomepageController">
+
+   <children>
+      <ImageView fitHeight="783.0" fitWidth="1182.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../raw/housez.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="116.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../raw/house2.jpg" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="tologbtn" layoutX="1058.0" layoutY="14.0" onAction="#tologin" prefHeight="26.0" prefWidth="110.0" text="Login | Sign Up">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
+      <AnchorPane layoutX="138.0" layoutY="198.0" />
+      <Label layoutX="360.0" layoutY="27.0" prefHeight="59.0" prefWidth="462.0" text="Cyberjaya Online Rental Management System" textFill="#265b3d">
+         <font>
+            <Font name="Californian FB" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="207.0" layoutY="132.0" text="Residential" />
+      <Label layoutX="713.0" layoutY="132.0" text="Amenities" />
+      <Label layoutX="591.0" layoutY="132.0" text="Price" />
+      <ScrollPane layoutX="265.0" layoutY="248.0" prefHeight="185.0" prefWidth="278.0">
+         <content>
+            <TextArea fx:id="test1" editable="false" prefHeight="193.0" prefWidth="290.0" />
+         </content>
+      </ScrollPane>
+      <Label layoutX="335.0" layoutY="132.0" text="Bedrooms" />
+      <Label layoutX="464.0" layoutY="132.0" text="Bathrooms" />
+      <Label fx:id="label" layoutX="346.0" layoutY="510.0" />
+      <ComboBox fx:id="proptype" layoutX="207.0" layoutY="149.0" onAction="#dolist" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
+      <ComboBox fx:id="bedrooms" layoutX="334.0" layoutY="149.0" onAction="#bedlist" prefHeight="25.0" prefWidth="110.0" promptText="1" />
+      <ComboBox fx:id="bathrooms" layoutX="464.0" layoutY="149.0" onAction="#bathlist" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
+      <ComboBox fx:id="price" layoutX="591.0" layoutY="149.0" onAction="#pricelist" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
+      <ComboBox fx:id="amenlist" layoutX="711.0" layoutY="150.0" onAction="#dolist2" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
+<!--      <ComboBox fx:id="comb" layoutX="830.0" layoutY="215.0" onAction="#Select" prefWidth="150.0" />-->
+<!--      <Label fx:id="label" layoutX="830.0" layoutY="181.0" text="Label" />-->
+   </children>
+</AnchorPane>
