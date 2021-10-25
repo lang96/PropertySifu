@@ -91,8 +91,9 @@ public class LoginController {
         Parent root = FXMLLoader.load(getClass().getResource("registerpage.fxml"));
 
         Stage window = (Stage) regisbtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("house2.jpg").toString()));
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
+
     }
 
     @FXML
@@ -101,7 +102,7 @@ public class LoginController {
         Parent root = FXMLLoader.load(getClass().getResource("registerpage.fxml"));
 
         Stage window = (Stage) signupbtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("house2.jpg").toString()));
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }
 
@@ -138,7 +139,7 @@ public class LoginController {
             Parent root = FXMLLoader.load(getClass().getResource("listingpage.fxml"));
 
             Stage window = (Stage) confirmregisbtn.getScene().getWindow();
-            window.getIcons().add(new Image(this.getClass().getResource("house2.jpg").toString()));
+            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
             window.setScene(new Scene(root,1182,665));
         } else {
             // ... user chose CANCEL or closed the dialog
@@ -151,7 +152,7 @@ public class LoginController {
         Parent root = FXMLLoader.load(getClass().getResource("viewprofile.fxml"));
 
         Stage window = (Stage) profile.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("house2.jpg").toString()));
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }
 
@@ -160,7 +161,7 @@ public class LoginController {
         Parent root = FXMLLoader.load(getClass().getResource("listingpage.fxml"));
 
         Stage window = (Stage) confirmBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("house2.jpg").toString()));
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,1182,665));
     }
 

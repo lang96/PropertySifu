@@ -23,6 +23,8 @@ public class HomepageController implements Initializable {
     ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
+    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially" ,"Furnished");
+
 
 //    @FXML
 //    private CheckBox sial;
@@ -40,7 +42,7 @@ public class HomepageController implements Initializable {
     private Label label;
 
     @FXML
-    public ComboBox proptype;
+    public ComboBox <String> proptype;
     @FXML
     private ComboBox<String> amenlist;
     @FXML
@@ -49,6 +51,8 @@ public class HomepageController implements Initializable {
     private ComboBox<String> bedrooms;
     @FXML
     private ComboBox<String> bathrooms;
+    @FXML
+    private ComboBox<String> furnilist;
 
     @FXML
     public void tologin() throws IOException {
@@ -56,12 +60,9 @@ public class HomepageController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
 
         Stage window = (Stage) tologbtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("house2.jpg").toString()));
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }
-
-
-
 
     @FXML
     private void dolist(ActionEvent event){
@@ -91,6 +92,11 @@ public class HomepageController implements Initializable {
 
     }
 
+    @FXML
+    private void furni(){
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -99,10 +105,8 @@ public class HomepageController implements Initializable {
         price.setItems(sortPrice);
         bedrooms.setItems(numBedrooms);
         bathrooms.setItems(numBathrooms);
+        furnilist.setItems(furniture);
     }
-
-
-
 
 // Checkbox function
 //    @FXML
@@ -118,23 +122,3 @@ public class HomepageController implements Initializable {
 //    }
 }
 
-//public class HelloController implements Initializable {
-//
-//    ObservableList<String> list = FXCollections.observableArrayList("JavaFX","SceneBuilder","Laravel","Python");
-//    @FXML
-//    private ComboBox  comb;
-//    @FXML
-//    private Label label;
-//
-//    @FXML
-//    void Select(ActionEvent event) {
-//        String s = comb.getSelectionModel().getSelectedItem().toString();
-//        label.setText(s);
-//    }
-//    @Override
-//    public void initialize(URL url, ResourceBundle rb) {
-//
-//        comb.setItems(list);
-//    }
-//
-//}
