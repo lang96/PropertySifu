@@ -8,6 +8,14 @@ import java.util.ArrayList;
 
 - ensure there is only one control admin (holds control over all admins & cannot be removed)
 
+feature list
+
+- special menu
+- reject or delete user registration
+-
+
+- login
+
 
 
 */

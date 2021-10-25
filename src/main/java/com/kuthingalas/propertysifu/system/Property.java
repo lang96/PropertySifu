@@ -7,14 +7,13 @@ public class Property {
     // private members
 
         // firstAdd - location | secondAdd - project location (projectType)
-    private String propertyID, propertyType, firstAddress, secondAddress, statusDesc, projectType, agentID;
+    private String propertyID, propertyType, firstAddress, secondAddress, statusDesc, representativeID;
 
-        // status - 0 = inactive, 1 = active | visibility - 0 = hidden, 1 = visible
+        // status - 0 = inactive, 1 = active
         // bedroom - 0 = studio | furnishing - 0 = unfurnished, 1 = partial, 2 = full
-    private int status, bedroom, bathroom, area, furnishing, visibility;
+    private int status, bedroom, bathroom, area, furnishing;
 
     private float psfRate, rentalRate;
-
     private ArrayList<String> facilityList, commentID;
 
     // public members
@@ -22,8 +21,8 @@ public class Property {
 
     // constructors
     public Property(String id, String type, String firstAdd, String secondAdd, int stat, String statDesc,
-                    String projType, ArrayList<String> facList, int bed, int bath, int area, int furnish,
-                    float psf, float rent, String agent, int vis, ArrayList<String> comment)
+                    ArrayList<String> facList, int bed, int bath, int area, int furnish,
+                    float psf, float rent, String rep, ArrayList<String> comment)
     {
 
         this.propertyID = id;
@@ -32,7 +31,6 @@ public class Property {
         this.secondAddress = secondAdd;
         this.status = stat;
         this.statusDesc = statDesc;
-        this.projectType = projType;
         this.facilityList = facList;
         this.bedroom = bed;
         this.bathroom = bath;
@@ -40,25 +38,23 @@ public class Property {
         this.furnishing = furnish;
         this.psfRate = psf;
         this.rentalRate = rent;
-        this.agentID = agent;
-        this.visibility = vis;
+        this.representativeID = rep;
         this.commentID = comment;
 
     }
 
     // new properties added from add() is visible by default
-    public Property(String id, String type, String firstAdd, String secondAdd, int stat, String statDesc,
-                    String projType, ArrayList<String> facList, int bed, int bath, int area, int furnish,
-                    float psf, float rent, String agent, ArrayList<String> comment)
+    public Property(String id, String type, String firstAdd, String secondAdd, String statDesc,
+                    ArrayList<String> facList, int bed, int bath, int area, int furnish,
+                    float psf, float rent, String rep, ArrayList<String> comment)
     {
 
         this.propertyID = id;
         this.propertyType = type;
         this.firstAddress = firstAdd;
         this.secondAddress = secondAdd;
-        this.status = stat;
-        this.statusDesc = statDesc;
-        this.projectType = projType;
+        this.status = 1;
+        this.statusDesc = "Available";
         this.facilityList = facList;
         this.bedroom = bed;
         this.bathroom = bath;
@@ -66,8 +62,7 @@ public class Property {
         this.furnishing = furnish;
         this.psfRate = psf;
         this.rentalRate = rent;
-        this.agentID = agent;
-        this.visibility = 1;
+        this.representativeID = rep;
         this.commentID = comment;
 
     }
@@ -93,9 +88,6 @@ public class Property {
     public String getStatusDesc() {
         return statusDesc;
     }
-    public String getProjectType() {
-        return projectType;
-    }
     public ArrayList<String> getFacilityList() {
         return facilityList;
     }
@@ -117,11 +109,8 @@ public class Property {
     public float getRentalRate() {
         return rentalRate;
     }
-    public String getAgentID() {
-        return agentID;
-    }
-    public int getVisibility() {
-        return visibility;
+    public String getRepresentativeID() {
+        return representativeID;
     }
     public ArrayList<String> getCommentID() {
         return commentID;
@@ -146,11 +135,8 @@ public class Property {
     public void setStatusDesc(String statusDesc) {
         this.statusDesc = statusDesc;
     }
-    public void setProjectType(String projectType) {
-        this.projectType = projectType;
-    }
 
-    // might need to fine tune to modify individual facilities
+            // might need to fine tune to modify individual facilities
     public void setFacilityList(ArrayList<String> facilityList) {
         this.facilityList = facilityList;
     }
@@ -173,14 +159,11 @@ public class Property {
     public void setRentalRate(float rentalRate) {
         this.rentalRate = rentalRate;
     }
-    public void setAgentID(String agentID) {
-        this.agentID = agentID;
-    }
-    public void setVisibility(int visibility) {
-        this.visibility = visibility;
+    public void setRepresentativeID(String representativeID) {
+        this.representativeID = representativeID;
     }
 
-    // might need to fine tune to modify individual comments
+            // might need to fine tune to modify individual comments
     public void setCommentID(ArrayList<String> commentID) {
         this.commentID = commentID;
     }
@@ -192,7 +175,7 @@ public class Property {
 
     }
 
-    public String toStringExtend() {
+    public String toStringExtend() { // temp
 
         return String.format("| %-30s | %-2s | %-2s | %-5s | %-5s |\n",
                 secondAddress, bedroom, bathroom, area, rentalRate);

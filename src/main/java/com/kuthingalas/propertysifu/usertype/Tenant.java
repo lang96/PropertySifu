@@ -9,13 +9,13 @@ public class Tenant extends User {
 
 
     // constructors
-    public Tenant(String username, String pass, String fName, String lName, String num) {
+    public Tenant(String username, String pass, String fName, String lName, String phone) {
 
         this.userID = username; // user can set their own custom username/userID
         this.userPass = pass;
         this.fName = fName;
         this.lName = lName;
-        this.phoneNum = num;
+        this.phoneNum = phone;
         this.userType = "Tenant";
 
     }
@@ -23,7 +23,7 @@ public class Tenant extends User {
     // methods
 
         // getters
-    //public String getUserName() {return this.userName}
+
 
         // setters
 
@@ -40,5 +40,9 @@ public class Tenant extends User {
         // list and JSON methods
 
         // accompanying methods
+
+    // void addTenant()
+    // void updateProfile()
+    // void removeTenant()
 
 }

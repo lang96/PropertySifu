@@ -1,8 +1,10 @@
 {
-  "ID":[],
+  "userID":[],
   "pass":[],
   "type":[],
   "fName":[],
   "lName":[],
-  "phoneNum":[]
+  "phone":[],
+  "idNum":[],
+  "org":[]
 }

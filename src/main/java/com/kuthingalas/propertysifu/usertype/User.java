@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class User {
 
-    // private members
+    // protected members
     protected String userID, userPass, userType, fName, lName, phoneNum;
 
     // public members
@@ -33,7 +33,21 @@ public abstract class User {
     }
 
         // setters
-
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+    public void setUserPass(String userPass) {
+        this.userPass = userPass;
+    }
+    public void setFName(String fName) {
+        this.fName = fName;
+    }
+    public void setLName(String lName) {
+        this.lName = lName;
+    }
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 
         // toString
     /*
@@ -47,6 +61,8 @@ public abstract class User {
         // list and JSON methods
 
         // accompanying methods
+
+    // static void setUserID()
 
 
 }
