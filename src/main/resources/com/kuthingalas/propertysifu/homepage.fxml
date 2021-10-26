@@ -3,7 +3,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,7 +47,17 @@
       <ComboBox fx:id="amenlist" layoutX="711.0" layoutY="150.0" onAction="#dolist2" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
       <ComboBox fx:id="furnilist" layoutX="853.0" layoutY="150.0" onAction="#furni" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />
       <Label layoutX="853.0" layoutY="132.0" text="Furniture" />
-      <TextArea fx:id="test1" editable="false" layoutX="14.0" layoutY="182.0" prefHeight="469.0" prefWidth="1147.0" promptText="Sout kimak!" />
+      <TableView fx:id="tbl" layoutX="104.0" layoutY="220.0" prefHeight="394.0" prefWidth="974.0">
+        <columns>
+          <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="col_name" prefWidth="75.0" text="Type" />
+            <TableColumn prefWidth="346.0" text="Address" />
+            <TableColumn minWidth="0.0" prefWidth="107.0" text="Bedrooms" />
+            <TableColumn prefWidth="119.0" text="Bathrooms" />
+            <TableColumn minWidth="0.0" prefWidth="128.0" text="Area" />
+            <TableColumn prefWidth="123.0" text="Price" />
+        </columns>
+      </TableView>
 <!--      <ComboBox fx:id="comb" layoutX="830.0" layoutY="215.0" onAction="#Select" prefWidth="150.0" />-->
 <!--      <Label fx:id="label" layoutX="830.0" layoutY="181.0" text="Label" />-->
    </children>

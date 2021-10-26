@@ -1,5 +1,6 @@
 package com.kuthingalas.propertysifu;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -36,9 +38,6 @@ public class HomepageController implements Initializable {
     private Hyperlink tologbtn;
 
     @FXML
-    private TextArea test1;
-
-    @FXML
     private Label label;
 
     @FXML
@@ -55,6 +54,27 @@ public class HomepageController implements Initializable {
     private ComboBox<String> furnilist;
 
     @FXML
+    private TableView<Std> tbl;
+    @FXML
+    private TableColumn<Std, String> col_id;
+    @FXML
+    private TableColumn<Std, String> col_name;
+
+
+    ObservableList list =  FXCollections.observableArrayList(
+
+
+            new Std ("1", "Bungalow"),
+            new Std ("2", "Apartment"),
+            new Std ("3", "Terrace")
+    );
+
+
+
+
+
+
+    @FXML
     public void tologin() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
@@ -68,13 +88,12 @@ public class HomepageController implements Initializable {
     private void dolist(ActionEvent event){
 
         String s = proptype.getSelectionModel().getSelectedItem().toString();
-        test1.setText( "" + s);
+        //textareaname.setText( "" + s);
     }
 
     @FXML
     private void dolist2(){
 
-        test1.setText("" + amenlist.getValue());
     }
 
     @FXML
@@ -106,6 +125,30 @@ public class HomepageController implements Initializable {
         bedrooms.setItems(numBedrooms);
         bathrooms.setItems(numBathrooms);
         furnilist.setItems(furniture);
+        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tbl.setItems(list);
+
+    }
+
+
+    public class Std{
+
+        SimpleStringProperty id;
+        SimpleStringProperty name;
+
+        public Std(String id,String name){
+            this.id = new SimpleStringProperty(id);
+            this.name = new SimpleStringProperty(name);
+        }
+
+        public String getId() {
+            return id.get();
+        }
+
+        public String getName() {
+            return name.get();
+        }
     }
 
 // Checkbox function
