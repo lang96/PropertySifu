@@ -12,7 +12,7 @@
             <Image url="/raw/housez.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="profile" layoutX="1088.0" layoutY="14.0" mnemonicParsing="false" onAction="#toprof" prefHeight="36.0" prefWidth="88.0" text="Profile">
+      <Button fx:id="profile" layoutX="1088.0" layoutY="14.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="36.0" prefWidth="88.0" text="Profile">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
