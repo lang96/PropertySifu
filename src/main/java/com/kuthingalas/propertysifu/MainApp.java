@@ -1,7 +1,6 @@
-package com.kuthingalas.propertysifu;/*
+package com.kuthingalas.propertysifu;
 
-
-
+/*
 Project name : Cyberjaya Online Rental Management System
 
 Project description : An online tool for owner, property agent and potential tenant in Cyberjaya to rent out or
@@ -75,11 +74,13 @@ Project requirements / Marking Scheme :                                         
 
 // import
 
+
+
 public class MainApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Babi");
+        System.out.println("Hello World!");
     }
 
 }

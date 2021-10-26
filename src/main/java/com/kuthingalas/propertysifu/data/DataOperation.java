@@ -122,43 +122,66 @@ public class DataOperation {
                     String fName = "" + fNameArr.get(i);
                     String lName = "" + lNameArr.get(i);
                     String phone = "" + phoneArr.get(i);
+
+                    // only for agent and owner
                     String idNum = "" + idNumArr.get(i);
                     String org = "" + orgArr.get(i);
                     ArrayList<Property> properties = new ArrayList<>();
 
-                    if (type.equals("Agent") || type.equals("Owner")) { // get properties registered under this agent/owner
+                    switch (type) {
 
-                        if (!PropertyList.isEmpty()) { // only proceed after PropertyList is initialized and not empty
+                        case "Tenant":
+                            UserList.add(new Tenant(ID, pass, fName, lName, phone));
+                            break;
 
-                            for (int j = 0; j < PropertyList.size(); j++) {
+                        case "Agent":
 
-                                if (PropertyList.get(j).getRepresentativeID().equals(ID)) {
+                            if (!PropertyList.isEmpty()) { // only proceed after PropertyList is initialized and not empty
 
-                                    properties.add(PropertyList.get(j));
-
+                                for (int j = 0; j < PropertyList.size(); j++) {
+                                    if (PropertyList.get(j).getRepresentativeID().equals(ID)) {
+                                        properties.add(PropertyList.get(j));
+                                    }
                                 }
 
+                                if (!properties.isEmpty()) {
+                                    UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org, properties));
+                                    break;
+                                } else {
+                                    UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org));
+                                    break;
+                                }
+
+                            } else {
+                                UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org));
+                                break;
                             }
 
-                        }
+                        case "Owner":
 
-                    } else {
+                            if (!PropertyList.isEmpty()) { // only proceed after PropertyList is initialized and not empty
 
-                        switch(type) {
+                                for (int j = 0; j < PropertyList.size(); j++) {
+                                    if (PropertyList.get(j).getRepresentativeID().equals(ID)) {
+                                        properties.add(PropertyList.get(j));
+                                    }
+                                }
 
-                            case "Tenant":
-                                UserList.add(new Tenant(ID, pass, fName, lName, phone));
+                                if (!properties.isEmpty()) {
+                                    UserList.add(new Owner(ID, pass, fName, lName, phone, idNum, properties));
+                                    break;
+                                } else {
+                                    UserList.add(new Owner(ID, pass, fName, lName, phone, idNum));
+                                    break;
+                                }
+
+                            } else {
+                                UserList.add(new Owner(ID, pass, fName, lName, phone, idNum));
                                 break;
-                            case "Agent":
-                                UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org, properties));
-                                break;
-                            case "Owner":
-                                UserList.add(new Owner(ID, pass, fName, lName, phone, idNum, properties));
-                                break;
-                            default:
-                                continue;
+                            }
 
-                        }
+                        default:
+                            continue;
 
                     }
 
@@ -207,8 +230,8 @@ public class DataOperation {
             JSONArray bathArr = (JSONArray) propertyData.get("bath"); // getting int from String
             JSONArray areaArr = (JSONArray) propertyData.get("area"); // getting int from String
             JSONArray furnishArr = (JSONArray) propertyData.get("furnish"); // getting int from String
-            JSONArray psfArr = (JSONArray) propertyData.get("psf"); // getting int from String
-            JSONArray rentArr = (JSONArray) propertyData.get("rent"); // getting int from String
+            JSONArray psfArr = (JSONArray) propertyData.get("psf"); // getting float from String
+            JSONArray rentArr = (JSONArray) propertyData.get("rent"); // getting float from String
             JSONArray repIDArr = (JSONArray) propertyData.get("repID");
 
             // keep in mind this is an array of arrays - do add, remove and update accordingly
