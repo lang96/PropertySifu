@@ -1,5 +1,11 @@
 package com.kuthingalas.propertysifu;
 
+import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.data.DataOperation;
+
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,11 +27,11 @@ import java.util.ResourceBundle;
 public class HomepageController implements Initializable {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Bungalow","Apartment");
-    ObservableList<String> amenitiesList = FXCollections.observableArrayList("Swimming Pool","Park");
+    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Swimming Pool","Park");
     ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
-    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially" ,"Furnished");
+    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially","Furnished");
 
 
 //    @FXML
@@ -35,15 +41,15 @@ public class HomepageController implements Initializable {
     Button profile , confirmBtn ;
 
     @FXML
-    private Hyperlink tologbtn;
+    private Hyperlink toLogBtn;
 
     @FXML
-    private Label label;
+    private Label lbl;
 
     @FXML
-    public ComboBox <String> proptype;
+    public ComboBox <String> propType;
     @FXML
-    private ComboBox<String> amenlist;
+    private ComboBox<String> facList;
     @FXML
     private ComboBox<String> price;
     @FXML
@@ -51,7 +57,7 @@ public class HomepageController implements Initializable {
     @FXML
     private ComboBox<String> bathrooms;
     @FXML
-    private ComboBox<String> furnilist;
+    private ComboBox<String> furnishList;
 
     @FXML
     private TableView<Std> tbl;
@@ -59,96 +65,149 @@ public class HomepageController implements Initializable {
     private TableColumn<Std, String> col_id;
     @FXML
     private TableColumn<Std, String> col_name;
+    @FXML
+    private TableColumn<Std, String> col_address;
+    @FXML
+    private TableColumn<Std, String> col_bed;
+    @FXML
+    private TableColumn<Std, String> col_bath;
+    @FXML
+    private TableColumn<Std, String> col_area;
+    /*
+    @FXML
+    private TableColumn<Std, String> col_psf;
+     */
+    @FXML
+    private TableColumn<Std, String> col_rent;
 
-
-    ObservableList list =  FXCollections.observableArrayList(
-
-
-            new Std ("1", "Bungalow"),
-            new Std ("2", "Apartment"),
-            new Std ("3", "Terrace")
-    );
-
-
-
-
-
+    ObservableList list =  FXCollections.observableArrayList();
 
     @FXML
-    public void tologin() throws IOException {
+    public void toLogin() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
 
-        Stage window = (Stage) tologbtn.getScene().getWindow();
+        Stage window = (Stage) toLogBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }
 
     @FXML
-    private void dolist(ActionEvent event){
+    private void doList(ActionEvent event){
 
-        String s = proptype.getSelectionModel().getSelectedItem().toString();
+        String s = propType.getSelectionModel().getSelectedItem().toString();
         //textareaname.setText( "" + s);
     }
 
     @FXML
-    private void dolist2(){
+    private void doList2(){
 
     }
 
     @FXML
-    private void pricelist(){
+    private void priceList(){
 
     }
 
     @FXML
-    private void bedlist(){
+    private void bedList(){
 
     }
 
     @FXML
-    private void bathlist(){
+    private void bathList(){
 
     }
 
     @FXML
-    private void furni(){
+    private void furnishList(){
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        proptype.setItems(propertyList);
-        amenlist.setItems(amenitiesList);
+        propType.setItems(propertyList);
+        facList.setItems(facilitiesList);
         price.setItems(sortPrice);
         bedrooms.setItems(numBedrooms);
         bathrooms.setItems(numBathrooms);
-        furnilist.setItems(furniture);
-        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        furnishList.setItems(furniture);
+
+        col_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        col_name.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        //col_projType.setCellValueFactory(new PropertyValueFactory<>("projType"));
+        //col_fac.setCellValueFactory(new PropertyValueFactory<>("facilities"));
+        col_bed.setCellValueFactory(new PropertyValueFactory<>("bed"));
+        col_bath.setCellValueFactory(new PropertyValueFactory<>("bath"));
+        col_area.setCellValueFactory(new PropertyValueFactory<>("area"));
+        //col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
+        //col_psf.setCellValueFactory(new PropertyValueFactory<>("psf"));
+        col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
+
+        for (int i = 0; i < PropertyList.size(); i++) {
+
+            list.add(new Std(i));
+
+        }
+
         tbl.setItems(list);
 
     }
 
-
     public class Std{
 
-        SimpleStringProperty id;
-        SimpleStringProperty name;
+        SimpleStringProperty ID;
+        SimpleStringProperty type;
+        SimpleStringProperty address;
+        //SimpleStringProperty projType;
+        //SimpleStringProperty facilities;
+        SimpleStringProperty bed;
+        SimpleStringProperty bath;
+        SimpleStringProperty area;
+        //SimpleStringProperty furnish;
+        //SimpleStringProperty psf;
+        SimpleStringProperty rent;
 
-        public Std(String id,String name){
-            this.id = new SimpleStringProperty(id);
-            this.name = new SimpleStringProperty(name);
+        public Std(int index){
+            this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
+            this.type = new SimpleStringProperty(PropertyList.get(index).getPropertyType());
+            this.address = new SimpleStringProperty(PropertyList.get(index).getFirstAddress());
+            this.bed = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBedroom()));
+            this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
+            this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
+            this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
         }
 
-        public String getId() {
-            return id.get();
+        public String getID() {
+            return ID.get();
         }
 
-        public String getName() {
-            return name.get();
+        public String getType() {
+            return type.get();
         }
+
+        public String getAddress() {
+            return address.get();
+        }
+
+        public String getBed() {
+            return bed.get();
+        }
+
+        public String getBath() {
+            return bath.get();
+        }
+
+        public String getArea() {
+            return area.get();
+        }
+
+        public String getRent() {
+            return rent.get();
+        }
+
     }
 
 // Checkbox function

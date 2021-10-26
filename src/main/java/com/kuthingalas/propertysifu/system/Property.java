@@ -2,6 +2,8 @@ package com.kuthingalas.propertysifu.system;
 
 import java.util.ArrayList;
 
+
+
 public class Property {
 
     // private members

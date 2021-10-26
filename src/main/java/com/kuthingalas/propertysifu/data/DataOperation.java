@@ -1,10 +1,7 @@
 package com.kuthingalas.propertysifu.data;
 
 import com.kuthingalas.propertysifu.system.Property;
-import com.kuthingalas.propertysifu.usertype.Admin;
-import com.kuthingalas.propertysifu.usertype.Agent;
-import com.kuthingalas.propertysifu.usertype.Owner;
-import com.kuthingalas.propertysifu.usertype.Tenant;
+import com.kuthingalas.propertysifu.usertype.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,6 +19,7 @@ import static com.kuthingalas.propertysifu.usertype.Admin.AdminList;
 import static com.kuthingalas.propertysifu.usertype.User.UserList;
 
 
+
 public class DataOperation {
 
     /* void initialize users from json
@@ -32,7 +30,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\adminData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject adminData = (JSONObject) obj;
@@ -72,7 +70,7 @@ public class DataOperation {
 
                 AdminList.add(new Admin(defID, defPass, true));
 
-                try (FileWriter fileWrite = new FileWriter("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\adminData.json")) {
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
 
                     fileWrite.write(adminData.toJSONString());
                     fileWrite.flush();
@@ -97,7 +95,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -182,7 +180,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\propertyData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject propertyData = (JSONObject) obj;
@@ -266,7 +265,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\adminData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject adminData = (JSONObject) obj;
@@ -293,7 +292,7 @@ public class DataOperation {
 
             AdminList.add(new Admin(id, pass, control));
 
-            try (FileWriter fileWrite = new FileWriter("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\adminData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
 
                 fileWrite.write(adminData.toJSONString());
                 fileWrite.flush();
@@ -316,7 +315,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -350,7 +349,7 @@ public class DataOperation {
 
             UserList.add(new Tenant(id, pass, fName, lName, phone));
 
-            try (FileWriter fileWrite = new FileWriter("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
                 fileWrite.write(userData.toJSONString());
                 fileWrite.flush();
@@ -373,7 +372,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -407,7 +406,7 @@ public class DataOperation {
 
             UserList.add(new Agent(id, pass, fName, lName, phone, idNum, org));
 
-            try (FileWriter fileWrite = new FileWriter("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
                 fileWrite.write(userData.toJSONString());
                 fileWrite.flush();
@@ -430,7 +429,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -464,7 +463,7 @@ public class DataOperation {
 
             UserList.add(new Owner(id, pass, fName, lName, phone, idNum));
 
-            try (FileWriter fileWrite = new FileWriter("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
                 fileWrite.write(userData.toJSONString());
                 fileWrite.flush();
@@ -498,7 +497,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\adminData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject adminData = (JSONObject) obj;
@@ -542,7 +541,7 @@ public class DataOperation {
                 adminData.put("pass", passArr);
                 adminData.put("ID", IDArr);
 
-                try (FileWriter fileWrite = new FileWriter("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\adminData.json")) {
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
 
                     fileWrite.write(adminData.toJSONString());
                     fileWrite.flush();
@@ -569,7 +568,7 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -628,7 +627,7 @@ public class DataOperation {
                 userData.put("pass", passArr);
                 userData.put("ID", IDArr);
 
-                try (FileWriter fileWrite = new FileWriter("D:\\JetBrains Toolbox\\Projects\\IdeaProjects\\OOAD_Assignment\\src\\Data\\userData.json")) {
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
 
                     fileWrite.write(userData.toJSONString());
                     fileWrite.flush();
@@ -683,13 +682,7 @@ public class DataOperation {
 
     public static void main(String[] args) {
 
-        initializeProperty();
-        System.out.println(PropertyList.get(0).toString());
-        System.out.println(PropertyList.get(0).toStringExtend());
-        System.out.println(PropertyList.get(1).toString());
-        System.out.println(PropertyList.get(1).toStringExtend());
-        System.out.println(PropertyList.get(2).toString());
-        System.out.println(PropertyList.get(2).toStringExtend());
+
 
     }
 

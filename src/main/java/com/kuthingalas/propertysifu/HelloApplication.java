@@ -1,5 +1,10 @@
 package com.kuthingalas.propertysifu;
 
+import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.data.DataOperation;
+
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 
 public class HelloApplication extends Application  {
     @Override
@@ -20,6 +26,7 @@ public class HelloApplication extends Application  {
     }
 
     public static void main(String[] args) {
+        initializeProperty();
         launch();
     }
 }

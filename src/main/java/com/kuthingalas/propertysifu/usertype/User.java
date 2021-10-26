@@ -2,6 +2,8 @@ package com.kuthingalas.propertysifu.usertype;
 
 import java.util.ArrayList;
 
+
+
 public abstract class User {
 
     // protected members

@@ -9,7 +9,7 @@
    <children>
       <ImageView fx:id="casa" fitHeight="783.0" fitWidth="1182.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../raw/housez.jpg" />
+            <Image url="/raw/housez.jpg" />
          </image>
       </ImageView>
       <Button fx:id="profile" layoutX="1088.0" layoutY="14.0" mnemonicParsing="false" onAction="#toprof" prefHeight="36.0" prefWidth="88.0" text="Profile">

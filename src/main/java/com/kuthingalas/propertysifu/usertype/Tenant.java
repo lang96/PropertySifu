@@ -1,5 +1,7 @@
 package com.kuthingalas.propertysifu.usertype;
 
+
+
 public class Tenant extends User {
 
     // private members

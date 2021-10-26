@@ -5,6 +5,7 @@ import com.kuthingalas.propertysifu.system.Property;
 import java.util.ArrayList;
 
 
+
 /* agent has elevated access (additional features) */
 public class Owner extends User {
 
