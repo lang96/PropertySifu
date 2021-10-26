@@ -28,16 +28,16 @@
             <Font name="Californian FB" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="userid" layoutX="232.0" layoutY="120.0" />
+      <TextField fx:id="userID" layoutX="232.0" layoutY="120.0" />
       <Label fx:id="userpasslbl" layoutX="119.0" layoutY="177.0" text="Password">
          <font>
             <Font name="Californian FB" size="14.0" />
          </font>
       </Label>
-      <PasswordField fx:id="userpass" layoutX="232.0" layoutY="172.0" />
-      <CheckBox fx:id="checkpass" layoutX="401.0" layoutY="177.0" mnemonicParsing="false" onAction="#actionPerformed" text="Show Password" />
-      <Button fx:id="loginbtn" layoutX="311.0" layoutY="217.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
-      <Button fx:id="resetbtn" layoutX="210.0" layoutY="217.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+      <PasswordField fx:id="userPass" layoutX="232.0" layoutY="172.0" />
+      <CheckBox fx:id="checkPass" layoutX="401.0" layoutY="177.0" mnemonicParsing="false" onAction="#actionPerformed" text="Show Password" />
+      <Button fx:id="loginBtn" layoutX="311.0" layoutY="217.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
+      <Button fx:id="resetBtn" layoutX="210.0" layoutY="217.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
       <Label layoutX="175.0" layoutY="260.0" text="Don't have an account? " />
       <ImageView fitHeight="110.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -45,7 +45,7 @@
          </image>
       </ImageView>
       <Label layoutX="183.0" layoutY="291.0" text="Are you an Agent?" />
-      <Hyperlink fx:id="regisbtn" layoutX="305.0" layoutY="257.0" onAction="#toregis" text="Register Now" />
-      <Hyperlink fx:id="signupbtn" layoutX="295.0" layoutY="288.0" onAction="#toregis2" text="Sign Up" />
+      <Hyperlink fx:id="regBtn" layoutX="305.0" layoutY="257.0" onAction="#toRegister" text="Register Now" />
+      <Hyperlink fx:id="signupBtn" layoutX="295.0" layoutY="288.0" onAction="#toRegister2" text="Sign Up" />
    </children>
 </AnchorPane>

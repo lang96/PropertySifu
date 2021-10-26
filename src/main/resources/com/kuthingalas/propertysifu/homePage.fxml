@@ -41,8 +41,8 @@
       <Label layoutX="464.0" layoutY="132.0" text="Bathrooms" />
       <Label fx:id="lbl" layoutX="346.0" layoutY="510.0" />
       <ComboBox fx:id="propType" layoutX="207.0" layoutY="149.0" onAction="#doList" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
-      <ComboBox fx:id="bedrooms" layoutX="334.0" layoutY="149.0" onAction="#bedList" prefHeight="25.0" prefWidth="110.0" promptText="1" />
-      <ComboBox fx:id="bathrooms" layoutX="464.0" layoutY="149.0" onAction="#bathList" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
+      <ComboBox fx:id="bedroom" layoutX="334.0" layoutY="149.0" onAction="#bedList" prefHeight="25.0" prefWidth="110.0" promptText="1" />
+      <ComboBox fx:id="bathroom" layoutX="464.0" layoutY="149.0" onAction="#bathList" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
       <ComboBox fx:id="price" layoutX="591.0" layoutY="149.0" onAction="#priceList" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
       <ComboBox fx:id="facList" layoutX="711.0" layoutY="150.0" onAction="#doList2" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
       <ComboBox fx:id="furnishList" layoutX="853.0" layoutY="150.0" onAction="#furnishList" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />

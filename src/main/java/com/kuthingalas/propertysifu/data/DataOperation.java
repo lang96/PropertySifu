@@ -30,7 +30,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject adminData = (JSONObject) obj;
@@ -70,7 +71,8 @@ public class DataOperation {
 
                 AdminList.add(new Admin(defID, defPass, true));
 
-                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
 
                     fileWrite.write(adminData.toJSONString());
                     fileWrite.flush();
@@ -95,7 +97,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -265,7 +268,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject adminData = (JSONObject) obj;
@@ -292,7 +296,8 @@ public class DataOperation {
 
             AdminList.add(new Admin(id, pass, control));
 
-            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                    "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
 
                 fileWrite.write(adminData.toJSONString());
                 fileWrite.flush();
@@ -315,7 +320,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -349,7 +355,8 @@ public class DataOperation {
 
             UserList.add(new Tenant(id, pass, fName, lName, phone));
 
-            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                    "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
                 fileWrite.write(userData.toJSONString());
                 fileWrite.flush();
@@ -372,7 +379,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -406,7 +414,8 @@ public class DataOperation {
 
             UserList.add(new Agent(id, pass, fName, lName, phone, idNum, org));
 
-            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                    "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
                 fileWrite.write(userData.toJSONString());
                 fileWrite.flush();
@@ -429,7 +438,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -463,7 +473,8 @@ public class DataOperation {
 
             UserList.add(new Owner(id, pass, fName, lName, phone, idNum));
 
-            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                    "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
                 fileWrite.write(userData.toJSONString());
                 fileWrite.flush();
@@ -497,7 +508,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject adminData = (JSONObject) obj;
@@ -541,7 +553,8 @@ public class DataOperation {
                 adminData.put("pass", passArr);
                 adminData.put("ID", IDArr);
 
-                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "adminData.json")) {
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
 
                     fileWrite.write(adminData.toJSONString());
                     fileWrite.flush();
@@ -568,7 +581,8 @@ public class DataOperation {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
@@ -627,7 +641,8 @@ public class DataOperation {
                 userData.put("pass", passArr);
                 userData.put("ID", IDArr);
 
-                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") + "\\src\\Data\\" + "userData.json")) {
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
 
                     fileWrite.write(userData.toJSONString());
                     fileWrite.flush();

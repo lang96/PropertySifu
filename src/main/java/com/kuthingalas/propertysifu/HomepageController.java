@@ -1,8 +1,7 @@
 package com.kuthingalas.propertysifu;
 
-import com.kuthingalas.propertysifu.system.Property;
-import com.kuthingalas.propertysifu.data.DataOperation;
-
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
 import static com.kuthingalas.propertysifu.system.Property.*;
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
@@ -23,6 +22,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+
 
 public class HomepageController implements Initializable {
 
@@ -53,9 +54,9 @@ public class HomepageController implements Initializable {
     @FXML
     private ComboBox<String> price;
     @FXML
-    private ComboBox<String> bedrooms;
+    private ComboBox<String> bedroom;
     @FXML
-    private ComboBox<String> bathrooms;
+    private ComboBox<String> bathroom;
     @FXML
     private ComboBox<String> furnishList;
 
@@ -85,7 +86,7 @@ public class HomepageController implements Initializable {
     @FXML
     public void toLogin() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
 
         Stage window = (Stage) toLogBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
@@ -130,8 +131,8 @@ public class HomepageController implements Initializable {
         propType.setItems(propertyList);
         facList.setItems(facilitiesList);
         price.setItems(sortPrice);
-        bedrooms.setItems(numBedrooms);
-        bathrooms.setItems(numBathrooms);
+        bedroom.setItems(numBedrooms);
+        bathroom.setItems(numBathrooms);
         furnishList.setItems(furniture);
 
         col_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
@@ -147,9 +148,7 @@ public class HomepageController implements Initializable {
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
 
         for (int i = 0; i < PropertyList.size(); i++) {
-
             list.add(new Std(i));
-
         }
 
         tbl.setItems(list);

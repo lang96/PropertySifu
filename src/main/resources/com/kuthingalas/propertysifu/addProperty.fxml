@@ -29,10 +29,10 @@
       <CheckBox layoutX="615.0" layoutY="168.0" mnemonicParsing="false" text="Laundry" />
       <CheckBox layoutX="615.0" layoutY="193.0" mnemonicParsing="false" text="Prayer Room" />
       <CheckBox layoutX="615.0" layoutY="222.0" mnemonicParsing="false" text="Gymnasium" />
-      <ComboBox fx:id="proptype2" layoutX="35.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="Bungalow" />
-      <ComboBox fx:id="bedrooms2" layoutX="176.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="Studio" />
-      <ComboBox fx:id="bathrooms2" layoutX="319.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="1" />
-      <ComboBox fx:id="furnilist2" layoutX="467.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="Unfurnished" />
+      <ComboBox fx:id="propType2" layoutX="35.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="Bungalow" />
+      <ComboBox fx:id="bedroom2" layoutX="176.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="Studio" />
+      <ComboBox fx:id="bathroom2" layoutX="319.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="1" />
+      <ComboBox fx:id="furnishList2" layoutX="467.0" layoutY="103.0" prefHeight="25.0" prefWidth="123.0" promptText="Unfurnished" />
       <Label layoutX="467.0" layoutY="88.0" text="Furniture" />
    </children>
 </AnchorPane>

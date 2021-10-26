@@ -16,22 +16,23 @@ import java.util.Scanner;
 public class LoginController {
 
     @FXML
-    private CheckBox checkpass ;
+    private CheckBox checkPass;
 
     @FXML
-    private Hyperlink regisbtn,signupbtn;
+    private Hyperlink regBtn, signupBtn;
 
     @FXML
-    public TextField userid;
-    public PasswordField userpass;
+    public TextField userID;
+    public PasswordField userPass;
 
     @FXML
-    Button loginbtn , resetbtn  ,confirmregisbtn ,profile , confirmBtn ;
+    Button loginBtn, resetBtn, confirmRegBtn, profile, confirmBtn;
 
     public void proceed() {
 
         Writer writer = null;
         File check = new File("userPass.txt");
+
         if(check.exists()){
 
             //Checks if the file exists. will not add anything if the file does exist.
@@ -51,8 +52,8 @@ public class LoginController {
             FileWriter filewrite = new FileWriter(file, true);
             String usertxt = " ";
             String passtxt = " ";
-            String username = userid.getText();
-            String pass = userpass.getText();
+            String username = userID.getText();
+            String pass = userPass.getText();
 
 
             while (scan.hasNext()) {
@@ -62,9 +63,9 @@ public class LoginController {
             }
 
             if (username.equals(usertxt) && pass.equals(passtxt)) {
-                Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 
-                Stage window = (Stage) confirmregisbtn.getScene().getWindow();
+                Stage window = (Stage) confirmRegBtn.getScene().getWindow();
                 window.setScene(new Scene(root,1182,665));
             } else if (username.equals("") && pass.equals("")) {
 
@@ -77,8 +78,8 @@ public class LoginController {
                 errorAlert.setHeaderText("Error");
                 errorAlert.setContentText("Wrong Username or Password");
                 errorAlert.showAndWait();
-                userid.setText("");
-                userpass.setText("");
+                userID.setText("");
+                userPass.setText("");
             }
         } catch (IOException d) {
             d.printStackTrace();
@@ -86,22 +87,22 @@ public class LoginController {
     }
 
     @FXML
-    public void toregis() throws IOException {
+    public void toRegister() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("registerpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("registerPage.fxml"));
 
-        Stage window = (Stage) regisbtn.getScene().getWindow();
+        Stage window = (Stage) regBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
 
     }
 
     @FXML
-    public void toregis2() throws IOException {
+    public void toRegister2() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("registerpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("registerPage.fxml"));
 
-        Stage window = (Stage) signupbtn.getScene().getWindow();
+        Stage window = (Stage) signupBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }
@@ -109,25 +110,25 @@ public class LoginController {
     @FXML
     public void actionPerformed(ActionEvent e) {
 
-        if (checkpass.isSelected()){
-            userpass.setPromptText(userpass.getText());
-            userpass.setText("");
+        if (checkPass.isSelected()){
+            userPass.setPromptText(userPass.getText());
+            userPass.setText("");
 
         }else {
-            userpass.setText(userpass.getPromptText());
-            userpass.setPromptText("");
+            userPass.setText(userPass.getPromptText());
+            userPass.setPromptText("");
         }
     }
 
     @FXML
     public void reset(ActionEvent event){
 
-        userid.setText("");
-        userpass.setText("");
+        userID.setText("");
+        userPass.setText("");
 
     }
 
-    public void tohome() throws IOException {
+    public void toHome() throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Details Confirmation");
@@ -136,9 +137,9 @@ public class LoginController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            Parent root = FXMLLoader.load(getClass().getResource("listingpage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("listingPage.fxml"));
 
-            Stage window = (Stage) confirmregisbtn.getScene().getWindow();
+            Stage window = (Stage) confirmRegBtn.getScene().getWindow();
             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
             window.setScene(new Scene(root,1182,665));
         } else {
@@ -147,25 +148,22 @@ public class LoginController {
 
     }
 
-    public void toprof() throws IOException {
+    public void toProfile() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("viewprofile.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("viewProfile.fxml"));
 
         Stage window = (Stage) profile.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }
 
-    public void backhome() throws IOException {
+    public void backHome() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("listingpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("listingPage.fxml"));
 
         Stage window = (Stage) confirmBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,1182,665));
     }
-
-
-
 
 }
