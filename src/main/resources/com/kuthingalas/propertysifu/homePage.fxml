@@ -59,7 +59,7 @@
            <TableColumn fx:id="col_rent" prefWidth="123.0" text="Price" />
         </columns>
       </TableView>
-      <Button layoutX="552.0" layoutY="626.0" mnemonicParsing="false" text="Information" />
+      <Button layoutX="552.0" layoutY="626.0" mnemonicParsing="false" onAction="#inforr" text="Information" />
 <!--      <ComboBox fx:id="comb" layoutX="830.0" layoutY="215.0" onAction="#Select" prefWidth="150.0" />-->
 <!--      <Label fx:id="label" layoutX="830.0" layoutY="181.0" text="Label" />-->
    </children>

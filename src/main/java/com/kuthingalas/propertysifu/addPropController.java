@@ -28,6 +28,7 @@ public class addPropController implements Initializable {
     @FXML
     private ComboBox<String> furnishList2;
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
