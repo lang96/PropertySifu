@@ -39,7 +39,7 @@ public class HomepageController implements Initializable {
 //    private CheckBox sial;
 
     @FXML
-    Button profile , confirmBtn ;
+    private Button profile , confirmBtn ;
 
     @FXML
     private Hyperlink toLogBtn;
@@ -89,6 +89,15 @@ public class HomepageController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
 
         Stage window = (Stage) toLogBtn.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root,597,338));
+    }
+
+    public void toProfile() throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("viewProfile.fxml"));
+
+        Stage window = (Stage) profile.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }

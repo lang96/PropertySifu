@@ -137,7 +137,7 @@ public class LoginController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            Parent root = FXMLLoader.load(getClass().getResource("listingPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("loadPage.fxml"));
 
             Stage window = (Stage) confirmRegBtn.getScene().getWindow();
             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
@@ -148,18 +148,9 @@ public class LoginController {
 
     }
 
-    public void toProfile() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("viewProfile.fxml"));
-
-        Stage window = (Stage) profile.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,597,338));
-    }
-
     public void backHome() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("listingPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loadPage.fxml"));
 
         Stage window = (Stage) confirmBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
