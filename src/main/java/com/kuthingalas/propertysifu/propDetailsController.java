@@ -17,15 +17,15 @@ public class propDetailsController implements Initializable {
 
     private HomepageController selectedProperty;
 
-    @FXML private Label agentLabel;
-    @FXML private Label psqfLabel;
-    @FXML private Label commentLabel;
-    @FXML private Label facilitiesLabel;
+    @FXML private Label agentLbl;
+    @FXML private Label psfLbl;
+    @FXML private Label commentLbl;
+    @FXML private Label facLbl;
 
 
     public void initData(HomepageController homepageController)
     {
-        agentLabel.setText("Test");
+        agentLbl.setText("Test");
     }
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException

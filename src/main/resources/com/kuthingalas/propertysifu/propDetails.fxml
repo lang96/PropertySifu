@@ -30,32 +30,32 @@
                     <Font name="System Bold Italic" size="24.0" />
                 </font>
             </Label>
-            <Label layoutX="146.0" layoutY="214.0" text="Comment">
+            <Label layoutX="146.0" layoutY="214.0" text="Comments">
                 <font>
                     <Font name="System Bold Italic" size="24.0" />
                 </font>
             </Label>
-            <Label fx:id="facilitiesLabel" layoutX="438.0" layoutY="177.0" text="Label">
+            <Label fx:id="facLbl" layoutX="438.0" layoutY="177.0" text="Label">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <Label fx:id="commentLabel" layoutX="438.0" layoutY="218.0" prefHeight="27.0" prefWidth="42.0" text="Label">
+            <Label fx:id="commentLbl" layoutX="438.0" layoutY="218.0" prefHeight="27.0" prefWidth="42.0" text="Label">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <Label fx:id="psqfLabel" layoutX="438.0" layoutY="139.0" text="Label">
+            <Label fx:id="psfLbl" layoutX="438.0" layoutY="139.0" text="Label">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <Label layoutX="143.0" layoutY="135.0" text="Price PSQF">
+            <Label layoutX="143.0" layoutY="135.0" text="Price PSF">
                 <font>
                     <Font name="System Bold Italic" size="24.0" />
                 </font>
             </Label>
-            <Label fx:id="agentLabel" layoutX="438.0" layoutY="103.0" text="Label">
+            <Label fx:id="agentLbl" layoutX="438.0" layoutY="103.0" text="Label">
                 <font>
                     <Font size="18.0" />
                 </font>

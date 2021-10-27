@@ -103,7 +103,7 @@ public class HomepageController implements Initializable {
         window.setScene(new Scene(root,597,338));
     }
 
-    //tak jadi lagi, nak initialize data tak lepas
+    //tak jadi lagi, nak initialize data tak lepas - rename method
     public void inforr(ActionEvent event) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
