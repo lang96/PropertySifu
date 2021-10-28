@@ -5,6 +5,7 @@ import static com.kuthingalas.propertysifu.usertype.User.*;
 import static com.kuthingalas.propertysifu.system.Property.*;
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
+import com.kuthingalas.propertysifu.system.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class HomepageController implements Initializable {
 
-    ObservableList<String> propertyList = FXCollections.observableArrayList("Bungalow","Apartment");
+    ObservableList<String> propertyList = FXCollections.observableArrayList("Bungalow","Apartment","Condominium");
     ObservableList<String> facilitiesList = FXCollections.observableArrayList("Swimming Pool","Park");
     ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
@@ -61,8 +62,8 @@ public class HomepageController implements Initializable {
     @FXML
     private ComboBox<String> furnishList;
 
-    @FXML
-    private TableView<Std> tbl;
+    @FXML private TableView<Property> tbl;
+
     @FXML
     private TableColumn<Std, String> col_id;
     @FXML
@@ -75,6 +76,8 @@ public class HomepageController implements Initializable {
     private TableColumn<Std, String> col_bath;
     @FXML
     private TableColumn<Std, String> col_area;
+    @FXML
+    private TableColumn<Std, Button> col_btn;
     /*
     @FXML
     private TableColumn<Std, String> col_psf;
@@ -114,7 +117,7 @@ public class HomepageController implements Initializable {
 
         //access the controller and call a method
         propDetailsController controller = loader.getController();
-        //controller.initData(homepageController);
+        //controller.initData(tbl.getSelectionModel().getSelectedItem());
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -122,6 +125,8 @@ public class HomepageController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+
+
 
     @FXML
     private void doList(ActionEvent event){
@@ -176,6 +181,7 @@ public class HomepageController implements Initializable {
         //col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
         //col_psf.setCellValueFactory(new PropertyValueFactory<>("psf"));
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
+//        col_btn.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         for (int i = 0; i < PropertyList.size(); i++) {
             list.add(new Std(i));
@@ -184,8 +190,6 @@ public class HomepageController implements Initializable {
         tbl.setItems(list);
 
     }
-
-
 
     public class Std{
 
@@ -200,6 +204,7 @@ public class HomepageController implements Initializable {
         //SimpleStringProperty furnish;
         //SimpleStringProperty psf;
         SimpleStringProperty rent;
+//        Button info;
 
         public Std(int index){
             this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
@@ -209,6 +214,8 @@ public class HomepageController implements Initializable {
             this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
             this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
+//            this.info = new Button("Info");
+
         }
 
         public String getID() {
@@ -239,20 +246,15 @@ public class HomepageController implements Initializable {
             return rent.get();
         }
 
+//        public void setButton(Button info){
+//            this.info = info;
+//        }
+//
+//        public Button getInfo() {
+//            return info;
+//        }
     }
 
 
-// Checkbox function
-//    @FXML
-//    void Select(ActionEvent event) {
-//
-//        if (sial.isSelected()){
-//            String s = sial.getText();
-//            label.setText(s);
-//        }else {
-//            label.setText("");
-//        }
-//
-//    }
 }
 

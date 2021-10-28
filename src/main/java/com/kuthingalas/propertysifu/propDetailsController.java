@@ -3,6 +3,8 @@ package com.kuthingalas.propertysifu;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.kuthingalas.propertysifu.system.Property;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,18 +17,16 @@ import javafx.stage.Stage;
 
 public class propDetailsController implements Initializable {
 
-    private HomepageController selectedProperty;
-
-    @FXML private Label agentLbl;
-    @FXML private Label psfLbl;
-    @FXML private Label commentLbl;
-    @FXML private Label facLbl;
+    @FXML private Label agentLabel;
+    @FXML private Label psqfLabel;
+    @FXML private Label commentLabel;
+    @FXML private Label facilitiesLabel;
 
 
-    public void initData(HomepageController homepageController)
-    {
-        agentLbl.setText("Test");
-    }
+//    public void initData(Property property)
+//    {
+//        agentLabel.setText(property.getPropertyType());
+//    }
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {

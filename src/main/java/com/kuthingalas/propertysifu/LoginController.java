@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import net.synedra.validatorfx.Check;
 
 import java.io.*;
 import java.util.Optional;
@@ -16,17 +17,19 @@ import java.util.Scanner;
 public class LoginController {
 
     @FXML
-    private CheckBox checkPass;
+    private CheckBox checkPass, ownerBox,agentBox;
 
     @FXML
     private Hyperlink regBtn, signupBtn;
+    @FXML
+    private Label orglbl;
 
     @FXML
-    public TextField userID;
+    public TextField userID,phone ,org;
     public PasswordField userPass;
 
     @FXML
-    Button loginBtn, resetBtn, confirmRegBtn, profile, confirmBtn;
+    Button loginBtn, resetBtn, confirmRegBtn, profile, confirmBtn, backBtn;
 
     public void proceed() {
 
@@ -89,7 +92,7 @@ public class LoginController {
     @FXML
     public void toRegister() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("registerPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("userRegister.fxml"));
 
         Stage window = (Stage) regBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
@@ -100,7 +103,7 @@ public class LoginController {
     @FXML
     public void toRegister2() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("registerPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("agentRegister.fxml"));
 
         Stage window = (Stage) signupBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
@@ -133,7 +136,7 @@ public class LoginController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Details Confirmation");
         alert.setHeaderText("Please confirm the details");
-        alert.setContentText("Are you ok with this?");
+        alert.setContentText("Are you fine with this?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -143,18 +146,62 @@ public class LoginController {
             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
             window.setScene(new Scene(root,1182,665));
         } else {
-            // ... user chose CANCEL or closed the dialog
+            //  user chose CANCEL or closed the dialog
+        }
+
+    }
+
+    public void toHome2() throws IOException {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Details Confirmation");
+        alert.setHeaderText("Please confirm the details");
+        alert.setContentText("Are you fine with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            Parent root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
+
+            Stage window = (Stage) confirmRegBtn.getScene().getWindow();
+            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+            window.setScene(new Scene(root,1182,665));
+        } else {
+            //  user chose CANCEL or closed the dialog
         }
 
     }
 
     public void backHome() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("loadPage.fxml"));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Details Confirmation");
+        alert.setHeaderText("Please confirm the details");
+        alert.setContentText("Are you fine with this?");
 
-        Stage window = (Stage) confirmBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,1182,665));
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(getClass().getResource("loadPage.fxml"));
+
+            Stage window = (Stage) confirmBtn.getScene().getWindow();
+            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+            window.setScene(new Scene(root, 1182, 665));
+        } else {
+            //  user chose CANCEL or closed the dialog
+        }
+    }
+
+    @FXML
+    void Select(ActionEvent event) {
+
+        if (agentBox.isSelected()){
+            org.setVisible(true);
+            orglbl.setVisible(true);
+        }
+        else {
+            org.setVisible(false);
+            orglbl.setVisible(false);
+        }
+
     }
 
 }

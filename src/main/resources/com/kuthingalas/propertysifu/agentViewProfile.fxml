@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="342.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AgentHomepageController">
+      <children>
+         <ImageView fitHeight="381.0" fitWidth="606.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../raw/house.jpg" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="94.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../raw/house2.jpg" />
+            </image>
+         </ImageView>
+         <Label layoutX="338.0" layoutY="85.0">
+            <font>
+               <Font name="Californian FB" size="24.0" />
+            </font>
+         </Label>
+         <Label layoutX="122.0" layoutY="85.0" text="Username : ">
+            <font>
+               <Font name="Californian FB" size="24.0" />
+            </font>
+         </Label>
+         <Label layoutX="123.0" layoutY="190.0" text="Password :">
+            <font>
+               <Font name="Californian FB" size="24.0" />
+            </font>
+         </Label>
+         <Label layoutX="123.0" layoutY="224.0" text="Phone Number :">
+            <font>
+               <Font name="Californian FB" size="24.0" />
+            </font>
+         </Label>
+         <Label layoutX="252.0" layoutY="8.0" text="Profile">
+            <font>
+               <Font name="Californian FB Bold" size="36.0" />
+            </font>
+         </Label>
+         <TextField fx:id="profID" layoutX="338.0" layoutY="87.0" />
+         <TextField fx:id="profPhone" layoutX="338.0" layoutY="225.0" />
+         <TextField fx:id="profFname" layoutX="338.0" layoutY="124.0" />
+         <TextField fx:id="profLname" layoutX="338.0" layoutY="158.0" />
+         <PasswordField fx:id="profPass" layoutX="338.0" layoutY="191.0" />
+         <Label layoutX="123.0" layoutY="123.0" text="First Name">
+            <font>
+               <Font name="Californian FB" size="24.0" />
+            </font>
+         </Label>
+         <Label layoutX="123.0" layoutY="156.0" text="Last Name">
+            <font>
+               <Font name="Californian FB" size="24.0" />
+            </font>
+         </Label>
+      <Label layoutX="123.0" layoutY="259.0" text="Organization :">
+         <font>
+            <Font name="Californian FB" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="338.0" layoutY="261.0" />
+      <Button fx:id="agentconfirmBtn" layoutX="277.0" layoutY="303.0" mnemonicParsing="false" onAction="#toagentHomepage" text="Confirm" />
+      </children>
+</AnchorPane>

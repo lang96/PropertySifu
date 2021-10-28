@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="338.0" prefWidth="597.0" xmlns="http://javafx.com/javafx"  xmlns:fx="http://javafx.com/fxml" fx:controller="com.kuthingalas.propertysifu.LoginController">
+<AnchorPane prefHeight="338.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.LoginController">
    <children>
       <ImageView fitHeight="411.0" fitWidth="601.0" layoutX="1.0" layoutY="1.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/house.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="250.0" layoutY="42.0" prefHeight="33.0" prefWidth="103.0" text="Registration">
+      <Label layoutX="232.0" layoutY="41.0" prefHeight="33.0" prefWidth="139.0" text="User Registration">
          <font>
             <Font name="Book Antiqua" size="18.0" />
          </font>
