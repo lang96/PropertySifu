@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="570.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.adminHomepageController">
+<AnchorPane prefHeight="570.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.createNewAdminController">
    <children>
       <ImageView fitHeight="606.0" fitWidth="401.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,7 +21,7 @@
       <TextField layoutX="117.0" layoutY="108.0" />
       <TextField layoutX="117.0" layoutY="170.0" />
       <Label layoutX="33.0" layoutY="249.0" text="Access Level" />
-      <ComboBox layoutX="117.0" layoutY="245.0" prefWidth="150.0" />
+      <ComboBox fx:id="adminAccess" layoutX="117.0" layoutY="245.0" prefWidth="150.0" promptText="1" />
       <Button layoutX="73.0" layoutY="331.0" mnemonicParsing="false" text="Add" />
       <Button fx:id="back2" layoutX="170.0" layoutY="331.0" mnemonicParsing="false" onAction="#toManageAdmins2" text="Back" />
    </children>

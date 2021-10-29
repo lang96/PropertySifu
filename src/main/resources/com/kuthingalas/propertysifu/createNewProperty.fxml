@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="734.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.adminHomepageController">
+<AnchorPane prefHeight="734.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.createNewPropController">
    <children>
    <ImageView fitHeight="800.0" fitWidth="381.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -27,18 +27,18 @@
    <Label layoutX="54.0" layoutY="293.0" text="Status" />
    <Label layoutX="54.0" layoutY="362.0" text="Facilities" />
    <Label layoutX="54.0" layoutY="454.0" text="Details" />
-   <ComboBox layoutX="145.0" layoutY="152.0" prefWidth="150.0" />
+   <ComboBox fx:id="addProp" layoutX="145.0" layoutY="152.0" prefWidth="150.0" promptText="Bungalow" />
    <TextField layoutX="146.0" layoutY="213.0" promptText="First Line" />
    <TextField layoutX="146.0" layoutY="249.0" promptText="Second Line" />
-   <ComboBox layoutX="146.0" layoutY="289.0" prefWidth="150.0" />
+   <ComboBox fx:id="addStatus" layoutX="146.0" layoutY="289.0" prefWidth="150.0" promptText="Active" />
    <CheckBox layoutX="146.0" layoutY="362.0" mnemonicParsing="false" text="Park" />
    <CheckBox layoutX="238.0" layoutY="362.0" mnemonicParsing="false" text="Gymnasium" />
    <CheckBox layoutX="146.0" layoutY="389.0" mnemonicParsing="false" text="Prayer Room" />
    <CheckBox layoutX="238.0" layoutY="389.0" mnemonicParsing="false" text="Others" />
    <CheckBox layoutX="146.0" layoutY="418.0" mnemonicParsing="false" text="Swimming Pool" />
-   <ComboBox layoutX="144.0" layoutY="450.0" prefHeight="25.0" prefWidth="96.0" promptText="Bedroom" />
-   <ComboBox layoutX="144.0" layoutY="482.0" prefHeight="25.0" prefWidth="96.0" promptText="Bathroom" />
-   <ComboBox layoutX="144.0" layoutY="513.0" prefHeight="25.0" prefWidth="96.0" promptText="Furnish" />
+   <ComboBox fx:id="addBedroom" layoutX="144.0" layoutY="450.0" prefHeight="25.0" prefWidth="96.0" promptText="Bedroom" />
+   <ComboBox fx:id="addBathroom" layoutX="144.0" layoutY="482.0" prefHeight="25.0" prefWidth="96.0" promptText="Bathroom" />
+   <ComboBox fx:id="addFurni" layoutX="144.0" layoutY="513.0" prefHeight="25.0" prefWidth="96.0" promptText="Furnish" />
    <TextField layoutX="250.0" layoutY="450.0" prefHeight="25.0" prefWidth="119.0" promptText="Area" />
    <TextField layoutX="250.0" layoutY="482.0" prefHeight="25.0" prefWidth="119.0" promptText="PSF" />
    <TextField layoutX="250.0" layoutY="513.0" prefHeight="25.0" prefWidth="119.0" promptText="Price / Area x PSF" />
