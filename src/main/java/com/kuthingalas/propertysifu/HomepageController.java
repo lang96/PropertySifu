@@ -41,7 +41,7 @@ public class HomepageController implements Initializable {
 //    private CheckBox sial;
 
     @FXML
-    private Button profile , confirmBtn ;
+    private Button profile , confirmBtn ,adminPageBtn;
 
     @FXML
     private Hyperlink toLogBtn;
@@ -104,6 +104,15 @@ public class HomepageController implements Initializable {
         Stage window = (Stage) profile.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
+    }
+
+    public void toTestAdmin() throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
+
+        Stage window = (Stage) adminPageBtn.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root,700,400));
     }
 
     //tak jadi lagi, nak initialize data tak lepas - rename

@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.adminHomepageController">
    <children>
       <ImageView fitHeight="502.0" fitWidth="809.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
@@ -27,5 +26,6 @@
       <Button layoutX="379.0" layoutY="423.0" mnemonicParsing="false" text="Remove" />
       <Button fx:id="createNewPropertyBtn" layoutX="638.0" layoutY="31.0" mnemonicParsing="false" onAction="#toCreateNewProperty" text="Create" />
       <Button fx:id="adminEditPropertyBtn" layoutX="710.0" layoutY="31.0" mnemonicParsing="false" onAction="#toAdminEditProperty" text="Edit" />
+      <Button fx:id="back4" layoutX="21.0" layoutY="423.0" mnemonicParsing="false" onAction="#toAdminHomepage3" text="Back" />
    </children>
 </AnchorPane>

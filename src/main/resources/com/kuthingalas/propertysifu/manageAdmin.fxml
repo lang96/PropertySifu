@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.adminHomepageController">
    <children>
-      <ImageView fitHeight="444.0" fitWidth="714.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="420.0" fitWidth="741.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/house.jpg" />
          </image>
@@ -24,6 +24,6 @@
       <Button fx:id="editAdminBtn" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#toEditAdmin" text="Edit" />
       <Button fx:id="createAdminBtn" layoutX="619.0" layoutY="14.0" mnemonicParsing="false" onAction="#toCreateAdmin" text="Create New" />
       <Button layoutX="395.0" layoutY="376.0" mnemonicParsing="false" text="Change Access" />
-      <Button layoutY="376.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="back1" layoutX="18.0" layoutY="376.0" mnemonicParsing="false" onAction="#toAdminHomepage2" text="Back" />
    </children>
 </AnchorPane>
