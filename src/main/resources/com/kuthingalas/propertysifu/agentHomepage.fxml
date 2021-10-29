@@ -30,13 +30,15 @@
         </Label>
         <TableView fx:id="tbl" layoutX="77.0" layoutY="151.0" prefHeight="462.0" prefWidth="1030.0">
             <columns>
-                <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="col_id" prefWidth="75.0" text="Property ID" />
                 <TableColumn fx:id="col_name" prefWidth="75.0" text="Type" />
-                <TableColumn fx:id="col_address" prefWidth="354.0" text="Address" />
-                <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="129.0" text="Bedrooms" />
-                <TableColumn fx:id="col_bath" prefWidth="120.0" text="Bathrooms" />
-                <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="144.0" text="Area" />
-                <TableColumn fx:id="col_rent" prefWidth="132.0" text="Price" />
+                <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="110.0" text="Bedrooms" />
+                <TableColumn fx:id="col_bath" prefWidth="122.0" text="Bathrooms" />
+                <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="161.0" text="Area" />
+                <TableColumn fx:id="col_rent" prefWidth="111.0" text="Price" />
+            <TableColumn prefWidth="96.0" text="PSF" />
+            <TableColumn prefWidth="172.0" text="Area" />
+            <TableColumn prefWidth="107.0" text="Status" />
             </columns>
         </TableView>
         <Button fx:id="profile" layoutX="1071.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="25.0" prefWidth="97.0" text=" Profile" />
@@ -45,9 +47,9 @@
                 <Image url="@../../../raw/accicon.jpg" />
             </image>
         </ImageView>
-        <Button layoutX="565.0" layoutY="626.0" mnemonicParsing="false" text="Prop Details" />
+        <Button layoutX="565.0" layoutY="626.0" mnemonicParsing="false" text="Remove" />
       <Label layoutX="560.0" layoutY="19.0" text="Agent" />
-      <Button fx:id="editpropBtn" layoutX="976.0" layoutY="97.0" mnemonicParsing="false" onAction="#toeditProperty" text="Edit Prop" />
+      <Button fx:id="editpropBtn" layoutX="461.0" layoutY="626.0" mnemonicParsing="false" onAction="#toeditProperty" text="Edit Prop" />
 
 
     </children>

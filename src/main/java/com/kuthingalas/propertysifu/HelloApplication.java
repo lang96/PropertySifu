@@ -19,7 +19,7 @@ import java.io.IOException;
 public class HelloApplication extends Application  {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
         primaryStage.setTitle("Property Sifu");
         primaryStage.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         primaryStage.setScene(new Scene(root,1182,665));

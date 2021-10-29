@@ -10,57 +10,29 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.propDetailsController">
 
     <children>
-      <ImageView fitHeight="451.0" fitWidth="716.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="531.0" fitWidth="948.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/house.jpg" />
          </image>
       </ImageView>
-          <Label layoutX="257.0" text="Property Details">
+          <Label layoutX="353.0" text="Property Details">
               <font>
                   <Font size="36.0" />
               </font>
           </Label>
-            <Label layoutX="146.0" layoutY="98.0" prefHeight="36.0" prefWidth="71.0" text="Agent">
-                <font>
-                    <Font name="System Bold Italic" size="24.0" />
-                </font>
-            </Label>
-            <Label layoutX="146.0" layoutY="173.0" text="Facilities">
-                <font>
-                    <Font name="System Bold Italic" size="24.0" />
-                </font>
-            </Label>
-            <Label layoutX="146.0" layoutY="214.0" text="Comments">
-                <font>
-                    <Font name="System Bold Italic" size="24.0" />
-                </font>
-            </Label>
-            <Label fx:id="facLbl" layoutX="438.0" layoutY="177.0" text="Label">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <Label fx:id="commentLbl" layoutX="438.0" layoutY="218.0" prefHeight="27.0" prefWidth="42.0" text="Label">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <Label fx:id="psfLbl" layoutX="438.0" layoutY="139.0" text="Label">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <Label layoutX="143.0" layoutY="135.0" text="Price PSF">
-                <font>
-                    <Font name="System Bold Italic" size="24.0" />
-                </font>
-            </Label>
-            <Label fx:id="agentLbl" layoutX="438.0" layoutY="103.0" text="Label">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-      <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Button" />
+      <Button layoutX="862.0" layoutY="484.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Button" />
+      <Label layoutX="438.0" layoutY="93.0" text="First Address" />
+      <Label layoutX="430.0" layoutY="117.0" text="Second Address" />
+      <Label layoutX="467.0" layoutY="193.0" text="Type" />
+      <Label layoutX="419.0" layoutY="210.0" text="Bedrooms" />
+      <Label layoutX="480.0" layoutY="210.0" text="Bathrooms" />
+      <Label layoutX="457.0" layoutY="236.0" text="Furnishing" />
+      <Label layoutX="458.0" layoutY="266.0" text="Facilities" />
+      <Label layoutX="446.0" layoutY="332.0" text="Area" />
+      <Label layoutX="489.0" layoutY="332.0" text="PSF" />
+      <Label layoutX="467.0" layoutY="355.0" text="Price" />
+      <Label layoutX="405.0" layoutY="443.0" text="Agent Name" />
+      <Label layoutX="503.0" layoutY="443.0" text="Contact" />
 <!--        <Button layoutX="621.0" layoutY="516.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Back" />-->
     </children>
 </AnchorPane>

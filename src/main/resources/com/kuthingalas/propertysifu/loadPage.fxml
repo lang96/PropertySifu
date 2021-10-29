@@ -14,7 +14,7 @@
 
 
 <children>
-<ImageView fitHeight="783.0" fitWidth="1182.0" layoutY="28.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+<ImageView fitHeight="783.0" fitWidth="1182.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
     <image>
         <Image url="@../../../raw/housez.jpg" />
     </image>
@@ -30,28 +30,30 @@
             <Font name="Californian FB" size="24.0" />
         </font>
     </Label>
-    <Label layoutX="207.0" layoutY="132.0" text="Residential" />
-    <Label layoutX="713.0" layoutY="132.0" text="Amenities" />
-    <Label layoutX="591.0" layoutY="132.0" text="Price" />
+    <Label layoutX="95.0" layoutY="132.0" text="Residential" />
+    <Label layoutX="580.0" layoutY="132.0" text="Amenities" />
+    <Label layoutX="840.0" layoutY="132.0" text="PSF" />
     <Label layoutX="335.0" layoutY="132.0" text="Bedrooms" />
-    <Label layoutX="464.0" layoutY="132.0" text="Bathrooms" />
-    <Label layoutX="853.0" layoutY="132.0" text="Furniture" />
-    <ComboBox fx:id="propType" layoutX="207.0" layoutY="149.0" onAction="#doList" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
+    <Label layoutX="455.0" layoutY="132.0" text="Bathrooms" />
+    <Label layoutX="719.0" layoutY="132.0" text="Furniture" />
+    <Label layoutX="215.0" layoutY="132.0" text="Project" />
+    <Label layoutX="963.0" layoutY="132.0" text="Rent" />
+    <ComboBox fx:id="propType" layoutX="95.0" layoutY="149.0" onAction="#doList" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
     <ComboBox fx:id="bedroom" layoutX="334.0" layoutY="149.0" onAction="#bedList" prefHeight="25.0" prefWidth="110.0" promptText="1" />
-    <ComboBox fx:id="bathroom" layoutX="464.0" layoutY="149.0" onAction="#bathList" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
-    <ComboBox fx:id="price" layoutX="591.0" layoutY="149.0" onAction="#priceList" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
-    <ComboBox fx:id="facList" layoutX="711.0" layoutY="150.0" onAction="#doList2" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
-    <ComboBox fx:id="furnishList" layoutX="853.0" layoutY="150.0" onAction="#furnishList" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />
+    <ComboBox fx:id="bathroom" layoutX="455.0" layoutY="149.0" onAction="#bathList" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
+    <ComboBox fx:id="price" layoutX="840.0" layoutY="150.0" onAction="#priceList" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
+    <ComboBox fx:id="facList" layoutX="580.0" layoutY="150.0" onAction="#doList2" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
+    <ComboBox fx:id="furnishList" layoutX="719.0" layoutY="150.0" onAction="#furnishList" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />
     <TableView fx:id="tbl" layoutX="104.0" layoutY="220.0" prefHeight="394.0" prefWidth="974.0">
         <columns>
-            <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="col_name" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="col_address" prefWidth="346.0" text="Address" />
-            <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="107.0" text="Bedrooms" />
-            <TableColumn fx:id="col_bath" prefWidth="119.0" text="Bathrooms" />
-            <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="128.0" text="Area" />
-            <TableColumn fx:id="col_rent" prefWidth="65.0" text="Price" />
-            <TableColumn fx:id="col_btn" minWidth="0.0" prefWidth="57.0" text="Button" />
+            <TableColumn fx:id="col_address" prefWidth="349.0" text="Address" />
+            <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="108.0" text="Bedrooms" />
+            <TableColumn fx:id="col_bath" prefWidth="96.0" text="Bathrooms" />
+            <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="101.0" text="Area" />
+            <TableColumn fx:id="col_rent" prefWidth="93.0" text="Price" />
+            <TableColumn fx:id="col_btn" minWidth="0.0" prefWidth="75.0" text="Furnish" />
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="Agent" />
         </columns>
     </TableView>
       <Button fx:id="profile" layoutX="1071.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="25.0" prefWidth="97.0" text=" Profile" />
@@ -60,7 +62,10 @@
             <Image url="@../../../raw/accicon.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="565.0" layoutY="626.0" mnemonicParsing="false" onAction="#inforr" text="Information" />
+      <Button layoutX="570.0" layoutY="624.0" mnemonicParsing="false" onAction="#inforr" text="View" />
+      <ComboBox layoutX="215.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" />
+      <ComboBox layoutX="963.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" />
+
 
 
 </children>

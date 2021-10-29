@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="732.0" prefWidth="343.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AgentHomepageController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="426.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../raw/house3.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="132.0" layoutY="30.0" text="Edit Property">
+         <font>
+            <Font name="Californian FB" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="agentbackhomeBtn" layoutX="169.0" layoutY="612.0" mnemonicParsing="false" onAction="#toagentHomepage2" text="Confirm" />
+      <Label layoutX="60.0" layoutY="96.0" text="ID " />
+      <TextField disable="true" editable="false" layoutX="145.0" layoutY="92.0" />
+      <Label layoutX="54.0" layoutY="156.0" text="Type" />
+      <Label layoutX="54.0" layoutY="217.0" text="Address" />
+      <Label layoutX="54.0" layoutY="293.0" text="Status" />
+      <Label layoutX="54.0" layoutY="362.0" text="Facilities" />
+      <Label layoutX="54.0" layoutY="454.0" text="Details" />
+      <ComboBox layoutX="145.0" layoutY="152.0" prefWidth="150.0" />
+      <TextField layoutX="146.0" layoutY="213.0" promptText="First Line" />
+      <TextField layoutX="146.0" layoutY="249.0" promptText="Second Line" />
+      <ComboBox layoutX="146.0" layoutY="289.0" prefWidth="150.0" />
+      <CheckBox layoutX="146.0" layoutY="362.0" mnemonicParsing="false" text="Park" />
+      <CheckBox layoutX="238.0" layoutY="362.0" mnemonicParsing="false" text="Gymnasium" />
+      <CheckBox layoutX="146.0" layoutY="389.0" mnemonicParsing="false" text="Prayer Room" />
+      <CheckBox layoutX="238.0" layoutY="389.0" mnemonicParsing="false" text="Others" />
+      <CheckBox layoutX="146.0" layoutY="418.0" mnemonicParsing="false" text="Swimming Pool" />
+      <ComboBox layoutX="144.0" layoutY="450.0" prefHeight="25.0" prefWidth="96.0" promptText="Bedroom" />
+      <ComboBox layoutX="144.0" layoutY="482.0" prefHeight="25.0" prefWidth="96.0" promptText="Bathroom" />
+      <ComboBox layoutX="144.0" layoutY="513.0" prefHeight="25.0" prefWidth="96.0" promptText="Furnish" />
+      <TextField layoutX="250.0" layoutY="450.0" prefHeight="25.0" prefWidth="119.0" promptText="Area" />
+      <TextField layoutX="250.0" layoutY="482.0" prefHeight="25.0" prefWidth="119.0" promptText="PSF" />
+      <TextField layoutX="250.0" layoutY="513.0" prefHeight="25.0" prefWidth="119.0" promptText="Price / Area x PSF" />
+   </children>
+</AnchorPane>

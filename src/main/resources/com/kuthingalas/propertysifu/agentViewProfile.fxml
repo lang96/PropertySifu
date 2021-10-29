@@ -26,17 +26,17 @@
                <Font name="Californian FB" size="24.0" />
             </font>
          </Label>
-         <Label layoutX="122.0" layoutY="85.0" text="Username : ">
+         <Label layoutX="122.0" layoutY="85.0" text="ID Number ">
             <font>
                <Font name="Californian FB" size="24.0" />
             </font>
          </Label>
-         <Label layoutX="123.0" layoutY="190.0" text="Password :">
+         <Label layoutX="123.0" layoutY="190.0" text="Password">
             <font>
                <Font name="Californian FB" size="24.0" />
             </font>
          </Label>
-         <Label layoutX="123.0" layoutY="224.0" text="Phone Number :">
+         <Label layoutX="123.0" layoutY="224.0" text="Phone Number ">
             <font>
                <Font name="Californian FB" size="24.0" />
             </font>
@@ -61,7 +61,7 @@
                <Font name="Californian FB" size="24.0" />
             </font>
          </Label>
-      <Label layoutX="123.0" layoutY="259.0" text="Organization :">
+      <Label layoutX="123.0" layoutY="259.0" text="Organization">
          <font>
             <Font name="Californian FB" size="24.0" />
          </font>

@@ -34,11 +34,11 @@ public class AgentHomepageController {
 
     public void toeditProperty() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("editproperty.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("editProperty.fxml"));
 
         Stage window = (Stage) editpropBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,597,338));
+        window.setScene(new Scene(root,370,690));
     }
 
     public void toagentHomepage() throws IOException {

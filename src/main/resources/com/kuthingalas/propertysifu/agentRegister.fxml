@@ -23,10 +23,10 @@
                 <Font name="Book Antiqua" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="userid" layoutX="273.0" layoutY="107.0" />
+        <TextField fx:id="idNum" layoutX="273.0" layoutY="107.0" />
         <TextField fx:id="fname" layoutX="273.0" layoutY="181.0" />
         <TextField fx:id="lname" layoutX="273.0" layoutY="219.0" />
-        <Label layoutX="131.0" layoutY="111.0" text="Username">
+        <Label layoutX="131.0" layoutY="111.0" text="ID Number">
             <font>
                 <Font name="Californian FB" size="14.0" />
             </font></Label>
