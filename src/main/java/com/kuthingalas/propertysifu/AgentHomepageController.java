@@ -21,7 +21,7 @@ public class AgentHomepageController {
     private Button editpropBtn;
 
     @FXML
-    private Button agentbackhomeBtn;
+    private Button agentbackhomeBtn , agentAddPropBtn;
 
     public void toProfile() throws IOException {
 
@@ -58,6 +58,17 @@ public class AgentHomepageController {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,1182,665));
     }
+
+    public void toAddProp() throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("addProperty.fxml"));
+
+        Stage window = (Stage) agentAddPropBtn.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root,370,665));
+    }
+
+
 
 
 }

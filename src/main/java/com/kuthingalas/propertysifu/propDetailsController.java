@@ -30,7 +30,7 @@ public class propDetailsController implements Initializable {
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information

@@ -140,7 +140,7 @@ public class LoginController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            Parent root = FXMLLoader.load(getClass().getResource("loadPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
 
             Stage window = (Stage) confirmRegBtn.getScene().getWindow();
             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
@@ -180,7 +180,7 @@ public class LoginController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            Parent root = FXMLLoader.load(getClass().getResource("loadPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
 
             Stage window = (Stage) confirmBtn.getScene().getWindow();
             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
