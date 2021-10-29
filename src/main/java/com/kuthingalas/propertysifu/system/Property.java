@@ -21,6 +21,71 @@ public class Property {
     // public members
     public static ArrayList<Property> PropertyList = new ArrayList<>();
 
+    public static class Comment {
+
+        // private members
+        private String commentID, userID, commentDesc;
+
+        // public members
+        public static ArrayList<Comment> CommentList = new ArrayList<>();
+
+        // constructor
+        public Comment(String id, String user, String desc) {
+
+            this.commentID = id;
+            this.userID = user;
+            this.commentDesc = desc;
+
+        }
+
+        // methods
+
+        // getters
+        public String getCommentID() {
+            return commentID;
+        }
+        public String getUserID() {
+            return userID;
+        }
+        public String getCommentDesc() {
+            return commentDesc;
+        }
+
+        // setters
+        public void setCommentID(String commentID) {
+            this.commentID = commentID;
+        }
+        public void setUserID(String userID) {
+            this.userID = userID;
+        }
+        public void setCommentDesc(String commentDesc) {
+            this.commentDesc = commentDesc;
+        }
+
+        // toString
+
+        // list and JSON methods
+
+        public static String setNewCommentID() { // ID structure designed for a maximum of 999 comments throughout system
+
+            String newID = "";
+
+            if (CommentList.size() < 9) {
+                newID = "CM00" + (CommentList.size() + 1);
+            } else if (CommentList.size() < 99) {
+                newID = "CM0" + (CommentList.size() + 1);
+            } else {
+                newID = "CM" + (CommentList.size() + 1);
+            }
+
+            return newID;
+
+        }
+
+        // accompanying methods
+
+    }
+
     // constructors
     public Property(String id, String type, String firstAdd, String secondAdd, int stat, String statDesc,
                     ArrayList<String> facList, int bed, int bath, int area, int furnish,
@@ -45,10 +110,10 @@ public class Property {
 
     }
 
-    // new properties added from add() is visible by default
-    public Property(String id, String type, String firstAdd, String secondAdd, String statDesc,
-                    ArrayList<String> facList, int bed, int bath, int area, int furnish,
-                    float psf, float rent, String rep, ArrayList<String> comment)
+    // new properties added from add() is visible by default, has empty comments list and has ID auto-generated
+    public Property(String id, String type, String firstAdd, String secondAdd,
+                    ArrayList<String> facList, int bed, int bath, int area,
+                    int furnish, float psf, float rent, String rep)
     {
 
         this.propertyID = id;
@@ -65,7 +130,7 @@ public class Property {
         this.psfRate = psf;
         this.rentalRate = rent;
         this.representativeID = rep;
-        this.commentID = comment;
+        this.commentID = new ArrayList<>();
 
     }
 
@@ -137,12 +202,9 @@ public class Property {
     public void setStatusDesc(String statusDesc) {
         this.statusDesc = statusDesc;
     }
-
-            // might need to fine tune to modify individual facilities
     public void setFacilityList(ArrayList<String> facilityList) {
         this.facilityList = facilityList;
     }
-
     public void setBedroom(int bedroom) {
         this.bedroom = bedroom;
     }
@@ -164,8 +226,6 @@ public class Property {
     public void setRepresentativeID(String representativeID) {
         this.representativeID = representativeID;
     }
-
-            // might need to fine tune to modify individual comments
     public void setCommentID(ArrayList<String> commentID) {
         this.commentID = commentID;
     }
@@ -185,6 +245,42 @@ public class Property {
     }
 
         // list and JSON methods
+
+    public static String setNewPropertyID() { // ID structure designed for system with a maximum of 999 properties
+
+        String newID = "";
+
+        if (PropertyList.size() < 9) {
+            newID = "PR00" + (PropertyList.size() + 1);
+        } else if (PropertyList.size() < 99) {
+            newID = "PR0" + (PropertyList.size() + 1);
+        } else {
+            newID = "PR" + (PropertyList.size() + 1);
+        }
+
+        return newID;
+
+    }
+
+    public ArrayList<String> addToFacilityList(ArrayList<String> facList, String fac) {
+        facList.add(fac);
+        return facList;
+    }
+
+    public ArrayList<String> removeFromFacilityList(ArrayList<String> facList, String fac) {
+        facList.remove(fac);
+        return facList;
+    }
+
+    public ArrayList<String> addToCommentList(ArrayList<String> commentList, String commentID) {
+        commentList.add(commentID);
+        return commentList;
+    }
+
+    public ArrayList<String> removeFromCommentList(ArrayList<String> commentList, String commentID) {
+        commentList.remove(commentID);
+        return commentList;
+    }
 
         // accompanying methods
 

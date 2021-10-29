@@ -68,7 +68,7 @@ Project requirements / Marking Scheme :                                         
 -> Sequence Diagrams and Collaboration Diagram for each use case done                                         (X)
    and is coherent with the implementation. [3m]
 -> State Diagram. [1m]                                                                                        (X)
--> Java UserType.User Documentation done and is coherent with the implementation. [2m]                        (X)
+-> User Documentation done and is coherent with the implementation. [2m]                        (X)
 
 */
 
@@ -77,6 +77,11 @@ Project requirements / Marking Scheme :                                         
 
 
 public class MainApp {
+
+    public static String currentUserID; // determine logged in user
+    public static String currentUserType; // determine logged in userType
+
+    public static String adminAccessLvl; // if admin logged in, determine accessLvl
 
     public static void main(String[] args) {
 

@@ -14,11 +14,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.kuthingalas.propertysifu.system.Property.PropertyList;
-import static com.kuthingalas.propertysifu.usertype.Admin.AdminList;
-import static com.kuthingalas.propertysifu.usertype.User.UserList;
-
-
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.Comment.*;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.usertype.Agent.*;
+import static com.kuthingalas.propertysifu.usertype.Owner.*;
 
 public class DataOperation {
 
@@ -111,6 +112,7 @@ public class DataOperation {
             JSONArray phoneArr = (JSONArray) userData.get("phone");
             JSONArray idNumArr = (JSONArray) userData.get("idNum");
             JSONArray orgArr = (JSONArray) userData.get("org");
+            JSONArray verifiedArr = (JSONArray) userData.get("verified");
 
             if (IDArr.size() != 0) { // only proceed with array if there are users registered - else start with empty user list
 
@@ -122,6 +124,7 @@ public class DataOperation {
                     String fName = "" + fNameArr.get(i);
                     String lName = "" + lNameArr.get(i);
                     String phone = "" + phoneArr.get(i);
+                    int verified = Integer.parseInt("" + verifiedArr.get(i));
 
                     // only for agent and owner
                     String idNum = "" + idNumArr.get(i);
@@ -285,6 +288,45 @@ public class DataOperation {
 
     }
 
+    // void initialize comments from json
+    public static void initializeComments() {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject commentData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) commentData.get("commentID");
+            JSONArray userIDArr = (JSONArray) commentData.get("userID");
+            JSONArray descArr = (JSONArray) commentData.get("commentDesc");
+
+            if (IDArr.size() != 0) { // only proceed with array if there are comments listed - else start with empty comment list
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    String ID = "" + IDArr.get(i);
+                    String userID = "" + userIDArr.get(i);
+                    String desc = "" + descArr.get(i);
+
+                    CommentList.add(new Comment(ID, userID, desc));
+
+                }
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
     // void add users to json
 
     public static void addAdmin(String id, String pass, boolean control) {
@@ -398,7 +440,7 @@ public class DataOperation {
 
     }
 
-    public static void addAgent(String id, String pass, String type, String fName, String lName, String phone, String idNum, String org) {
+    public static void addAgent(String pass, String type, String fName, String lName, String phone, String idNum, String org) {
 
         JSONParser jsonParser = new JSONParser();
 
@@ -416,6 +458,9 @@ public class DataOperation {
             JSONArray phoneArr = (JSONArray) userData.get("phone");
             JSONArray idNumArr = (JSONArray) userData.get("idNum");
             JSONArray orgArr = (JSONArray) userData.get("org");
+
+            // generating agent ID based on existing number of agent
+            String id = setNewAgentID();
 
             IDArr.add(id);
             passArr.add(pass);
@@ -457,7 +502,7 @@ public class DataOperation {
 
     }
 
-    public static void addOwner(String id, String pass, String type, String fName, String lName, String phone, String idNum) {
+    public static void addOwner(String pass, String type, String fName, String lName, String phone, String idNum) {
 
         JSONParser jsonParser = new JSONParser();
 
@@ -475,6 +520,9 @@ public class DataOperation {
             JSONArray phoneArr = (JSONArray) userData.get("phone");
             JSONArray idNumArr = (JSONArray) userData.get("idNum");
             JSONArray orgArr = (JSONArray) userData.get("org");
+
+            // generating owner ID based on existing number of owners
+            String id = setNewOwnerID();
 
             IDArr.add(id);
             passArr.add(pass);
@@ -518,10 +566,149 @@ public class DataOperation {
 
     // void add properties from json
 
-    public static void addProperty() {
+    public static void addProperty(String type, String firstAdd, String secondAdd,
+                                   ArrayList<String> facList, int bed, int bath, int area, int furnish,
+                                   float psf, float rent, String rep) {
 
-        // add property id by indexing idArr then parseInt to String of next int
-        // add property to the propertyList of the listed agent/owner
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+            JSONArray typeArr = (JSONArray) propertyData.get("type");
+
+            Object addressObj = propertyData.get("address");
+            JSONObject addressArr = (JSONObject) addressObj;
+            JSONArray firstAddressArr = (JSONArray) addressArr.get("firstAdd");
+            JSONArray secondAddressArr = (JSONArray) addressArr.get("secondAdd");
+
+            JSONArray statusArr = (JSONArray) propertyData.get("status"); // getting int from String
+            JSONArray statDescArr = (JSONArray) propertyData.get("statDesc");
+
+            // keep in mind this is an array of arrays - do add, remove and update accordingly
+            JSONArray facArr = (JSONArray) propertyData.get("fac");
+
+            JSONArray bedArr = (JSONArray) propertyData.get("bed"); // getting int from String
+            JSONArray bathArr = (JSONArray) propertyData.get("bath"); // getting int from String
+            JSONArray areaArr = (JSONArray) propertyData.get("area"); // getting int from String
+            JSONArray furnishArr = (JSONArray) propertyData.get("furnish"); // getting int from String
+            JSONArray psfArr = (JSONArray) propertyData.get("psf"); // getting float from String
+            JSONArray rentArr = (JSONArray) propertyData.get("rent"); // getting float from String
+            JSONArray repIDArr = (JSONArray) propertyData.get("repID");
+
+            // keep in mind this is an array of arrays - do add, remove and update accordingly
+            JSONArray commentIDArr = (JSONArray) propertyData.get("commentID");
+
+            // generating property ID based on existing number of properties
+            String id = setNewPropertyID();
+
+            IDArr.add(id);
+            typeArr.add(type);
+            firstAddressArr.add(firstAdd);
+            secondAddressArr.add(secondAdd);
+            statusArr.add("1");
+            statDescArr.add("Available");
+            facArr.add(facList);
+            bedArr.add(bed);
+            bathArr.add(bath);
+            areaArr.add(area);
+            furnishArr.add(furnish);
+            psfArr.add(psf);
+            rentArr.add(rent);
+            repIDArr.add(rep);
+            commentIDArr.add(new JSONArray());
+
+            propertyData.put("ID", IDArr);
+            propertyData.put("type", typeArr);
+
+            addressArr.put("firstAdd", firstAddressArr);
+            addressArr.put("secondAdd", secondAddressArr);
+            propertyData.put("address", addressArr);
+
+            propertyData.put("status", statusArr);
+            propertyData.put("statDesc", statDescArr);
+            propertyData.put("fac", facArr);
+            propertyData.put("bed", bedArr);
+            propertyData.put("bath", bathArr);
+            propertyData.put("area", areaArr);
+            propertyData.put("furnish", furnishArr);
+            propertyData.put("psf", psfArr);
+            propertyData.put("rent", rentArr);
+            propertyData.put("repID", repIDArr);
+            propertyData.put("commentID", commentIDArr);
+
+            PropertyList.add(new Property(id, type, firstAdd, secondAdd, facList, bed, bath, area, furnish, psf, rent, rep));
+
+            // once a new property listing is created, it must be added to the property list of its respective representative
+
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                    "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                fileWrite.write(propertyData.toJSONString());
+                fileWrite.flush();
+
+            } catch (IOException ef) {
+                ef.printStackTrace();
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void addComment(String user, String desc) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject commentData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) commentData.get("commentID");
+            JSONArray userIDArr = (JSONArray) commentData.get("userID");
+            JSONArray descArr = (JSONArray) commentData.get("commentDesc");
+
+            // generating comment ID based on existing number of comments
+            String id = setNewCommentID();
+
+            IDArr.add(id);
+            userIDArr.add(user);
+            descArr.add(desc);
+
+            commentData.put("commentID", IDArr);
+            commentData.put("userID", userIDArr);
+            commentData.put("commentDesc", descArr);
+
+            CommentList.add(new Comment(id, user, desc));
+
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                    "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
+
+                fileWrite.write(commentData.toJSONString());
+                fileWrite.flush();
+
+            } catch (IOException ef) {
+                ef.printStackTrace();
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
 
     }
 
@@ -688,39 +875,1244 @@ public class DataOperation {
 
     }
 
-    // void delete properties from json
+    // void delete property from json
 
     public static void removeProperty(String id) {
 
+        JSONParser jsonParser = new JSONParser();
 
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+            JSONArray typeArr = (JSONArray) propertyData.get("type");
+
+            Object addressObj = propertyData.get("address");
+            JSONObject addressArr = (JSONObject) addressObj;
+            JSONArray firstAddressArr = (JSONArray) addressArr.get("firstAdd");
+            JSONArray secondAddressArr = (JSONArray) addressArr.get("secondAdd");
+
+            JSONArray statusArr = (JSONArray) propertyData.get("status"); // getting int from String
+            JSONArray statDescArr = (JSONArray) propertyData.get("statDesc");
+
+            // keep in mind this is an array of arrays - do add, remove and update accordingly
+            JSONArray facArr = (JSONArray) propertyData.get("fac");
+
+            JSONArray bedArr = (JSONArray) propertyData.get("bed"); // getting int from String
+            JSONArray bathArr = (JSONArray) propertyData.get("bath"); // getting int from String
+            JSONArray areaArr = (JSONArray) propertyData.get("area"); // getting int from String
+            JSONArray furnishArr = (JSONArray) propertyData.get("furnish"); // getting int from String
+            JSONArray psfArr = (JSONArray) propertyData.get("psf"); // getting float from String
+            JSONArray rentArr = (JSONArray) propertyData.get("rent"); // getting float from String
+            JSONArray repIDArr = (JSONArray) propertyData.get("repID");
+
+            // keep in mind this is an array of arrays - do add, remove and update accordingly
+            JSONArray commentIDArr = (JSONArray) propertyData.get("commentID");
+
+            String idCompare = "";
+            int jsonRemoveIndex = 0;
+            int listRemoveIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonRemoveIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < PropertyList.size(); j++) {
+
+                    if (idCompare.equals(PropertyList.get(j).getPropertyID())) {
+                        listRemoveIndex = j;
+                        break;
+                    }
+
+                }
+
+                PropertyList.remove(listRemoveIndex);
+
+                IDArr.remove(jsonRemoveIndex);
+                typeArr.remove(jsonRemoveIndex);
+                firstAddressArr.remove(jsonRemoveIndex);
+                secondAddressArr.remove(jsonRemoveIndex);
+                statusArr.remove(jsonRemoveIndex);
+                statDescArr.remove(jsonRemoveIndex);
+                facArr.remove(jsonRemoveIndex);
+                bedArr.remove(jsonRemoveIndex);
+                bathArr.remove(jsonRemoveIndex);
+                areaArr.remove(jsonRemoveIndex);
+                furnishArr.remove(jsonRemoveIndex);
+                psfArr.remove(jsonRemoveIndex);
+                rentArr.remove(jsonRemoveIndex);
+                repIDArr.remove(jsonRemoveIndex);
+                commentIDArr.remove(jsonRemoveIndex);
+
+                propertyData.put("ID", IDArr);
+                propertyData.put("type", typeArr);
+
+                addressArr.put("firstAdd", firstAddressArr);
+                addressArr.put("secondAdd", secondAddressArr);
+                propertyData.put("address", addressArr);
+
+                propertyData.put("status", statusArr);
+                propertyData.put("statDesc", statDescArr);
+                propertyData.put("fac", facArr);
+                propertyData.put("bed", bedArr);
+                propertyData.put("bath", bathArr);
+                propertyData.put("area", areaArr);
+                propertyData.put("furnish", furnishArr);
+                propertyData.put("psf", psfArr);
+                propertyData.put("rent", rentArr);
+                propertyData.put("repID", repIDArr);
+                propertyData.put("commentID", commentIDArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                    fileWrite.write(propertyData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
 
     }
 
-    // void update user list after changes (update details / removal)
+    // void remove comment from json
+    public static void removeComment(String id) {
 
-    public static void updateAdmin() {
+        JSONParser jsonParser = new JSONParser();
 
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
 
+            Object obj = jsonParser.parse(reader);
+            JSONObject commentData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) commentData.get("commentID");
+            JSONArray userIDArr = (JSONArray) commentData.get("userID");
+            JSONArray descArr = (JSONArray) commentData.get("commentDesc");
+
+            String idCompare = "";
+            int jsonRemoveIndex = 0;
+            int listRemoveIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonRemoveIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < CommentList.size(); j++) {
+
+                    if (idCompare.equals(CommentList.get(j).getCommentID())) {
+                        listRemoveIndex = j;
+                        break;
+                    }
+
+                }
+
+                CommentList.remove(listRemoveIndex);
+
+                IDArr.remove(jsonRemoveIndex);
+                userIDArr.remove(jsonRemoveIndex);
+                descArr.remove(jsonRemoveIndex);
+
+                commentData.put("commentID", IDArr);
+                commentData.put("userID", userIDArr);
+                commentData.put("commentDesc", descArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
+
+                    fileWrite.write(commentData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
 
     }
 
-    public static void updateUser() {
+    // void update user list after changes
 
+    public static void updateAdmin(String oldID, String newID, int access) {
 
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject adminData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) adminData.get("ID");
+            JSONArray accessLvlArr = (JSONArray) adminData.get("accessLvl");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(oldID)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < AdminList.size(); j++) {
+
+                    if (idCompare.equals(AdminList.get(j).getAdminID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                AdminList.get(listUpdateIndex).setAdminID(newID);
+                AdminList.get(listUpdateIndex).setAccessLvl(access);
+
+                IDArr.set(jsonUpdateIndex, newID);
+                accessLvlArr.set(jsonUpdateIndex, String.valueOf(access));
+
+                adminData.put("ID", IDArr);
+                adminData.put("accessLvl", accessLvlArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
+
+                    fileWrite.write(adminData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
 
     }
 
-    // void update property list after changes (update details / removal)
+    public static void updateAdminPass(String id, String pass) {
 
-    public static void updateProperty() {
+        JSONParser jsonParser = new JSONParser();
 
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
 
+            Object obj = jsonParser.parse(reader);
+            JSONObject adminData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) adminData.get("ID");
+            JSONArray passArr = (JSONArray) adminData.get("pass");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < AdminList.size(); j++) {
+
+                    if (idCompare.equals(AdminList.get(j).getAdminID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                AdminList.get(listUpdateIndex).setAdminPass(pass);
+
+                passArr.set(jsonUpdateIndex, pass);
+
+                adminData.put("pass", passArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "adminData.json")) {
+
+                    fileWrite.write(adminData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updateTenant(String oldID, String newID, String fName, String lName, String phone) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject userData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) userData.get("userID");
+            JSONArray fNameArr = (JSONArray) userData.get("fName");
+            JSONArray lNameArr = (JSONArray) userData.get("lName");
+            JSONArray phoneArr = (JSONArray) userData.get("phone");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(oldID)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < UserList.size(); j++) {
+
+                    if (idCompare.equals(UserList.get(j).getUserID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                UserList.get(listUpdateIndex).setUserID(newID);
+                UserList.get(listUpdateIndex).setFName(fName);
+                UserList.get(listUpdateIndex).setLName(lName);
+                UserList.get(listUpdateIndex).setPhoneNum(phone);
+
+                IDArr.set(jsonUpdateIndex, newID);
+                fNameArr.set(jsonUpdateIndex, fName);
+                lNameArr.set(jsonUpdateIndex, lName);
+                phoneArr.set(jsonUpdateIndex, phone);
+
+                userData.put("userID", IDArr);
+                userData.put("fName", fNameArr);
+                userData.put("lName", lNameArr);
+                userData.put("phone", phoneArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+                    fileWrite.write(userData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updateAgent(String id, String fName, String lName, String phone, String idNum, String org) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject userData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) userData.get("userID");
+            JSONArray fNameArr = (JSONArray) userData.get("fName");
+            JSONArray lNameArr = (JSONArray) userData.get("lName");
+            JSONArray phoneArr = (JSONArray) userData.get("phone");
+            JSONArray idNumArr = (JSONArray) userData.get("idNum");
+            JSONArray orgArr = (JSONArray) userData.get("org");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < UserList.size(); j++) {
+
+                    if (idCompare.equals(UserList.get(j).getUserID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                UserList.get(listUpdateIndex).setFName(fName);
+                UserList.get(listUpdateIndex).setLName(lName);
+                UserList.get(listUpdateIndex).setPhoneNum(phone);
+                UserList.get(listUpdateIndex).setIdNum(idNum);
+                UserList.get(listUpdateIndex).setOrganization(org);
+
+                fNameArr.set(jsonUpdateIndex, fName);
+                lNameArr.set(jsonUpdateIndex, lName);
+                phoneArr.set(jsonUpdateIndex, phone);
+                idNumArr.set(jsonUpdateIndex, idNum);
+                orgArr.set(jsonUpdateIndex, org);
+
+                userData.put("fName", fNameArr);
+                userData.put("lName", lNameArr);
+                userData.put("phone", phoneArr);
+                userData.put("idNum", idNumArr);
+                userData.put("org", orgArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+                    fileWrite.write(userData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updateOwner(String id, String fName, String lName, String phone, String idNum) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject userData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) userData.get("userID");
+            JSONArray fNameArr = (JSONArray) userData.get("fName");
+            JSONArray lNameArr = (JSONArray) userData.get("lName");
+            JSONArray phoneArr = (JSONArray) userData.get("phone");
+            JSONArray idNumArr = (JSONArray) userData.get("idNum");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < UserList.size(); j++) {
+
+                    if (idCompare.equals(UserList.get(j).getUserID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                UserList.get(listUpdateIndex).setFName(fName);
+                UserList.get(listUpdateIndex).setLName(lName);
+                UserList.get(listUpdateIndex).setPhoneNum(phone);
+                UserList.get(listUpdateIndex).setIdNum(idNum);
+
+                fNameArr.set(jsonUpdateIndex, fName);
+                lNameArr.set(jsonUpdateIndex, lName);
+                phoneArr.set(jsonUpdateIndex, phone);
+                idNumArr.set(jsonUpdateIndex, idNum);
+
+                userData.put("fName", fNameArr);
+                userData.put("lName", lNameArr);
+                userData.put("phone", phoneArr);
+                userData.put("idNum", idNumArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+                    fileWrite.write(userData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updateUserPass(String id, String pass) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject userData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) userData.get("userID");
+            JSONArray passArr = (JSONArray) userData.get("pass");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < UserList.size(); j++) {
+
+                    if (idCompare.equals(UserList.get(j).getUserID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                UserList.get(listUpdateIndex).setFName(pass);
+
+                passArr.set(jsonUpdateIndex, pass);
+
+                userData.put("pass", passArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+                    fileWrite.write(userData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updateUserVerified(String id) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject userData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) userData.get("userID");
+            JSONArray verifiedArr = (JSONArray) userData.get("verified");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < UserList.size(); j++) {
+
+                    if (idCompare.equals(UserList.get(j).getUserID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                UserList.get(listUpdateIndex).setVerified(1);
+
+                verifiedArr.set(jsonUpdateIndex, "1");
+
+                userData.put("verified", verifiedArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "userData.json")) {
+
+                    fileWrite.write(userData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    // void update property list after changes
+
+    public static void updatePropertyType(String id, String type) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+            JSONArray typeArr = (JSONArray) propertyData.get("type");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < PropertyList.size(); j++) {
+
+                    if (idCompare.equals(PropertyList.get(j).getPropertyID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                PropertyList.get(listUpdateIndex).setPropertyType(type);
+
+                typeArr.set(jsonUpdateIndex, type);
+
+                propertyData.put("type", typeArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                    fileWrite.write(propertyData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updatePropertyAddress(String id, String firstAdd, String secondAdd) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+
+            Object addressObj = propertyData.get("address");
+            JSONObject addressArr = (JSONObject) addressObj;
+            JSONArray firstAddressArr = (JSONArray) addressArr.get("firstAdd");
+            JSONArray secondAddressArr = (JSONArray) addressArr.get("secondAdd");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < PropertyList.size(); j++) {
+
+                    if (idCompare.equals(PropertyList.get(j).getPropertyID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                PropertyList.get(listUpdateIndex).setFirstAddress(firstAdd);
+                PropertyList.get(listUpdateIndex).setSecondAddress(secondAdd);
+
+                firstAddressArr.set(jsonUpdateIndex, firstAdd);
+                secondAddressArr.set(jsonUpdateIndex, secondAdd);
+
+                addressArr.put("firstAdd", firstAddressArr);
+                addressArr.put("secondAdd", secondAddressArr);
+                propertyData.put("address", addressArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                    fileWrite.write(propertyData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updatePropertyStatus(String id, int stat, String statDesc) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+
+            JSONArray statusArr = (JSONArray) propertyData.get("status"); // convert int to String
+            JSONArray statDescArr = (JSONArray) propertyData.get("statDesc");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < PropertyList.size(); j++) {
+
+                    if (idCompare.equals(PropertyList.get(j).getPropertyID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                PropertyList.get(listUpdateIndex).setStatus(stat);
+                PropertyList.get(listUpdateIndex).setStatusDesc(statDesc);
+
+                statusArr.set(jsonUpdateIndex, String.valueOf(stat));
+                statDescArr.set(jsonUpdateIndex, statDesc);
+
+                propertyData.put("status", statusArr);
+                propertyData.put("statDesc", statDescArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                    fileWrite.write(propertyData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updatePropertyFacilities(String id, ArrayList<String> facList) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+
+            // keep in mind this is an array of arrays - do add, remove and update accordingly
+            JSONArray facArr = (JSONArray) propertyData.get("fac");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < PropertyList.size(); j++) {
+
+                    if (idCompare.equals(PropertyList.get(j).getPropertyID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                PropertyList.get(listUpdateIndex).setFacilityList(facList);
+
+                facArr.set(jsonUpdateIndex, facList);
+
+                propertyData.put("fac", facArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                    fileWrite.write(propertyData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updatePropertyDetails(String id, int bed, int bath, int area, int furnish, float psf, float rent) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+
+            JSONArray bedArr = (JSONArray) propertyData.get("bed"); // convert int to String
+            JSONArray bathArr = (JSONArray) propertyData.get("bath"); // convert int to String
+            JSONArray areaArr = (JSONArray) propertyData.get("area"); // convert int to String
+            JSONArray furnishArr = (JSONArray) propertyData.get("furnish"); // convert int to String
+            JSONArray psfArr = (JSONArray) propertyData.get("psf"); // convert float to String
+            JSONArray rentArr = (JSONArray) propertyData.get("rent"); // convert float to String
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < PropertyList.size(); j++) {
+
+                    if (idCompare.equals(PropertyList.get(j).getPropertyID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                PropertyList.get(listUpdateIndex).setBedroom(bed);
+                PropertyList.get(listUpdateIndex).setBathroom(bath);
+                PropertyList.get(listUpdateIndex).setArea(area);
+                PropertyList.get(listUpdateIndex).setFurnishing(furnish);
+                PropertyList.get(listUpdateIndex).setPsfRate(psf);
+                PropertyList.get(listUpdateIndex).setRentalRate(rent);
+
+                bedArr.set(jsonUpdateIndex, String.valueOf(bed));
+                bathArr.set(jsonUpdateIndex, String.valueOf(bath));
+                areaArr.set(jsonUpdateIndex, String.valueOf(area));
+                furnishArr.set(jsonUpdateIndex, String.valueOf(furnish));
+                psfArr.set(jsonUpdateIndex, String.valueOf(psf));
+                rentArr.set(jsonUpdateIndex, String.valueOf(rent));
+
+                propertyData.put("bed", bedArr);
+                propertyData.put("bath", bathArr);
+                propertyData.put("area", areaArr);
+                propertyData.put("furnish", furnishArr);
+                propertyData.put("psf", psfArr);
+                propertyData.put("rent", rentArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                    fileWrite.write(propertyData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void updatePropertyComments(String id, ArrayList<String> commentList) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject propertyData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) propertyData.get("ID");
+
+            // keep in mind this is an array of arrays - do add, remove and update accordingly
+            JSONArray commentIDArr = (JSONArray) propertyData.get("commentID");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < PropertyList.size(); j++) {
+
+                    if (idCompare.equals(PropertyList.get(j).getPropertyID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                PropertyList.get(listUpdateIndex).setCommentID(commentList);
+
+                commentIDArr.set(jsonUpdateIndex, commentList);
+
+                propertyData.put("commentID", commentIDArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
+
+                    fileWrite.write(propertyData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    // void update comment
+    public static void updateComment(String id, String desc) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject commentData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) commentData.get("commentID");
+            JSONArray descArr = (JSONArray) commentData.get("commentDesc");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+            int listUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                for (int j = 0; j < CommentList.size(); j++) {
+
+                    if (idCompare.equals(CommentList.get(j).getCommentID())) {
+                        listUpdateIndex = j;
+                        break;
+                    }
+
+                }
+
+                CommentList.get(listUpdateIndex).setCommentDesc(desc);
+
+                descArr.set(jsonUpdateIndex, desc);
+
+                commentData.put("commentDesc", descArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
+
+                    fileWrite.write(commentData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
 
     }
 
     public static void main(String[] args) {
 
-
+        initializeProperty();
+        updatePropertyType("PR001", "test");
 
     }
 

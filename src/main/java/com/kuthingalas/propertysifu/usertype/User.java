@@ -1,5 +1,7 @@
 package com.kuthingalas.propertysifu.usertype;
 
+import com.kuthingalas.propertysifu.system.Property;
+
 import java.util.ArrayList;
 
 
@@ -8,6 +10,7 @@ public abstract class User {
 
     // protected members
     protected String userID, userPass, userType, fName, lName, phoneNum;
+    protected int verified;
 
     // public members
     public static ArrayList<User> UserList = new ArrayList<>();
@@ -33,6 +36,23 @@ public abstract class User {
     public String getPhoneNum() {
         return this.phoneNum;
     }
+    public int getVerified() {
+        return verified;
+    }
+    // Override methods
+    public String getIdNum() {
+        String idNum = "";
+        return idNum;
+    }
+    public String getOrganization() {
+        String organization = "";
+        return organization;
+    }
+    public ArrayList<Property> getProperties() {
+        ArrayList<Property> properties = new ArrayList<>();
+        return properties;
+    }
+
 
         // setters
     public void setUserID(String userID) {
@@ -50,6 +70,22 @@ public abstract class User {
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
+    public void setVerified(int verified) {
+        this.verified = verified;
+    }
+    // Override methods
+    public void setIdNum(String idNum) {
+        String idNumber = idNum;
+    }
+    public void setOrganization(String org) {
+        String organization = org;
+    }
+
+    /*
+    public void setProperties(ArrayList<Property> properties) {
+        ArrayList<Property> propertyList = properties;
+    } // to be overridden
+    */
 
         // toString
     /*
@@ -63,8 +99,5 @@ public abstract class User {
         // list and JSON methods
 
         // accompanying methods
-
-    // static void setUserID()
-
 
 }

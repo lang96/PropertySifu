@@ -65,7 +65,15 @@ public class Admin {
     }
 
         // setters
-
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
+    }
+    public void setAdminPass(String adminPass) {
+        this.adminPass = adminPass;
+    }
+    public void setAccessLvl(int accessLvl) {
+        this.accessLvl = accessLvl;
+    }
 
         // toString
     public String toString() {

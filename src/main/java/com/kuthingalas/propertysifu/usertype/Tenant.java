@@ -19,6 +19,7 @@ public class Tenant extends User {
         this.lName = lName;
         this.phoneNum = phone;
         this.userType = "Tenant";
+        this.verified = 0;
 
     }
 

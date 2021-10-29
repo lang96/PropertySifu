@@ -6,5 +6,6 @@
   "lName":[],
   "phone":[],
   "idNum":[],
-  "org":[]
+  "org":[],
+  "verified":[]
 }

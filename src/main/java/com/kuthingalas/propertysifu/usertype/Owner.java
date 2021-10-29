@@ -17,22 +17,9 @@ public class Owner extends User {
 
 
     // constructors
-    public Owner(String userID, String pass, String fName, String lName, String phone, String id) {
-
-        //this.userID = userID; // make function setID() to determine owner account userID
-        this.userPass = pass;
-        this.fName = fName;
-        this.lName = lName;
-        this.phoneNum = phone;
-        this.idNum = id;
-        this.properties = new ArrayList<>();
-        this.userType = "Owner";
-
-    }
-
     public Owner(String userID, String pass, String fName, String lName, String phone, String id, ArrayList<Property> propertyList) {
 
-        //this.userID = userID; // make function setID() to determine owner account userID
+        this.userID = userID;
         this.userPass = pass;
         this.fName = fName;
         this.lName = lName;
@@ -40,20 +27,39 @@ public class Owner extends User {
         this.idNum = id;
         this.properties = propertyList;
         this.userType = "Owner";
+        this.verified = 0; // for now owner requires verification as well
+
+    }
+
+    // new owners added from add() has empty properties list and has ID auto-generated
+    public Owner(String userID, String pass, String fName, String lName, String phone, String id) {
+
+        this.userID = userID;
+        this.userPass = pass;
+        this.fName = fName;
+        this.lName = lName;
+        this.phoneNum = phone;
+        this.idNum = id;
+        this.properties = new ArrayList<>();
+        this.userType = "Owner";
+        this.verified = 0; // for now owner requires verification as well
 
     }
 
     // methods
 
         // getters
+    @Override
     public String getIdNum() {
             return idNum;
     }
+    @Override
     public ArrayList<Property> getProperties() {
         return properties;
     }
 
     // setters
+    @Override
     public void setIdNum(String idNum) {
         this.idNum = idNum;
     }
@@ -74,6 +80,31 @@ public class Owner extends User {
     */
 
         // list and JSON methods
+
+    public static String setNewOwnerID() { // ID structure designed for system with a maximum of 999 agents
+
+        String newID = "";
+        int totalOwners = 0;
+
+        for (int i = 0; i < UserList.size(); i++) {
+
+            if (UserList.get(i).getUserType().equals("Owner")) {
+                totalOwners++;
+            }
+
+        }
+
+        if (totalOwners < 9) {
+            newID = "OR00" + (totalOwners + 1);
+        } else if (totalOwners < 99) {
+            newID = "OR0" + (totalOwners + 1);
+        } else {
+            newID = "OR" + (totalOwners + 1);
+        }
+
+        return newID;
+
+    }
 
         // accompanying methods
 
