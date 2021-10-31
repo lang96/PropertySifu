@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="342.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AgentHomepageController">
+<AnchorPane prefHeight="342.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AgentOwnerProfileController">
       <children>
          <ImageView fitHeight="381.0" fitWidth="606.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -46,10 +46,10 @@
                <Font name="Californian FB Bold" size="36.0" />
             </font>
          </Label>
-         <TextField fx:id="profID" layoutX="338.0" layoutY="87.0" />
+         <TextField fx:id="profIDNum" layoutX="338.0" layoutY="87.0" />
          <TextField fx:id="profPhone" layoutX="338.0" layoutY="225.0" />
-         <TextField fx:id="profFname" layoutX="338.0" layoutY="124.0" />
-         <TextField fx:id="profLname" layoutX="338.0" layoutY="158.0" />
+         <TextField fx:id="profFName" layoutX="338.0" layoutY="124.0" />
+         <TextField fx:id="profLName" layoutX="338.0" layoutY="158.0" />
          <PasswordField fx:id="profPass" layoutX="338.0" layoutY="191.0" />
          <Label layoutX="123.0" layoutY="123.0" text="First Name">
             <font>
@@ -61,12 +61,12 @@
                <Font name="Californian FB" size="24.0" />
             </font>
          </Label>
-      <Label layoutX="123.0" layoutY="259.0" text="Organization">
+      <Label fx:id="orgLbl" layoutX="123.0" layoutY="259.0" text="Organization">
          <font>
             <Font name="Californian FB" size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="338.0" layoutY="261.0" />
-      <Button fx:id="agentconfirmBtn" layoutX="277.0" layoutY="303.0" mnemonicParsing="false" onAction="#toagentHomepage" text="Confirm" />
+      <TextField fx:id="profOrg" layoutX="338.0" layoutY="261.0" />
+      <Button fx:id="agentConfirmBtn" layoutX="277.0" layoutY="303.0" mnemonicParsing="false" onAction="#toAgentHomepage" text="Confirm" />
       </children>
 </AnchorPane>

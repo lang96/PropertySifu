@@ -289,6 +289,7 @@ public class DataOperation {
     }
 
     // void initialize comments from json
+
     public static void initializeComments() {
 
         JSONParser jsonParser = new JSONParser();
@@ -381,7 +382,7 @@ public class DataOperation {
 
     }
 
-    public static void addTenant(String id, String pass, String type, String fName, String lName, String phone) {
+    public static void addTenant(String id, String pass, String fName, String lName, String phone) {
 
         JSONParser jsonParser = new JSONParser();
 
@@ -403,7 +404,7 @@ public class DataOperation {
 
             IDArr.add(id);
             passArr.add(pass);
-            typeArr.add(type);
+            typeArr.add("Tenant");
             fNameArr.add(fName);
             lNameArr.add(lName);
             phoneArr.add(phone);
@@ -443,7 +444,7 @@ public class DataOperation {
 
     }
 
-    public static void addAgent(String pass, String type, String fName, String lName, String phone, String idNum, String org) {
+    public static void addAgent(String pass, String fName, String lName, String phone, String idNum, String org) {
 
         JSONParser jsonParser = new JSONParser();
 
@@ -468,7 +469,7 @@ public class DataOperation {
 
             IDArr.add(id);
             passArr.add(pass);
-            typeArr.add(type);
+            typeArr.add("Agent");
             fNameArr.add(fName);
             lNameArr.add(lName);
             phoneArr.add(phone);
@@ -508,7 +509,7 @@ public class DataOperation {
 
     }
 
-    public static void addOwner(String pass, String type, String fName, String lName, String phone, String idNum) {
+    public static void addOwner(String pass, String fName, String lName, String phone, String idNum) {
 
         JSONParser jsonParser = new JSONParser();
 
@@ -533,7 +534,7 @@ public class DataOperation {
 
             IDArr.add(id);
             passArr.add(pass);
-            typeArr.add(type);
+            typeArr.add("Owner");
             fNameArr.add(fName);
             lNameArr.add(lName);
             phoneArr.add(phone);
@@ -573,7 +574,7 @@ public class DataOperation {
 
     }
 
-    // void add properties from json
+    // void add properties to json
 
     public static void addProperty(String type, String firstAdd, String secondAdd,
                                    ArrayList<String> facList, int bed, int bath, int area, int furnish,
@@ -705,6 +706,50 @@ public class DataOperation {
                     "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
 
                 fileWrite.write(commentData.toJSONString());
+                fileWrite.flush();
+
+            } catch (IOException ef) {
+                ef.printStackTrace();
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    // void add login data to json
+
+    public static void addLogin(String id, String pass, String type) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "loginData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject loginData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) loginData.get("userID");
+            JSONArray passArr = (JSONArray) loginData.get("pass");
+            JSONArray typeArr = (JSONArray) loginData.get("type");
+
+            IDArr.add(id);
+            passArr.add(pass);
+            typeArr.add(type);
+
+            loginData.put("userID", IDArr);
+            loginData.put("pass", passArr);
+            loginData.put("type", typeArr);
+
+            try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                    "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "loginData.json")) {
+
+                fileWrite.write(loginData.toJSONString());
                 fileWrite.flush();
 
             } catch (IOException ef) {
@@ -1008,6 +1053,7 @@ public class DataOperation {
     }
 
     // void remove comment from json
+
     public static void removeComment(String id) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1061,6 +1107,65 @@ public class DataOperation {
                         "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
 
                     fileWrite.write(commentData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    // void remove from login data (when revoked by admin)
+
+    public static void removeLogin(String id) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "loginData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject loginData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) loginData.get("userID");
+            JSONArray passArr = (JSONArray) loginData.get("pass");
+            JSONArray typeArr = (JSONArray) loginData.get("type");
+
+            String idCompare = "";
+            int jsonRemoveIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(id)) {
+                        jsonRemoveIndex = i;
+                        break;
+                    }
+
+                }
+
+                IDArr.remove(jsonRemoveIndex);
+                passArr.remove(jsonRemoveIndex);
+                typeArr.remove(jsonRemoveIndex);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "loginData.json")) {
+
+                    fileWrite.write(loginData.toJSONString());
                     fileWrite.flush();
 
                 } catch (IOException ef) {
@@ -1503,7 +1608,7 @@ public class DataOperation {
 
                 }
 
-                UserList.get(listUpdateIndex).setFName(pass);
+                UserList.get(listUpdateIndex).setUserPass(pass);
 
                 passArr.set(jsonUpdateIndex, pass);
 
@@ -2050,6 +2155,7 @@ public class DataOperation {
     }
 
     // void update comment
+
     public static void updateComment(String id, String desc) {
 
         JSONParser jsonParser = new JSONParser();
@@ -2098,6 +2204,66 @@ public class DataOperation {
                         "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "commentData.json")) {
 
                     fileWrite.write(commentData.toJSONString());
+                    fileWrite.flush();
+
+                } catch (IOException ef) {
+                    ef.printStackTrace();
+                }
+
+            } else { // cancel remove operation and notify user
+
+            }
+
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException f) {
+            f.printStackTrace();
+        } catch (ParseException f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    // void update login
+
+    public static void updateLogin(String oldID, String newID, String pass) {
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") +
+                "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "loginData.json")) {
+
+            Object obj = jsonParser.parse(reader);
+            JSONObject loginData = (JSONObject) obj;
+
+            JSONArray IDArr = (JSONArray) loginData.get("userID");
+            JSONArray passArr = (JSONArray) loginData.get("pass");
+
+            String idCompare = "";
+            int jsonUpdateIndex = 0;
+
+            if (IDArr.size() != 0) { // only proceed if list is not empty
+
+                for (int i = 0; i < IDArr.size(); i++) {
+
+                    idCompare = "" + IDArr.get(i);
+                    if (idCompare.equals(oldID)) {
+                        jsonUpdateIndex = i;
+                        break;
+                    }
+
+                }
+
+                IDArr.set(jsonUpdateIndex, newID);
+                passArr.set(jsonUpdateIndex, pass);
+
+                loginData.put("userID", IDArr);
+                loginData.put("pass", passArr);
+
+                try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
+                        "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "loginData.json")) {
+
+                    fileWrite.write(loginData.toJSONString());
                     fileWrite.flush();
 
                 } catch (IOException ef) {

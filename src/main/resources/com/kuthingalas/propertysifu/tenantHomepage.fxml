@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.HomepageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.TenantHomepageController">
 
 
 <children>
@@ -52,7 +52,7 @@
             <TableColumn fx:id="col_bath" prefWidth="96.0" text="Bathrooms" />
             <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="101.0" text="Area" />
             <TableColumn fx:id="col_rent" prefWidth="93.0" text="Price" />
-            <TableColumn fx:id="col_btn" minWidth="0.0" prefWidth="75.0" text="Furnish" />
+            <TableColumn fx:id="col_furnish" minWidth="0.0" prefWidth="75.0" text="Furnish" />
             <TableColumn fx:id="col_id" prefWidth="75.0" text="Agent" />
         </columns>
     </TableView>

@@ -1,10 +1,5 @@
 package com.kuthingalas.propertysifu;
 
-import com.kuthingalas.propertysifu.system.Property;
-import com.kuthingalas.propertysifu.usertype.Agent;
-import com.kuthingalas.propertysifu.usertype.Owner;
-import com.kuthingalas.propertysifu.usertype.Tenant;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,21 +9,20 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import net.synedra.validatorfx.Check;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Scanner;
 
-import static com.kuthingalas.propertysifu.system.Property.PropertyList;
-import static com.kuthingalas.propertysifu.usertype.User.UserList;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.MainApplication.*;
+
+
 
 public class LoginController {
 
@@ -42,7 +36,7 @@ public class LoginController {
     private Label orglbl;
 
     @FXML
-    public TextField userID, phone, org;
+    public TextField userID, phone, org, fName, lName;
     public PasswordField userPass;
 
     @FXML
@@ -120,21 +114,52 @@ public class LoginController {
                 Parent root = null;
 
                 if (type.equals("Admin")) {
+
+                    currentUserID = username;
+                    currentUserType = "Admin";
+
+                    for (int i = 0; i < AdminList.size(); i++) {
+                        if (AdminList.get(i).getAdminID().equals(currentUserID)) {
+                            adminAccessLvl = AdminList.get(i).getAdminAccessLvl();
+                        }
+                    }
+
                     // go to admin homepage
-                } else if (type.equals("Agent") || type.equals("Owner")) {
-                    // go to agent homepage
                     try {
-                        root = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
+                        root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+                } else if (type.equals("Agent") || type.equals("Owner")) {
+
+                    currentUserID = username;
+
+                    for (int i = 0; i < UserList.size(); i++) {
+                        if (UserList.get(i).getUserID().equals(currentUserID)) {
+                            currentUserType = UserList.get(i).getUserType();
+                        }
+                    }
+
+                    // go to agent/owner homepage
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 } else if (type.equals("Tenant")) {
+
+                    currentUserID = username;
+                    currentUserType = "Tenant";
+
                     // go to tenant homepage
                     try {
                         root = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                 }
 
                 Stage window = (Stage) loginBtn.getScene().getWindow();
@@ -185,7 +210,7 @@ public class LoginController {
     }
 
     @FXML
-    public void toRegister2() throws IOException {
+    public void toAgentRegister() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("agentRegister.fxml"));
 
@@ -212,80 +237,6 @@ public class LoginController {
 
         userID.setText("");
         userPass.setText("");
-
-    }
-
-    @FXML
-    public void toHome() throws IOException {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Details Confirmation");
-        alert.setHeaderText("Please confirm the details");
-        alert.setContentText("Are you fine with this?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            Parent root = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
-
-            Stage window = (Stage) confirmRegBtn.getScene().getWindow();
-            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-            window.setScene(new Scene(root,1182,665));
-        } else {
-            //  user chose CANCEL or closed the dialog
-        }
-
-    }
-
-    public void toHome2() throws IOException {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Details Confirmation");
-        alert.setHeaderText("Please confirm the details");
-        alert.setContentText("Are you fine with this?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            Parent root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
-
-            Stage window = (Stage) confirmRegBtn.getScene().getWindow();
-            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-            window.setScene(new Scene(root,1182,665));
-        } else {
-            //  user chose CANCEL or closed the dialog
-        }
-
-    }
-
-    public void backHome() throws IOException {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Details Confirmation");
-        alert.setHeaderText("Please confirm the details");
-        alert.setContentText("Are you fine with this?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            Parent root = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
-
-            Stage window = (Stage) confirmBtn.getScene().getWindow();
-            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-            window.setScene(new Scene(root, 1182, 665));
-        } else {
-            //  user chose CANCEL or closed the dialog
-        }
-    }
-
-    @FXML
-    void Select(ActionEvent event) {
-
-        if (agentBox.isSelected()){
-            org.setVisible(true);
-            orglbl.setVisible(true);
-        }
-        else {
-            org.setVisible(false);
-            orglbl.setVisible(false);
-        }
 
     }
 

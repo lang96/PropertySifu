@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class createNewAdminController implements Initializable {
+public class CreateNewAdminController implements Initializable {
 
     ObservableList<String> accessLvl = FXCollections.observableArrayList("0","1");
 

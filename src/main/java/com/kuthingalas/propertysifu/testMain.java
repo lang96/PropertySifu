@@ -76,12 +76,7 @@ Project requirements / Marking Scheme :                                         
 
 
 
-public class MainApp {
-
-    public static String currentUserID; // determine logged in user
-    public static String currentUserType; // determine logged in userType
-
-    public static String adminAccessLvl; // if admin logged in, determine accessLvl
+public class testMain {
 
     public static void main(String[] args) {
 

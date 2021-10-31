@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AgentHomepageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AgentOwnerHomepageController">
 
     <children>
         <ImageView fitHeight="783.0" fitWidth="1182.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
@@ -34,10 +34,10 @@
                 <TableColumn fx:id="col_name" prefWidth="75.0" text="Type" />
                 <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="110.0" text="Bedrooms" />
                 <TableColumn fx:id="col_bath" prefWidth="122.0" text="Bathrooms" />
-                <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="161.0" text="Area" />
+                <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="161.0" text="Address" />
                 <TableColumn fx:id="col_rent" prefWidth="111.0" text="Price" />
             <TableColumn prefWidth="96.0" text="PSF" />
-            <TableColumn prefWidth="172.0" text="Area" />
+            <TableColumn fx:id="col_area" prefWidth="172.0" text="Area" />
             <TableColumn prefWidth="107.0" text="Status" />
             </columns>
         </TableView>
@@ -49,7 +49,7 @@
         </ImageView>
         <Button layoutX="565.0" layoutY="626.0" mnemonicParsing="false" text="Remove" />
       <Label layoutX="560.0" layoutY="19.0" text="Agent" />
-      <Button fx:id="editpropBtn" layoutX="461.0" layoutY="626.0" mnemonicParsing="false" onAction="#toeditProperty" text="Edit Prop" />
+      <Button fx:id="editPropBtn" layoutX="461.0" layoutY="626.0" mnemonicParsing="false" onAction="#toEditProperty" text="Edit Prop" />
       <Button fx:id="agentAddPropBtn" layoutX="662.0" layoutY="626.0" mnemonicParsing="false" onAction="#toAddProp" text="Add" />
 
 

@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="570.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.createNewAdminController">
+<AnchorPane prefHeight="570.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.CreateNewAdminController">
    <children>
       <ImageView fitHeight="606.0" fitWidth="401.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>

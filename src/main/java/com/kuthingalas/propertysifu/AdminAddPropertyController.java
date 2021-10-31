@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 
 
-public class createNewPropController implements Initializable {
+public class AdminAddPropertyController implements Initializable {
 
     ObservableList<String> propertyList3 = FXCollections.observableArrayList("Bungalow","Apartment","Condominium");
     ObservableList<String> status = FXCollections.observableArrayList("Active","Inactive");

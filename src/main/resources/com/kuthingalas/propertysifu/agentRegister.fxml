@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="344.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.LoginController">
+<AnchorPane prefHeight="344.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AgentOwnerRegisterController">
 
     <children>
         <ImageView fitHeight="411.0" fitWidth="601.0" layoutX="1.0" layoutY="1.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
@@ -24,8 +24,8 @@
             </font>
         </Label>
         <TextField fx:id="idNum" layoutX="273.0" layoutY="107.0" />
-        <TextField fx:id="fname" layoutX="273.0" layoutY="181.0" />
-        <TextField fx:id="lname" layoutX="273.0" layoutY="219.0" />
+        <TextField fx:id="fName" layoutX="273.0" layoutY="181.0" />
+        <TextField fx:id="lName" layoutX="273.0" layoutY="219.0" />
         <Label layoutX="131.0" layoutY="111.0" text="ID Number">
             <font>
                 <Font name="Californian FB" size="14.0" />
@@ -42,7 +42,7 @@
             <font>
                 <Font name="Californian FB" size="14.0" />
             </font></Label>
-        <Button fx:id="confirmRegBtn" layoutX="511.0" layoutY="286.0" mnemonicParsing="false" onAction="#toHome2" text="Register" textFill="#3e8a82" />
+        <Button fx:id="confirmRegBtn" layoutX="511.0" layoutY="286.0" mnemonicParsing="false" onAction="#toHome" text="Register" textFill="#3e8a82" />
         <PasswordField fx:id="userPass" layoutX="273.0" layoutY="143.0" />
         <ImageView fitHeight="102.0" fitWidth="171.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
             <image>

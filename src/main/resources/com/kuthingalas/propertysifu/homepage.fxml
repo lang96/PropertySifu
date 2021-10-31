@@ -64,7 +64,6 @@
            <TableColumn fx:id="col_id" prefWidth="84.0" text="Agent" />
         </columns>
       </TableView>
-      <Button layoutX="557.0" layoutY="626.0" mnemonicParsing="false" onAction="#viewProperty" text="View" />
       <Button fx:id="adminPageBtn" layoutX="904.0" layoutY="86.0" mnemonicParsing="false" onAction="#toTestAdmin" text="Test Admin" />
       <Button fx:id="refreshBtn" layoutX="578.0" layoutY="186.0" mnemonicParsing="false" onAction="#refreshList" prefHeight="25.0" prefWidth="58.0" text="Refresh" />
       <Button fx:id="filterBtn" layoutX="505.0" layoutY="186.0" mnemonicParsing="false" onAction="#filterList" prefHeight="25.0" prefWidth="58.0" text="Filter" />

@@ -16,7 +16,13 @@ import java.io.IOException;
 
 
 
-public class HelloApplication extends Application  {
+public class MainApplication extends Application  {
+
+    public static String currentUserID; // determine logged in user
+    public static String currentUserType; // determine logged in userType
+
+    public static int adminAccessLvl; // if admin logged in, determine accessLvl
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));

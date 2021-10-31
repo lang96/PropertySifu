@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 import static com.kuthingalas.propertysifu.usertype.User.UserList;
 
-public class propDetailsController implements Initializable {
+public class ViewPropertyController implements Initializable {
 
     @FXML private Label propTypeLabel;
     @FXML private Label firstAddLabel;

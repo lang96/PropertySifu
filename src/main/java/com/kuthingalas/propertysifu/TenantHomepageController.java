@@ -19,31 +19,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.PropertyList;
+import static com.kuthingalas.propertysifu.usertype.User.*;
 
-
-
-public class HomepageController implements Initializable {
+public class TenantHomepageController implements Initializable {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("Studio","1","2","3","4","5+");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5+");
-    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Water heater","Gym","Swimming Pool","Car park","Playground","Security","Sports court");
-    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially","Furnished");
+    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Gym","Swimming Pool","Car park","Playground","Security");
+    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially furnished","Furnished");
     ObservableList<String> sortPSF = FXCollections.observableArrayList("Low to High","High to Low");
     ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
 
     @FXML
-    private Button adminPageBtn, refreshBtn, viewPropertyBtn, filterBtn;
-
-    @FXML
-    private Hyperlink toLogBtn;
-
-    @FXML
-    private Label lbl;
+    private Button profile, adminPageBtn, refreshBtn, viewPropertyBtn, filterBtn;
 
     @FXML
     public ComboBox<String> propType;
@@ -62,78 +55,70 @@ public class HomepageController implements Initializable {
     @FXML
     private ComboBox<String> price;
 
-    @FXML private TableView<Listing> tbl;
+    @FXML private TableView<TenantListing> tbl;
 
     @FXML
-    private TableColumn<Listing, String> col_id;
+    private TableColumn<TenantListing, String> col_id;
     @FXML
-    private TableColumn<Listing, String> col_name;
+    private TableColumn<TenantListing, String> col_name;
     @FXML
-    private TableColumn<Listing, String> col_address;
+    private TableColumn<TenantListing, String> col_address;
     @FXML
-    private TableColumn<Listing, String> col_bed;
+    private TableColumn<TenantListing, String> col_bed;
     @FXML
-    private TableColumn<Listing, String> col_bath;
+    private TableColumn<TenantListing, String> col_bath;
     @FXML
-    private TableColumn<Listing, String> col_area;
+    private TableColumn<TenantListing, String> col_furnish;
+    @FXML
+    private TableColumn<TenantListing, String> col_area;
     // @FXML private TableColumn<Listing, String> col_psf;
     @FXML
-    private TableColumn<Listing, String> col_rent;
+    private TableColumn<TenantListing, String> col_rent;
 
     ObservableList list =  FXCollections.observableArrayList();
-    ArrayList<Listing> filterList = new ArrayList<>();
+    ArrayList<TenantListing> filterList = new ArrayList<>();
 
-    @FXML
-    public void toLogin() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
-
-        Stage window = (Stage) toLogBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,597,338));
-    }
-
-    public void toTestAdmin() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
-
-        Stage window = (Stage) adminPageBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,700,400));
-    }
-
-    //tak jadi lagi, nak initialize data tak lepas - rename
     public void viewProperty(ActionEvent event) throws IOException
     {
         String compareID = tbl.getSelectionModel().getSelectedItem().getID();
 
+        if (compareID == null && compareID.isEmpty()) { // not working
 
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("No property selected!");
+            errorAlert.showAndWait();
 
-        Property selectedProperty = new Property();
-        for (int i = 0; i < PropertyList.size(); i++) {
+        } else {
 
-            if (PropertyList.get(i).getPropertyID().equals(compareID)) {
-                selectedProperty = PropertyList.get(i);
-                break;
+            Property selectedProperty = new Property();
+            for (int i = 0; i < PropertyList.size(); i++) {
+
+                if (PropertyList.get(i).getPropertyID().equals(compareID)) {
+                    selectedProperty = PropertyList.get(i);
+                    break;
+                }
+
             }
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("propDetails.fxml"));
+            Parent tableViewParent = loader.load();
+
+            Scene tableViewScene = new Scene(tableViewParent);
+
+            //access the controller and call a method
+            ViewPropertyController controller = loader.getController();
+            controller.initData(selectedProperty);
+
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(tableViewScene);
+            window.show();
 
         }
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("propDetails.fxml"));
-        Parent tableViewParent = loader.load();
-
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        //access the controller and call a method
-        ViewPropertyController controller = loader.getController();
-        controller.initData(selectedProperty);
-
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        window.setScene(tableViewScene);
-        window.show();
     }
 
     @FXML
@@ -143,7 +128,7 @@ public class HomepageController implements Initializable {
         filterList.clear();
 
         for (int i = 0; i < PropertyList.size(); i++) {
-            list.add(new Listing(i));
+            list.add(new TenantListing(i));
         }
 
         tbl.setItems(list);
@@ -169,7 +154,7 @@ public class HomepageController implements Initializable {
 
             for (int i = 0; i < PropertyList.size(); i++) {
                 if (PropertyList.get(i).getPropertyType().equals(selectedType)) {
-                    filterList.add(new Listing(i));
+                    filterList.add(new TenantListing(i));
                 }
             }
 
@@ -196,7 +181,7 @@ public class HomepageController implements Initializable {
 
                 for (int i = 0; i < PropertyList.size(); i++) {
                     if (PropertyList.get(i).getBedroom() == Integer.parseInt(selectedBed)) {
-                        filterList.add(new Listing(i));
+                        filterList.add(new TenantListing(i));
                     }
                 }
 
@@ -285,14 +270,14 @@ public class HomepageController implements Initializable {
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
 
         for (int i = 0; i < PropertyList.size(); i++) {
-            list.add(new Listing(i));
+            list.add(new TenantListing(i));
         }
 
         tbl.setItems(list);
 
     }
 
-    public class Listing{
+    public class TenantListing{
 
         SimpleStringProperty ID;
         SimpleStringProperty type;
@@ -306,7 +291,7 @@ public class HomepageController implements Initializable {
         //SimpleStringProperty psf;
         SimpleStringProperty rent;
 
-        public Listing(int index){
+        public TenantListing(int index){
             this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
             this.type = new SimpleStringProperty(PropertyList.get(index).getPropertyType());
             this.address = new SimpleStringProperty(PropertyList.get(index).getFirstAddress() + ", " + PropertyList.get(index).getSecondAddress());
@@ -344,6 +329,15 @@ public class HomepageController implements Initializable {
             return rent.get();
         }
 
+    }
+
+    public void toProfile() throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("viewProfile.fxml"));
+
+        Stage window = (Stage) profile.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root,597,338));
     }
 
 }

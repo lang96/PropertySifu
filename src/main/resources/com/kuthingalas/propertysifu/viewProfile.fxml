@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="348.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.LoginController">
+<AnchorPane prefHeight="348.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.TenantProfileController">
    <children>
       <ImageView fitHeight="381.0" fitWidth="606.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -47,10 +47,10 @@
             <Font name="Californian FB Bold" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="profID" layoutX="338.0" layoutY="87.0" />
+      <TextField fx:id="profID" layoutX="338.0" layoutY="87.0" text="" />
       <TextField fx:id="profPhone" layoutX="338.0" layoutY="225.0" />
-      <TextField fx:id="profFname" layoutX="338.0" layoutY="124.0" />
-      <TextField fx:id="profLname" layoutX="338.0" layoutY="158.0" />
+      <TextField fx:id="profFName" layoutX="338.0" layoutY="124.0" />
+      <TextField fx:id="profLName" layoutX="338.0" layoutY="158.0" />
       <PasswordField fx:id="profPass" layoutX="338.0" layoutY="191.0" />
       <Label layoutX="123.0" layoutY="123.0" text="First Name">
          <font>
