@@ -1,2 +1,5 @@
 {
+  "userID":["AG001","AG002"],
+  "pass":["test","nub"],
+  "type":["Agent","Agent"]
 }

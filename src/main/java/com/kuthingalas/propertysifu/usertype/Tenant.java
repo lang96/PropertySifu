@@ -11,6 +11,19 @@ public class Tenant extends User {
 
 
     // constructors
+    public Tenant(String username, String pass, String fName, String lName, String phone, int verified) {
+
+        this.userID = username; // user can set their own custom username/userID
+        this.userPass = pass;
+        this.fName = fName;
+        this.lName = lName;
+        this.phoneNum = phone;
+        this.userType = "Tenant";
+        this.verified = verified;
+
+    }
+
+    // new tenants added from add() is yet to be verified by admin
     public Tenant(String username, String pass, String fName, String lName, String phone) {
 
         this.userID = username; // user can set their own custom username/userID

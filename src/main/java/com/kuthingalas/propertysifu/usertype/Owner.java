@@ -17,7 +17,7 @@ public class Owner extends User {
 
 
     // constructors
-    public Owner(String userID, String pass, String fName, String lName, String phone, String id, ArrayList<Property> propertyList) {
+    public Owner(String userID, String pass, String fName, String lName, String phone, String id, ArrayList<Property> propertyList, int verified) {
 
         this.userID = userID;
         this.userPass = pass;
@@ -27,7 +27,7 @@ public class Owner extends User {
         this.idNum = id;
         this.properties = propertyList;
         this.userType = "Owner";
-        this.verified = 0; // for now owner requires verification as well
+        this.verified = verified;
 
     }
 
@@ -42,7 +42,7 @@ public class Owner extends User {
         this.idNum = id;
         this.properties = new ArrayList<>();
         this.userType = "Owner";
-        this.verified = 0; // for now owner requires verification as well
+        this.verified = 0;
 
     }
 

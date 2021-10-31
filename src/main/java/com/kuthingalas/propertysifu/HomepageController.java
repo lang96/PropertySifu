@@ -24,16 +24,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
 
 
 
 public class HomepageController implements Initializable {
 
-    ObservableList<String> propertyList = FXCollections.observableArrayList("Bungalow","Apartment","Condominium");
-    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Swimming Pool","Park");
+    ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
+    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Water heater","Gym","Swimming Pool","Car park","Playground","Security","Sports court");
     ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
-    ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
-    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
+    ObservableList<String> numBedrooms = FXCollections.observableArrayList("Studio","1","2","3","4","5+");
+    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5+");
     ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially","Furnished");
 
 
@@ -41,7 +42,7 @@ public class HomepageController implements Initializable {
 //    private CheckBox sial;
 
     @FXML
-    private Button profile , confirmBtn ,adminPageBtn;
+    private Button profile, confirmBtn, adminPageBtn, refreshBtn, viewPropertyBtn, filterBtn;
 
     @FXML
     private Hyperlink toLogBtn;
@@ -50,42 +51,45 @@ public class HomepageController implements Initializable {
     private Label lbl;
 
     @FXML
-    public ComboBox <String> propType;
+    public ComboBox<String> propType;
     @FXML
-    private ComboBox<String> facList;
-    @FXML
-    private ComboBox<String> price;
+    public ComboBox<String> projType;
     @FXML
     private ComboBox<String> bedroom;
     @FXML
     private ComboBox<String> bathroom;
     @FXML
+    private ComboBox<String> facList;
+    @FXML
     private ComboBox<String> furnishList;
+    @FXML
+    private ComboBox<String> psf;
+    @FXML
+    private ComboBox<String> price;
 
-    @FXML private TableView<Property> tbl;
+    @FXML private TableView<Listing> tbl;
 
     @FXML
-    private TableColumn<Std, String> col_id;
+    private TableColumn<Listing, String> col_id;
     @FXML
-    private TableColumn<Std, String> col_name;
+    private TableColumn<Listing, String> col_name;
     @FXML
-    private TableColumn<Std, String> col_address;
+    private TableColumn<Listing, String> col_address;
     @FXML
-    private TableColumn<Std, String> col_bed;
+    private TableColumn<Listing, String> col_bed;
     @FXML
-    private TableColumn<Std, String> col_bath;
+    private TableColumn<Listing, String> col_bath;
     @FXML
-    private TableColumn<Std, String> col_area;
-    @FXML
-    private TableColumn<Std, Button> col_btn;
+    private TableColumn<Listing, String> col_area;
     /*
     @FXML
     private TableColumn<Std, String> col_psf;
      */
     @FXML
-    private TableColumn<Std, String> col_rent;
+    private TableColumn<Listing, String> col_rent;
 
     ObservableList list =  FXCollections.observableArrayList();
+    ArrayList<Listing> filterList = new ArrayList<>();
 
     @FXML
     public void toLogin() throws IOException {
@@ -116,8 +120,19 @@ public class HomepageController implements Initializable {
     }
 
     //tak jadi lagi, nak initialize data tak lepas - rename
-    public void inforr(ActionEvent event) throws IOException
+    public void viewProperty(ActionEvent event) throws IOException
     {
+        String compareID = tbl.getSelectionModel().getSelectedItem().getID();
+        Property selectedProperty = new Property();
+        for (int i = 0; i < PropertyList.size(); i++) {
+
+            if (PropertyList.get(i).getPropertyID().equals(compareID)) {
+                selectedProperty = PropertyList.get(i);
+                break;
+            }
+
+        }
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("propDetails.fxml"));
         Parent tableViewParent = loader.load();
@@ -126,7 +141,7 @@ public class HomepageController implements Initializable {
 
         //access the controller and call a method
         propDetailsController controller = loader.getController();
-        //controller.initData(tbl.getSelectionModel().getSelectedItem());
+        controller.initData(selectedProperty);
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -135,22 +150,99 @@ public class HomepageController implements Initializable {
         window.show();
     }
 
-
-
     @FXML
-    private void doList(ActionEvent event){
+    private void refreshList() {
 
-        String s = propType.getSelectionModel().getSelectedItem().toString();
-        //textareaname.setText( "" + s);
+        list.clear();
+        filterList.clear();
+
+        for (int i = 0; i < PropertyList.size(); i++) {
+            list.add(new Listing(i));
+        }
+
+        tbl.setItems(list);
+
     }
 
     @FXML
-    private void doList2(){
+    private void filterList() {
+
+        list.clear();
+        filterList.clear();
+
+        String selectedType = propType.getSelectionModel().getSelectedItem();
+        //String selectedProj = projType.getSelectionModel().getSelectedItem();
+        String selectedBed = bedroom.getSelectionModel().getSelectedItem();
+        //String selectedBath = bathroom.getSelectionModel().getSelectedItem();
+        //String selectedFac = facList.getSelectionModel().getSelectedItem();
+        //String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
+        //String selectedPSF = psf.getSelectionModel().getSelectedItem();
+        //String selectedRent = price.getSelectionModel().getSelectedItem();
+
+        if (selectedType != null) { // type /
+
+            for (int i = 0; i < PropertyList.size(); i++) {
+                if (PropertyList.get(i).getPropertyType().equals(selectedType)) {
+                    filterList.add(new Listing(i));
+                }
+            }
+
+            if (selectedBed != null) { // type /, bed /
+
+                for (int j = 0; j < filterList.size(); j++) {
+                    if (filterList.get(j).getBed().equals(selectedBed)) {
+                        System.out.println(filterList.get(j).getBed());
+                        continue;
+                    } else {
+                        filterList.remove(j);
+                    }
+                }
+
+            } else {
+
+                // filter list skips bedroom
+
+            }
+
+        } else { // type not selected
+
+            if (selectedBed != null) { // type X, bed /
+
+                for (int i = 0; i < PropertyList.size(); i++) {
+                    if (PropertyList.get(i).getBedroom() == Integer.parseInt(selectedBed)) {
+                        filterList.add(new Listing(i));
+                    }
+                }
+
+            } else {
+
+                // filter list empty
+
+            }
+
+        }
+
+        if (!filterList.isEmpty()) {
+            for (int z = 0; z < filterList.size(); z++) {
+                list.add(filterList.get(z));
+            }
+        }
+
+        if(list.isEmpty()) {
+            tbl.setPlaceholder(new Label("No properties found for the selected filters."));
+        } else {
+            tbl.setItems(list);
+        }
 
     }
 
     @FXML
-    private void priceList(){
+    private void propTypeList(){
+
+    }
+
+    @FXML
+    private void projTypeList(){
 
     }
 
@@ -165,7 +257,22 @@ public class HomepageController implements Initializable {
     }
 
     @FXML
+    private void facList(){
+
+    }
+
+    @FXML
     private void furnishList(){
+
+    }
+
+    @FXML
+    private void psfList(){
+
+    }
+
+    @FXML
+    private void priceList(){
 
     }
 
@@ -190,17 +297,16 @@ public class HomepageController implements Initializable {
         //col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
         //col_psf.setCellValueFactory(new PropertyValueFactory<>("psf"));
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
-//        col_btn.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         for (int i = 0; i < PropertyList.size(); i++) {
-            list.add(new Std(i));
+            list.add(new Listing(i));
         }
 
         tbl.setItems(list);
 
     }
 
-    public class Std{
+    public class Listing{
 
         SimpleStringProperty ID;
         SimpleStringProperty type;
@@ -213,18 +319,15 @@ public class HomepageController implements Initializable {
         //SimpleStringProperty furnish;
         //SimpleStringProperty psf;
         SimpleStringProperty rent;
-//        Button info;
 
-        public Std(int index){
+        public Listing(int index){
             this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
             this.type = new SimpleStringProperty(PropertyList.get(index).getPropertyType());
-            this.address = new SimpleStringProperty(PropertyList.get(index).getFirstAddress());
+            this.address = new SimpleStringProperty(PropertyList.get(index).getFirstAddress() + ", " + PropertyList.get(index).getSecondAddress());
             this.bed = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBedroom()));
             this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
             this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
-//            this.info = new Button("Info");
-
         }
 
         public String getID() {
@@ -255,15 +358,6 @@ public class HomepageController implements Initializable {
             return rent.get();
         }
 
-//        public void setButton(Button info){
-//            this.info = info;
-//        }
-//
-//        public Button getInfo() {
-//            return info;
-//        }
     }
 
-
 }
-

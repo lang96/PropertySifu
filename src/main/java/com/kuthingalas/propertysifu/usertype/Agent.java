@@ -17,7 +17,7 @@ public class Agent extends User {
 
 
     // constructors
-    public Agent(String userID, String pass, String fName, String lName, String phone, String id, String org, ArrayList<Property> propertyList) {
+    public Agent(String userID, String pass, String fName, String lName, String phone, String id, String org, ArrayList<Property> propertyList, int verified) {
 
         this.userID = userID;
         this.userPass = pass;
@@ -28,7 +28,7 @@ public class Agent extends User {
         this.organization = org;
         this.properties = propertyList;
         this.userType = "Agent";
-        this.verified = 0; // for now agent requires verification as well
+        this.verified = verified;
 
     }
 
@@ -44,7 +44,7 @@ public class Agent extends User {
         this.organization = org;
         this.properties = new ArrayList<>();
         this.userType = "Agent";
-        this.verified = 0; // for now agent requires verification as well
+        this.verified = 0;
 
     }
 

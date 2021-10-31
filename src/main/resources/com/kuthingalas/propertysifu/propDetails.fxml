@@ -21,17 +21,17 @@
               </font>
           </Label>
       <Button layoutX="862.0" layoutY="484.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Button" />
-      <Label layoutX="438.0" layoutY="93.0" text="First Address" />
-      <Label layoutX="430.0" layoutY="117.0" text="Second Address" />
-      <Label layoutX="467.0" layoutY="193.0" text="Type" />
-      <Label layoutX="419.0" layoutY="210.0" text="Bedrooms" />
-      <Label layoutX="480.0" layoutY="210.0" text="Bathrooms" />
-      <Label layoutX="457.0" layoutY="236.0" text="Furnishing" />
+      <Label fx:id="firstAddLabel" layoutX="438.0" layoutY="93.0" text="First Address" />
+      <Label fx:id="secondAddLabel" layoutX="430.0" layoutY="117.0" text="Second Address" />
+      <Label fx:id="propTypeLabel" layoutX="467.0" layoutY="193.0" text="Type" />
+      <Label fx:id="bedLabel" layoutX="419.0" layoutY="210.0" text="Bedrooms" />
+      <Label fx:id="bathLabel" layoutX="480.0" layoutY="210.0" text="Bathrooms" />
+      <Label fx:id="furnishingLabel" layoutX="457.0" layoutY="236.0" text="Furnishing" />
       <Label layoutX="458.0" layoutY="266.0" text="Facilities" />
-      <Label layoutX="446.0" layoutY="332.0" text="Area" />
-      <Label layoutX="489.0" layoutY="332.0" text="PSF" />
-      <Label layoutX="467.0" layoutY="355.0" text="Price" />
-      <Label layoutX="405.0" layoutY="443.0" text="Agent Name" />
+      <Label fx:id="areaLabel" layoutX="446.0" layoutY="332.0" text="Area" />
+      <Label fx:id="psfLabel" layoutX="489.0" layoutY="332.0" text="PSF" />
+      <Label fx:id="rentLabel" layoutX="467.0" layoutY="355.0" text="Price" />
+      <Label fx:id="agentLabel" layoutX="405.0" layoutY="443.0" text="Agent Name" />
       <Label layoutX="503.0" layoutY="443.0" text="Contact" />
 <!--        <Button layoutX="621.0" layoutY="516.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Back" />-->
     </children>

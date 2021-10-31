@@ -1,11 +1,11 @@
 {
-  "userID":[],
-  "pass":[],
-  "type":[],
-  "fName":[],
-  "lName":[],
-  "phone":[],
-  "idNum":[],
-  "org":[],
-  "verified":[]
+  "userID":["AG001","AG002"],
+  "pass":["test","nub"],
+  "type":["Agent","Agent"],
+  "fName":["Bond, James","Agent"],
+  "lName":["Bond","47"],
+  "phone":["007","47"],
+  "idNum":["007","47"],
+  "org":["MI6","ICA"],
+  "verified":["1","1"]
 }

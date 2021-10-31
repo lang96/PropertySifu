@@ -134,7 +134,7 @@ public class DataOperation {
                     switch (type) {
 
                         case "Tenant":
-                            UserList.add(new Tenant(ID, pass, fName, lName, phone));
+                            UserList.add(new Tenant(ID, pass, fName, lName, phone, verified));
                             break;
 
                         case "Agent":
@@ -148,7 +148,7 @@ public class DataOperation {
                                 }
 
                                 if (!properties.isEmpty()) {
-                                    UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org, properties));
+                                    UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org, properties, verified));
                                     break;
                                 } else {
                                     UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org));
@@ -171,7 +171,7 @@ public class DataOperation {
                                 }
 
                                 if (!properties.isEmpty()) {
-                                    UserList.add(new Owner(ID, pass, fName, lName, phone, idNum, properties));
+                                    UserList.add(new Owner(ID, pass, fName, lName, phone, idNum, properties, verified));
                                     break;
                                 } else {
                                     UserList.add(new Owner(ID, pass, fName, lName, phone, idNum));
@@ -399,6 +399,7 @@ public class DataOperation {
             JSONArray phoneArr = (JSONArray) userData.get("phone");
             JSONArray idNumArr = (JSONArray) userData.get("idNum");
             JSONArray orgArr = (JSONArray) userData.get("org");
+            JSONArray verifiedArr = (JSONArray) userData.get("verified");
 
             IDArr.add(id);
             passArr.add(pass);
@@ -408,6 +409,7 @@ public class DataOperation {
             phoneArr.add(phone);
             idNumArr.add("-");
             orgArr.add("-");
+            verifiedArr.add("0");
 
             userData.put("org", orgArr);
             userData.put("idNum", idNumArr);
@@ -417,6 +419,7 @@ public class DataOperation {
             userData.put("type", typeArr);
             userData.put("pass", passArr);
             userData.put("userID", IDArr);
+            userData.put("verified", verifiedArr);
 
             UserList.add(new Tenant(id, pass, fName, lName, phone));
 
@@ -458,6 +461,7 @@ public class DataOperation {
             JSONArray phoneArr = (JSONArray) userData.get("phone");
             JSONArray idNumArr = (JSONArray) userData.get("idNum");
             JSONArray orgArr = (JSONArray) userData.get("org");
+            JSONArray verifiedArr = (JSONArray) userData.get("verified");
 
             // generating agent ID based on existing number of agent
             String id = setNewAgentID();
@@ -470,6 +474,7 @@ public class DataOperation {
             phoneArr.add(phone);
             idNumArr.add(idNum);
             orgArr.add(org);
+            verifiedArr.add("0");
 
             userData.put("org", orgArr);
             userData.put("idNum", idNumArr);
@@ -479,6 +484,7 @@ public class DataOperation {
             userData.put("type", typeArr);
             userData.put("pass", passArr);
             userData.put("userID", IDArr);
+            userData.put("verified", verifiedArr);
 
             UserList.add(new Agent(id, pass, fName, lName, phone, idNum, org));
 
@@ -520,6 +526,7 @@ public class DataOperation {
             JSONArray phoneArr = (JSONArray) userData.get("phone");
             JSONArray idNumArr = (JSONArray) userData.get("idNum");
             JSONArray orgArr = (JSONArray) userData.get("org");
+            JSONArray verifiedArr = (JSONArray) userData.get("verified");
 
             // generating owner ID based on existing number of owners
             String id = setNewOwnerID();
@@ -532,6 +539,7 @@ public class DataOperation {
             phoneArr.add(phone);
             idNumArr.add(idNum);
             orgArr.add("-");
+            verifiedArr.add("0");
 
             userData.put("org", orgArr);
             userData.put("idNum", idNumArr);
@@ -541,6 +549,7 @@ public class DataOperation {
             userData.put("type", typeArr);
             userData.put("pass", passArr);
             userData.put("userID", IDArr);
+            userData.put("verified", verifiedArr);
 
             UserList.add(new Owner(id, pass, fName, lName, phone, idNum));
 
@@ -2110,9 +2119,6 @@ public class DataOperation {
     }
 
     public static void main(String[] args) {
-
-        initializeProperty();
-        updatePropertyType("PR001", "test");
 
     }
 

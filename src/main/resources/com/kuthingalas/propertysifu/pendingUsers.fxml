@@ -16,10 +16,10 @@
          </image>
       </ImageView>
       <Label layoutX="320.0" layoutY="30.0" text="Pending Users" />
-      <TableView layoutX="92.0" layoutY="78.0" prefHeight="276.0" prefWidth="532.0">
+      <TableView fx:id="tblPending" layoutX="92.0" layoutY="78.0" prefHeight="276.0" prefWidth="532.0">
         <columns>
-          <TableColumn prefWidth="267.0" text="UserID" />
-          <TableColumn minWidth="0.0" prefWidth="264.0" text="User Type" />
+          <TableColumn fx:id="col_id" prefWidth="267.0" text="User ID" />
+          <TableColumn fx:id="col_type" minWidth="0.0" prefWidth="264.0" text="User Type" />
         </columns>
       </TableView>
       <Button layoutX="408.0" layoutY="371.0" mnemonicParsing="false" text="Accept" />

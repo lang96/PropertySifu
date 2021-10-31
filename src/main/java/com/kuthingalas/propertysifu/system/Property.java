@@ -134,6 +134,8 @@ public class Property {
 
     }
 
+    public Property() {}
+
     // methods
 
         // getters
