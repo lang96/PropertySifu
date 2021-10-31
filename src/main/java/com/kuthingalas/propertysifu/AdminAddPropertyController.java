@@ -49,7 +49,7 @@ public class AdminAddPropertyController implements Initializable {
 
         Stage window = (Stage) back5.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 809, 456));
+        window.setScene(new Scene(root, 967, 544));
     }
 
     @Override

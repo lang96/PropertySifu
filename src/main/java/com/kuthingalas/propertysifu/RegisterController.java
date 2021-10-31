@@ -18,7 +18,7 @@ import static com.kuthingalas.propertysifu.data.DataOperation.*;
 public class RegisterController {
 
     @FXML
-    Button confirmRegBtn;
+    Button confirmRegBtn,back;
 
     @FXML
     public TextField userID, phone, fName, lName;
@@ -51,6 +51,15 @@ public class RegisterController {
             //  user chose CANCEL or closed the dialog
         }
 
+    }
+
+    public void toLoginPage() throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
+
+        Stage window = (Stage) back.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root, 597, 338));
     }
 
 }

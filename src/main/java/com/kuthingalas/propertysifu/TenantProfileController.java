@@ -25,7 +25,7 @@ import static com.kuthingalas.propertysifu.MainApplication.*;
 public class TenantProfileController implements Initializable {
 
     @FXML
-    private Button profile, confirmBtn;
+    private Button profile, confirmBtn , logoutBtn;
 
     @FXML
     public TextField profID, profFName, profLName, profPhone, profPass;
@@ -69,6 +69,26 @@ public class TenantProfileController implements Initializable {
         } else {
             //  user chose CANCEL or closed the dialog
         }
+    }
+
+    public void logout() throws IOException {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log Out");
+        alert.setHeaderText("Log Out");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+
+            Stage window = (Stage) logoutBtn.getScene().getWindow();
+            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+            window.setScene(new Scene(root, 1182, 665));
+        } else {
+            //  user chose CANCEL or closed the dialog
+        }
+
     }
 
 }

@@ -19,6 +19,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.kuthingalas.propertysifu.system.Property.*;
@@ -33,7 +34,7 @@ public class AdminHomepageController {
 
 
     @FXML
-    private Button manageAdminBtn, managePropertiesBtn, manageUsersBtn, adminInfoBtn, editAdminBtn, createAdminBtn, createNewPropertyBtn, adminEditPropertyBtn;
+    private Button manageAdminBtn, managePropertiesBtn, manageUsersBtn, adminInfoBtn, editAdminBtn, createAdminBtn, createNewPropertyBtn, adminEditPropertyBtn,logoutBtn3;
 
     @FXML
     private TextField collectUserID, collectUserPass, collectUserFName, collectUserLName, collectUserPhone, collectUserIDNum, collectUserOrg;
@@ -48,7 +49,7 @@ public class AdminHomepageController {
 
         Stage window = (Stage) adminInfoBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 597, 338));
+        window.setScene(new Scene(root, 717, 350));
     }
 
 
@@ -68,7 +69,7 @@ public class AdminHomepageController {
 
         Stage window = (Stage) managePropertiesBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 809, 456));
+        window.setScene(new Scene(root, 967, 544));
     }
 
     public void toManageUsers() throws IOException {
@@ -167,7 +168,7 @@ public class AdminHomepageController {
 
         Stage window = (Stage) back6.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 809, 456));
+        window.setScene(new Scene(root, 967, 544));
     }
 
     public void toManageUsers3() throws IOException {
@@ -177,6 +178,25 @@ public class AdminHomepageController {
         Stage window = (Stage) back9.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 762, 431));
+    }
+
+    public void logout3() throws IOException {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log Out");
+        alert.setHeaderText("Log Out");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+
+            Stage window = (Stage) logoutBtn3.getScene().getWindow();
+            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+            window.setScene(new Scene(root, 1182, 665));
+        } else {
+            //  user chose CANCEL or closed the dialog
+        }
     }
 
     //////////////////////////////////////////////////////////////////

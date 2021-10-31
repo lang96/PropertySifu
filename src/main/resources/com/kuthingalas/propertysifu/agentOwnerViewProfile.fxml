@@ -68,5 +68,6 @@
       </Label>
       <TextField fx:id="profOrg" layoutX="338.0" layoutY="261.0" />
       <Button fx:id="agentConfirmBtn" layoutX="277.0" layoutY="303.0" mnemonicParsing="false" onAction="#toAgentHomepage" text="Confirm" />
+      <Button fx:id="logoutBtn2" layoutX="533.0" layoutY="17.0" mnemonicParsing="false" onAction="#logout2" text="Log Out" />
       </children>
 </AnchorPane>

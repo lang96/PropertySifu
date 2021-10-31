@@ -9,23 +9,26 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AdminHomepageController">
    <children>
-      <ImageView fitHeight="502.0" fitWidth="809.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="559.0" fitWidth="967.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/house.jpg" />
          </image>
       </ImageView>
-      <TableView layoutX="73.0" layoutY="73.0" prefHeight="342.0" prefWidth="663.0">
+      <TableView layoutX="67.0" layoutY="45.0" prefHeight="452.0" prefWidth="794.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
+          <TableColumn prefWidth="75.0" text="Type" />
+          <TableColumn prefWidth="206.0" text="Address" />
+            <TableColumn text="Bedrooms" />
+            <TableColumn prefWidth="71.0" text="Bathrooms" />
+            <TableColumn text="Area" />
+            <TableColumn text="Price" />
+            <TableColumn prefWidth="97.0" text="Furnish" />
+            <TableColumn prefWidth="104.0" text="Agent" />
         </columns>
       </TableView>
-      <Button layoutX="379.0" layoutY="423.0" mnemonicParsing="false" text="Remove" />
-      <Button fx:id="createNewPropertyBtn" layoutX="638.0" layoutY="31.0" mnemonicParsing="false" onAction="#toCreateNewProperty" text="Create" />
-      <Button fx:id="adminEditPropertyBtn" layoutX="710.0" layoutY="31.0" mnemonicParsing="false" onAction="#toAdminEditProperty" text="Edit" />
-      <Button fx:id="back4" layoutX="21.0" layoutY="423.0" mnemonicParsing="false" onAction="#toAdminHomepage3" text="Back" />
+      <Button layoutX="580.0" layoutY="505.0" mnemonicParsing="false" text="Remove" />
+      <Button fx:id="createNewPropertyBtn" layoutX="794.0" layoutY="8.0" mnemonicParsing="false" onAction="#toCreateNewProperty" text="Create" />
+      <Button fx:id="adminEditPropertyBtn" layoutX="883.0" layoutY="8.0" mnemonicParsing="false" onAction="#toAdminEditProperty" text="Edit" />
+      <Button fx:id="back4" layoutX="26.0" layoutY="505.0" mnemonicParsing="false" onAction="#toAdminHomepage3" text="Back" />
    </children>
 </AnchorPane>

@@ -6,6 +6,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="431.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.ManageUsersController">
    <children>
@@ -14,20 +16,25 @@
             <Image url="@../../../raw/house.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id = "tblUser" layoutX="24.0" layoutY="49.0" prefHeight="327.0" prefWidth="708.0">
+      <TableView fx:id="tblUser" layoutX="24.0" layoutY="49.0" prefHeight="327.0" prefWidth="708.0">
         <columns>
-          <TableColumn fx:id = "col_id" prefWidth="75.0" text="User ID" />
-          <TableColumn fx:id = "col_type" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id = "col_FName" prefWidth="75.0" text="First Name" />
-            <TableColumn fx:id = "col_LName" prefWidth="75.0" text="Last Name" />
-            <TableColumn fx:id = "col_phone" prefWidth="91.0" text="Phone Number" />
-            <TableColumn fx:id = "col_idNum" prefWidth="75.0" text="ID Number" />
-            <TableColumn fx:id = "col_org" prefWidth="128.0" text="Organization" />
-            <TableColumn fx:id = "col_verified" prefWidth="113.0" text="Verc Status" />
+          <TableColumn fx:id="col_id" prefWidth="75.0" text="User ID" />
+          <TableColumn fx:id="col_type" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="col_FName" prefWidth="75.0" text="First Name" />
+            <TableColumn fx:id="col_LName" prefWidth="75.0" text="Last Name" />
+            <TableColumn fx:id="col_phone" prefWidth="91.0" text="Phone Number" />
+            <TableColumn fx:id="col_idNum" prefWidth="75.0" text="ID Number" />
+            <TableColumn fx:id="col_org" prefWidth="128.0" text="Organization" />
+            <TableColumn fx:id="col_verified" prefWidth="113.0" text="Verc Status" />
         </columns>
       </TableView>
       <Button fx:id="addUsersBtn" layoutX="694.0" layoutY="14.0" mnemonicParsing="false" onAction="#toAddUsers" text="Add" />
       <Button fx:id="pendingUsersBtn" layoutX="326.0" layoutY="392.0" mnemonicParsing="false" onAction="#toPendingUsers" text="Pending" />
       <Button fx:id="back7" layoutX="24.0" layoutY="392.0" mnemonicParsing="false" onAction="#toAdminHomepage4" text="Back" />
+      <Text layoutX="317.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Users">
+         <font>
+            <Font name="Californian FB" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -114,8 +114,10 @@ public class TenantHomepageController implements Initializable {
             //This line gets the Stage information
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
+
             window.setScene(tableViewScene);
             window.show();
+
 
         }
 

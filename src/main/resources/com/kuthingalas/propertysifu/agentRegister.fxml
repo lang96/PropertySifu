@@ -60,5 +60,6 @@
       <Label fx:id="orglbl" layoutX="133.0" layoutY="298.0" text="Organization" visible="false" />
       <TextField layoutX="273.0" layoutY="294.0" visible="false" />
       <TextField fx:id="org" layoutX="273.0" layoutY="294.0" visible="false" />
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="286.0" mnemonicParsing="false" onAction="#toLoginPage2" text="Back" textFill="#3e8a82" />
     </children>
 </AnchorPane>

@@ -220,6 +220,16 @@ public class LoginController {
     }
 
     @FXML
+    public void tohomePage() throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+
+        Stage window = (Stage) backBtn.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root,1182,665));
+    }
+
+    @FXML
     public void actionPerformed(ActionEvent e) {
 
         if (checkPass.isSelected()){

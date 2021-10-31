@@ -79,6 +79,15 @@ public class AgentOwnerRegisterController {
 
     }
 
+    public void toLoginPage2() throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
+
+        Stage window = (Stage) backBtn.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root, 597, 338));
+    }
+
     @FXML
     void Select(ActionEvent event) {
 

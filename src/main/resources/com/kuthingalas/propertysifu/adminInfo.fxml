@@ -11,18 +11,21 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AdminHomepageController">
    <children>
-      <ImageView fitHeight="422.0" fitWidth="717.0" layoutX="8.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="422.0" fitWidth="717.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/house.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="323.0" layoutY="25.0" text="Admin Profile" />
-      <Label layoutX="169.0" layoutY="88.0" text="Admin ID">
+      <Label layoutX="229.0" layoutY="21.0" text="Admin Profile">
+         <font>
+            <Font name="Californian FB Bold" size="36.0" />
+         </font></Label>
+      <Label layoutX="170.0" layoutY="101.0" text="Admin ID">
          <font>
             <Font name="Californian FB" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="170.0" layoutY="165.0" text="Password">
+      <Label layoutX="171.0" layoutY="166.0" text="Password">
          <font>
             <Font name="Californian FB" size="24.0" />
          </font>
@@ -32,9 +35,10 @@
             <Font name="Californian FB" size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="413.0" layoutY="90.0" />
+      <TextField layoutX="413.0" layoutY="103.0" />
       <TextField layoutX="413.0" layoutY="230.0" />
       <PasswordField layoutX="413.0" layoutY="167.0" />
-      <Button fx:id="back" layoutX="338.0" layoutY="291.0" mnemonicParsing="false" onAction="#toAdminHomepage" text="Back" />
+      <Button fx:id="back" layoutX="338.0" layoutY="309.0" mnemonicParsing="false" onAction="#toAdminHomepage" text="Back" />
+      <Button fx:id="logoutBtn3" layoutX="644.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout3" text="Log Out" />
    </children>
 </AnchorPane>
