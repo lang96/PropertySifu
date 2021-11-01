@@ -30,30 +30,24 @@
             <Font name="Californian FB" size="24.0" />
         </font>
     </Label>
-    <Label layoutX="95.0" layoutY="132.0" text="Residential" />
-    <Label layoutX="580.0" layoutY="132.0" text="Amenities" />
-    <Label layoutX="840.0" layoutY="132.0" text="PSF" />
-    <Label layoutX="335.0" layoutY="132.0" text="Bedrooms" />
-    <Label layoutX="455.0" layoutY="132.0" text="Bathrooms" />
-    <Label layoutX="719.0" layoutY="132.0" text="Furniture" />
-    <Label layoutX="215.0" layoutY="132.0" text="Project" />
-    <Label layoutX="963.0" layoutY="132.0" text="Rent" />
-    <ComboBox fx:id="propType" layoutX="95.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
-    <ComboBox fx:id="bedroom" layoutX="334.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
-    <ComboBox fx:id="bathroom" layoutX="455.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
-    <ComboBox fx:id="price" layoutX="840.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
-    <ComboBox fx:id="facList" layoutX="580.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
-    <ComboBox fx:id="furnishList" layoutX="719.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />
+    <Label layoutX="325.0" layoutY="125.0" text="Residential" />
+    <Label layoutX="450.0" layoutY="125.0" text="Bedrooms" />
+    <Label layoutX="570.0" layoutY="125.0" text="Bathrooms" />
+    <Label layoutX="688.0" layoutY="125.0" text="Furniture" />
+    <ComboBox fx:id="propType" layoutX="325.0" layoutY="142.0" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
+    <ComboBox fx:id="bedroom" layoutX="450.0" layoutY="142.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
+    <ComboBox fx:id="bathroom" layoutX="570.0" layoutY="142.0" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
+    <ComboBox fx:id="furnishList" layoutX="688.0" layoutY="142.0" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />
     <TableView fx:id="tbl" layoutX="104.0" layoutY="220.0" prefHeight="394.0" prefWidth="974.0">
         <columns>
-            <TableColumn fx:id="col_name" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="col_address" prefWidth="349.0" text="Address" />
-            <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="108.0" text="Bedrooms" />
-            <TableColumn fx:id="col_bath" prefWidth="96.0" text="Bathrooms" />
-            <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="101.0" text="Area" />
-            <TableColumn fx:id="col_rent" prefWidth="93.0" text="Price" />
-            <TableColumn fx:id="col_furnish" minWidth="0.0" prefWidth="75.0" text="Furnish" />
-            <TableColumn fx:id="col_id" prefWidth="75.0" text="Agent" />
+            <TableColumn fx:id="col_name" prefWidth="96.0" text="Type" />
+            <TableColumn fx:id="col_address" prefWidth="306.0" text="Address" />
+            <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="100.0" text="Bedrooms" />
+            <TableColumn fx:id="col_bath" prefWidth="108.0" text="Bathrooms" />
+            <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="69.0" text="Area" />
+            <TableColumn fx:id="col_rent" prefWidth="62.0" text="Price" />
+            <TableColumn fx:id="col_furnish" prefWidth="128.0" text="Furnish" />
+            <TableColumn fx:id="col_id" prefWidth="104.0" text="Agent/Owner" />
         </columns>
     </TableView>
       <Button fx:id="profile" layoutX="1071.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="25.0" prefWidth="97.0" text=" Profile" />
@@ -65,8 +59,6 @@
          </image>
       </ImageView>
       <Button layoutX="570.0" layoutY="624.0" mnemonicParsing="false" onAction="#viewProperty" text="View" />
-      <ComboBox layoutX="215.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" />
-      <ComboBox layoutX="963.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" />
 
 
 

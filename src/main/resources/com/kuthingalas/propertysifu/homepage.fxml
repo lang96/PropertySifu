@@ -53,7 +53,7 @@
            <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="69.0" text="Area" />
            <TableColumn fx:id="col_rent" prefWidth="62.0" text="Price" />
             <TableColumn fx:id="col_furnish" prefWidth="128.0" text="Furnish" />
-           <TableColumn fx:id="col_id" prefWidth="104.0" text="Representative" />
+           <TableColumn fx:id="col_id" prefWidth="104.0" text="Agent/Owner" />
         </columns>
       </TableView>
       <Button fx:id="adminPageBtn" layoutX="1065.0" layoutY="86.0" mnemonicParsing="false" onAction="#toTestAdmin" text="Test Admin" />

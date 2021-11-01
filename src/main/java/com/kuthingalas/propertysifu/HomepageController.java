@@ -228,13 +228,10 @@ public class HomepageController implements Initializable {
         SimpleStringProperty ID;
         SimpleStringProperty type;
         SimpleStringProperty address;
-        //SimpleStringProperty projType;
-        //SimpleStringProperty facilities;
         SimpleStringProperty bed;
         SimpleStringProperty bath;
         SimpleStringProperty area;
         SimpleStringProperty furnish;
-        //SimpleStringProperty psf;
         SimpleStringProperty rent;
         SimpleStringProperty repID;
 
@@ -255,7 +252,13 @@ public class HomepageController implements Initializable {
             }
 
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
-            this.repID = new SimpleStringProperty(PropertyList.get(index).getRepresentativeID());
+
+            for (int i = 0; i < UserList.size(); i++) {
+                if (PropertyList.get(index).getRepresentativeID().equals(UserList.get(i).getUserID())) {
+                    this.repID = new SimpleStringProperty(UserList.get(i).getLName());
+                }
+            }
+
         }
 
         public String getID() {

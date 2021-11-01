@@ -39,10 +39,7 @@ public class TenantHomepageController implements Initializable {
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
-    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Gym","Swimming Pool","Car park","Playground","Security");
     ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially furnished","Furnished");
-    ObservableList<String> sortPSF = FXCollections.observableArrayList("Low to High","High to Low");
-    ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
 
     @FXML
     private Button profile, refreshBtn, filterBtn;
@@ -80,9 +77,6 @@ public class TenantHomepageController implements Initializable {
     private TableColumn<TenantListing, String> col_furnish;
     @FXML
     private TableColumn<TenantListing, String> col_area;
-
-    // @FXML private TableColumn<Listing, String> col_psf;
-
     @FXML
     private TableColumn<TenantListing, String> col_rent;
 
@@ -157,56 +151,55 @@ public class TenantHomepageController implements Initializable {
         list.clear();
         filterList.clear();
 
+        for (int i = 0; i < PropertyList.size(); i++) {
+            if (PropertyList.get(i).getStatus() == 1) {
+                filterList.add(new TenantListing(i));
+            }
+        }
+
         String selectedType = propType.getSelectionModel().getSelectedItem();
-        //String selectedProj = projType.getSelectionModel().getSelectedItem();
         String selectedBed = bedroom.getSelectionModel().getSelectedItem();
-        //String selectedBath = bathroom.getSelectionModel().getSelectedItem();
-        //String selectedFac = facList.getSelectionModel().getSelectedItem();
-        //String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
-        //String selectedPSF = psf.getSelectionModel().getSelectedItem();
-        //String selectedRent = price.getSelectionModel().getSelectedItem();
+        String selectedBath = bathroom.getSelectionModel().getSelectedItem();
+        String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
 
-        if (selectedType != null) { // type /
-
-            for (int i = 0; i < PropertyList.size(); i++) {
-                if (PropertyList.get(i).getPropertyType().equals(selectedType)) {
-                    filterList.add(new TenantListing(i));
+        if (selectedType == null) {
+            // skip type filter
+        } else {
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getType().equals(selectedType)) {
+                    filterList.remove(i);
                 }
             }
+        }
 
-            if (selectedBed != null) { // type /, bed /
-
-                for (int j = 0; j < filterList.size(); j++) {
-                    if (filterList.get(j).getBed().equals(selectedBed)) {
-                        System.out.println(filterList.get(j).getBed());
-                        continue;
-                    } else {
-                        filterList.remove(j);
-                    }
+        if (selectedBed == null) {
+            // skip bed filter
+        } else {
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getBed().equals(selectedBed)) {
+                    filterList.remove(i);
                 }
-
-            } else {
-
-                // filter list skips bedroom
-
             }
+        }
 
-        } else { // type not selected
-
-            if (selectedBed != null) { // type X, bed /
-
-                for (int i = 0; i < PropertyList.size(); i++) {
-                    if (PropertyList.get(i).getBedroom() == Integer.parseInt(selectedBed)) {
-                        filterList.add(new TenantListing(i));
-                    }
+        if (selectedBath == null) {
+            // skip bath filter
+        } else {
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getBath().equals(selectedBath)) {
+                    filterList.remove(i);
                 }
-
-            } else {
-
-                // filter list empty
-
             }
+        }
 
+        if (selectedFurnish == null) {
+            // skip furnish filter
+        } else {
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getFurnish().equals(selectedFurnish)) {
+                    filterList.remove(i);
+                }
+            }
         }
 
         if (!filterList.isEmpty()) {
@@ -227,23 +220,19 @@ public class TenantHomepageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         propType.setItems(propertyList);
-        facList.setItems(facilitiesList);
-        price.setItems(sortPrice);
         bedroom.setItems(numBedrooms);
         bathroom.setItems(numBathrooms);
         furnishList.setItems(furniture);
 
-        col_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("repID"));
         col_name.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        //col_projType.setCellValueFactory(new PropertyValueFactory<>("projType"));
-        //col_fac.setCellValueFactory(new PropertyValueFactory<>("facilities"));
         col_bed.setCellValueFactory(new PropertyValueFactory<>("bed"));
         col_bath.setCellValueFactory(new PropertyValueFactory<>("bath"));
         col_area.setCellValueFactory(new PropertyValueFactory<>("area"));
-        //col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
-        //col_psf.setCellValueFactory(new PropertyValueFactory<>("psf"));
+        col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
+
 
         for (int i = 0; i < PropertyList.size(); i++) {
             list.add(new TenantListing(i));
@@ -262,14 +251,12 @@ public class TenantHomepageController implements Initializable {
         SimpleStringProperty ID;
         SimpleStringProperty type;
         SimpleStringProperty address;
-        //SimpleStringProperty projType;
-        //SimpleStringProperty facilities;
         SimpleStringProperty bed;
         SimpleStringProperty bath;
         SimpleStringProperty area;
-        //SimpleStringProperty furnish;
-        //SimpleStringProperty psf;
+        SimpleStringProperty furnish;
         SimpleStringProperty rent;
+        SimpleStringProperty repID;
 
         public TenantListing(int index){
             this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
@@ -278,7 +265,23 @@ public class TenantHomepageController implements Initializable {
             this.bed = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBedroom()));
             this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
             this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
+
+            if (PropertyList.get(index).getFurnishing() == 0) {
+                this.furnish = new SimpleStringProperty("Unfurnished");
+            } else if (PropertyList.get(index).getFurnishing() == 1) {
+                this.furnish = new SimpleStringProperty("Partially furnished");
+            } else {
+                this.furnish = new SimpleStringProperty("Fully furnished");
+            }
+
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
+
+            for (int i = 0; i < UserList.size(); i++) {
+                if (PropertyList.get(index).getRepresentativeID().equals(UserList.get(i).getUserID())) {
+                    this.repID = new SimpleStringProperty(UserList.get(i).getLName());
+                }
+            }
+
         }
 
         public String getID() {
@@ -309,6 +312,13 @@ public class TenantHomepageController implements Initializable {
             return rent.get();
         }
 
+        public String getFurnish() {
+            return furnish.get();
+        }
+
+        public String getRepID() {
+            return repID.get();
+        }
     }
 
     public void toProfile() throws IOException {

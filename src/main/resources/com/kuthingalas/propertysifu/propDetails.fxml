@@ -45,7 +45,7 @@
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label layoutX="108.0" layoutY="283.0" text="Facilities">
+      <Label layoutX="108.0" layoutY="293.0" text="Facilities">
          <font>
             <Font size="14.0" />
          </font></Label>
@@ -62,10 +62,6 @@
               <Font name="Californian FB" size="14.0" />
           </font></Label>
       <Label fx:id="agentLabel" layoutX="68.0" layoutY="440.0" text="Agent Name">
-          <font>
-              <Font name="Californian FB" size="14.0" />
-          </font></Label>
-      <Label layoutX="160.0" layoutY="440.0" text="Contact">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.kuthingalas.propertysifu.MainApplication.adminAccessLvl;
 import static com.kuthingalas.propertysifu.usertype.User.UserList;
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
@@ -82,20 +83,31 @@ public class PendingUsersController implements Initializable {
 
         } else {
 
-            removeUser(removeID);
+            if (adminAccessLvl == 0) {
 
-            pendingList.clear();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Error");
+                errorAlert.setContentText("Sorry, you do not have clearance to do this!");
+                errorAlert.showAndWait();
 
-            for (int i = 0; i < UserList.size(); i++) {
-                if (UserList.get(i).getVerified() == 0) {
-                    pendingList.add(new PendingUser(i));
-                }
-            }
-
-            if(pendingList.isEmpty()) {
-                tblPending.setPlaceholder(new Label("No unverified users found."));
             } else {
-                tblPending.setItems(pendingList);
+
+                removeUser(removeID);
+
+                pendingList.clear();
+
+                for (int i = 0; i < UserList.size(); i++) {
+                    if (UserList.get(i).getVerified() == 0) {
+                        pendingList.add(new PendingUser(i));
+                    }
+                }
+
+                if (pendingList.isEmpty()) {
+                    tblPending.setPlaceholder(new Label("No unverified users found."));
+                } else {
+                    tblPending.setItems(pendingList);
+                }
+
             }
 
         }
@@ -123,21 +135,32 @@ public class PendingUsersController implements Initializable {
 
         } else {
 
-            updateUserVerified(verifyID);
-            addLogin(verifyID, verifyPass, verifyType);
+            if (adminAccessLvl == 0) {
 
-            pendingList.clear();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Error");
+                errorAlert.setContentText("Sorry, you do not have clearance to do this!");
+                errorAlert.showAndWait();
 
-            for (int i = 0; i < UserList.size(); i++) {
-                if (UserList.get(i).getVerified() == 0) {
-                    pendingList.add(new PendingUser(i));
-                }
-            }
-
-            if(pendingList.isEmpty()) {
-                tblPending.setPlaceholder(new Label("No unverified users found."));
             } else {
-                tblPending.setItems(pendingList);
+
+                updateUserVerified(verifyID);
+                addLogin(verifyID, verifyPass, verifyType);
+
+                pendingList.clear();
+
+                for (int i = 0; i < UserList.size(); i++) {
+                    if (UserList.get(i).getVerified() == 0) {
+                        pendingList.add(new PendingUser(i));
+                    }
+                }
+
+                if (pendingList.isEmpty()) {
+                    tblPending.setPlaceholder(new Label("No unverified users found."));
+                } else {
+                    tblPending.setItems(pendingList);
+                }
+
             }
 
         }

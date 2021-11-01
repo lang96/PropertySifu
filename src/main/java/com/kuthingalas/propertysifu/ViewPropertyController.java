@@ -2,6 +2,7 @@ package com.kuthingalas.propertysifu;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.kuthingalas.propertysifu.system.Property;
@@ -40,6 +41,7 @@ public class ViewPropertyController implements Initializable {
 
         // determine furnishing
         String furnishing = "";
+        String facility = "";
 
         switch (property.getFurnishing()) {
 
@@ -75,13 +77,18 @@ public class ViewPropertyController implements Initializable {
         bedLabel.setText(String.valueOf(property.getBedroom()));
         bathLabel.setText(String.valueOf(property.getBathroom()));
         furnishingLabel.setText(furnishing);
-        //facilitiesLabel.setText(property.getFirstAddress());
+
+        if (!property.getFacilityList().isEmpty()) {
+            for(int i = 0; i < property.getFacilityList().size(); i++) {
+                facility += property.getFacilityList().get(i) + ", ";
+            }
+        }
+
+        facilitiesLabel.setText(facility);
         areaLabel.setText(String.valueOf(property.getArea()));
         psfLabel.setText(String.valueOf(property.getPsfRate()));
         rentLabel.setText(String.valueOf(property.getRentalRate()));
         agentLabel.setText(agentName);
-        //agentContactLabel.setText(property.getFirstAddress());
-        // comment label
 
     }
 

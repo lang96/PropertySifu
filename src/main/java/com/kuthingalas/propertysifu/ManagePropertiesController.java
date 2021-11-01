@@ -31,7 +31,7 @@ public class ManagePropertiesController implements Initializable {
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially","Furnished");
-    ObservableList<String> statList = FXCollections.observableArrayList("Available","Rented out");
+    ObservableList<String> statList = FXCollections.observableArrayList("Active","Inactive");
 
     @FXML
     private Button createNewPropertyBtn, back4, refreshBtn, filterBtn;
@@ -73,7 +73,7 @@ public class ManagePropertiesController implements Initializable {
     private TableColumn<AdminProperty, String> col_furnish;
 
     ObservableList list =  FXCollections.observableArrayList();
-    ArrayList<AdminProperty> filterList = new ArrayList<>();
+    ArrayList<AdminProperty> filterList;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -82,7 +82,7 @@ public class ManagePropertiesController implements Initializable {
         bedroom.setItems(numBedrooms);
         bathroom.setItems(numBathrooms);
         furnishList.setItems(furniture);
-        //status.setItems(statList);
+        status.setItems(statList);
 
         col_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -145,7 +145,7 @@ public class ManagePropertiesController implements Initializable {
     private void refreshList() {
 
         list.clear();
-        filterList.clear();
+        filterList = new ArrayList<>();
 
         for (int i = 0; i < PropertyList.size(); i++) {
             list.add(new AdminProperty(i));
@@ -163,7 +163,7 @@ public class ManagePropertiesController implements Initializable {
     private void filterList() {
 
         list.clear();
-        filterList.clear();
+        filterList = new ArrayList<>();
 
         for (int i = 0; i < PropertyList.size(); i++) {
             filterList.add(new AdminProperty(i));
@@ -173,6 +173,8 @@ public class ManagePropertiesController implements Initializable {
         String selectedBed = bedroom.getSelectionModel().getSelectedItem();
         String selectedBath = bathroom.getSelectionModel().getSelectedItem();
         String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
+        String selectedStatus = status.getSelectionModel().getSelectedItem();
+        String rawStatus = "";
 
         if (selectedType == null) {
             // skip type filter
@@ -207,7 +209,27 @@ public class ManagePropertiesController implements Initializable {
         if (selectedFurnish == null) {
             // skip furnish filter
         } else {
-            // slightly different filter format
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getFurnish().equals(selectedFurnish)) {
+                    filterList.remove(i);
+                }
+            }
+        }
+
+        if (selectedStatus == null) {
+            // skip status filter
+        } else {
+            if (status.getSelectionModel().getSelectedItem().equals("Active")) {
+                rawStatus = "1";
+            } else {
+                rawStatus = "0";
+            }
+
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getStat().equals(rawStatus)) {
+                    filterList.remove(i);
+                }
+            }
         }
 
         if (!filterList.isEmpty()) {
@@ -278,7 +300,7 @@ public class ManagePropertiesController implements Initializable {
             this.psf = new SimpleStringProperty(Float.toString(PropertyList.get(index).getPsfRate()));
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
             this.repID = new SimpleStringProperty(PropertyList.get(index).getRepresentativeID());
-            this.stat = new SimpleStringProperty(PropertyList.get(index).getStatusDesc());
+            this.stat = new SimpleStringProperty(String.valueOf(PropertyList.get(index).getStatus()));
         }
 
         public String getID() {

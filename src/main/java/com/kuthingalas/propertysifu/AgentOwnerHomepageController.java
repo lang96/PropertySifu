@@ -1,6 +1,7 @@
 package com.kuthingalas.propertysifu;
 
 import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.usertype.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,7 +58,7 @@ public class AgentOwnerHomepageController implements Initializable {
     @FXML
     private TableColumn<AgentOwnerListing, String> col_rent;
 
-    ObservableList list =  FXCollections.observableArrayList();
+    ObservableList list = FXCollections.observableArrayList();
     ArrayList<AgentOwnerListing> filterList = new ArrayList<>();
 
     @Override

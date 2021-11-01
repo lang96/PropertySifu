@@ -72,21 +72,30 @@ public class ManageAdminsController implements Initializable {
 
         } else {
 
+            if (adminAccessLvl == 0) {
 
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Error");
+                errorAlert.setContentText("Sorry, you do not have clearance to do this!");
+                errorAlert.showAndWait();
 
-            removeAdmin(removeID);
-            removeLogin(removeID);
-
-            adminList.clear();
-
-            for (int i = 0; i < AdminList.size(); i++) {
-                adminList.add(new ListAdmin(i));
-            }
-
-            if(adminList.isEmpty()) {
-                tblAdmin.setPlaceholder(new Label("No users found."));
             } else {
-                tblAdmin.setItems(adminList);
+
+                removeAdmin(removeID);
+                removeLogin(removeID);
+
+                adminList.clear();
+
+                for (int i = 0; i < AdminList.size(); i++) {
+                    adminList.add(new ListAdmin(i));
+                }
+
+                if(adminList.isEmpty()) {
+                    tblAdmin.setPlaceholder(new Label("No users found."));
+                } else {
+                    tblAdmin.setItems(adminList);
+                }
+
             }
 
         }
@@ -107,12 +116,23 @@ public class ManageAdminsController implements Initializable {
 
         } else {
 
-            for (int i = 0; i < AdminList.size(); i++) {
-                if (AdminList.get(i).getAdminID().equals(changeID)) {
-                    if (AdminList.get(i).getAdminAccessLvl() == 0) {
-                        access = 1;
+            if (adminAccessLvl == 0) {
+
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Error");
+                errorAlert.setContentText("Sorry, you do not have clearance to do this!");
+                errorAlert.showAndWait();
+
+            } else {
+
+                for (int i = 0; i < AdminList.size(); i++) {
+                    if (AdminList.get(i).getAdminID().equals(changeID)) {
+                        if (AdminList.get(i).getAdminAccessLvl() == 0) {
+                            access = 1;
+                        }
                     }
                 }
+
             }
 
             updateAdmin(changeID, changeID, access);
@@ -135,11 +155,23 @@ public class ManageAdminsController implements Initializable {
 
     public void toCreateAdmin() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("createNewAdmin.fxml"));
+        if (adminAccessLvl == 0) {
 
-        Stage window = (Stage) createAdminBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 278, 380));
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("Sorry, you do not have clearance to do this!");
+            errorAlert.showAndWait();
+
+        } else {
+
+            Parent root = FXMLLoader.load(getClass().getResource("createNewAdmin.fxml"));
+
+            Stage window = (Stage) createAdminBtn.getScene().getWindow();
+            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+            window.setScene(new Scene(root, 278, 380));
+
+        }
+
     }
 
     public void toAdminHomepage2() throws IOException {

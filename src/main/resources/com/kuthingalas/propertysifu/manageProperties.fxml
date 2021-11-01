@@ -38,11 +38,13 @@
        <ComboBox fx:id="bedroom" layoutX="232.0" layoutY="62.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
        <ComboBox fx:id="bathroom" layoutX="353.0" layoutY="62.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
        <ComboBox fx:id="furnishList" layoutX="475.0" layoutY="62.0" prefHeight="25.0" prefWidth="110.0" promptText="Furnished" />
-       <Button fx:id="refreshBtn" layoutX="732.0" layoutY="62.0" mnemonicParsing="false" onAction="#refreshList" prefHeight="25.0" prefWidth="58.0" text="Refresh" />
-       <Button fx:id="filterBtn" layoutX="659.0" layoutY="62.0" mnemonicParsing="false" onAction="#filterList" prefHeight="25.0" prefWidth="58.0" text="Filter" />
+       <Button fx:id="refreshBtn" layoutX="836.0" layoutY="62.0" mnemonicParsing="false" onAction="#refreshList" prefHeight="25.0" prefWidth="58.0" text="Refresh" />
+       <Button fx:id="filterBtn" layoutX="763.0" layoutY="62.0" mnemonicParsing="false" onAction="#filterList" prefHeight="25.0" prefWidth="58.0" text="Filter" />
        <Label layoutX="110.0" layoutY="45.0" text="Residential" />
        <Label layoutX="232.0" layoutY="45.0" text="Bedrooms" />
        <Label layoutX="353.0" layoutY="45.0" text="Bathrooms" />
        <Label layoutX="475.0" layoutY="45.0" text="Furniture" />
+      <ComboBox fx:id="status" layoutX="598.0" layoutY="62.0" prefHeight="25.0" prefWidth="110.0" promptText="Active" />
+      <Label layoutX="598.0" layoutY="45.0" text="Status" />
    </children>
 </AnchorPane>
