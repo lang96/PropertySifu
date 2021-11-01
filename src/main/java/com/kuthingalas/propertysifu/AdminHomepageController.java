@@ -126,7 +126,7 @@ public class AdminHomepageController implements Initializable {
 
 
 
-    ///////////////////Back Button Functions///////////////////////////
+    ///////////////////BACK BUTTON FUNCTIONS///////////////////////////
     @FXML
     private Button back2, back3, back4, back5, back6, back7, back8, back9;
 

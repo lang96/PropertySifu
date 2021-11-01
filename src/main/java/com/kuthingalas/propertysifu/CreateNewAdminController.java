@@ -81,7 +81,7 @@ public class CreateNewAdminController implements Initializable {
     }
 
     /**
-     *     Programmer's Name: Arif
+     *     Programmer's Name: Shuhail
      *     Method's Name    : toManageAdmins2
      *     Purpose         : to go back to manage admin page
      */
