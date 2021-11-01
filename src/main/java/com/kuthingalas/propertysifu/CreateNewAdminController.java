@@ -46,13 +46,20 @@ public class CreateNewAdminController implements Initializable {
 
     }
 
-    public void createAdmin() {
+    @FXML
+    public void createAdmin() throws IOException {
 
         String id = adminID.getText();
         String pass = adminPass.getText();
         int access = Integer.parseInt(adminAccess.getSelectionModel().getSelectedItem());
 
         addAdmin(id, pass, access);
+
+        Parent root = FXMLLoader.load(getClass().getResource("manageAdmin.fxml"));
+
+        Stage window = (Stage) back2.getScene().getWindow();
+        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+        window.setScene(new Scene(root, 741, 417));
 
     }
 

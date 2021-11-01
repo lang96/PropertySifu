@@ -44,7 +44,7 @@
       <TextField fx:id="propArea" layoutX="230.0" layoutY="490.0" prefHeight="25.0" prefWidth="119.0" promptText="Area" />
       <TextField fx:id="propPSF" layoutX="230.0" layoutY="522.0" prefHeight="25.0" prefWidth="119.0" promptText="PSF" />
       <TextField fx:id="propRent" editable="false" layoutX="230.0" layoutY="553.0" prefHeight="25.0" prefWidth="119.0" promptText="Price / Area x PSF" />
-      <Button fx:id="agentConfirmBtn" layoutX="224.0" layoutY="640.0" mnemonicParsing="false" text="Confirm" />
+      <Button fx:id="agentConfirmBtn" layoutX="224.0" layoutY="640.0" mnemonicParsing="false" onAction="#toConfirm" text="Confirm" />
       <CheckBox fx:id="fac6" layoutX="245.0" layoutY="418.0" mnemonicParsing="false" text="Security" />
       <CheckBox fx:id="fac4" layoutX="245.0" layoutY="362.0" mnemonicParsing="false" text="Gym" />
    </children>

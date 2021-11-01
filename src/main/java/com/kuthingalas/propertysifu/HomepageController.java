@@ -39,7 +39,6 @@ public class HomepageController implements Initializable {
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
-    // textfield projType to sort - optional
     ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Gym","Swimming Pool","Car park","Playground","Security");
     ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially","Furnished");
     ObservableList<String> sortPSF = FXCollections.observableArrayList("Low to High","High to Low");
@@ -54,19 +53,11 @@ public class HomepageController implements Initializable {
     @FXML
     public ComboBox<String> propType;
     @FXML
-    public ComboBox<String> projType;
-    @FXML
     private ComboBox<String> bedroom;
     @FXML
     private ComboBox<String> bathroom;
     @FXML
-    private ComboBox<String> facList;
-    @FXML
     private ComboBox<String> furnishList;
-    @FXML
-    private ComboBox<String> psf;
-    @FXML
-    private ComboBox<String> price;
 
     @FXML private TableView<Listing> tbl;
 
@@ -82,8 +73,8 @@ public class HomepageController implements Initializable {
     private TableColumn<Listing, String> col_bath;
     @FXML
     private TableColumn<Listing, String> col_area;
-
-    // @FXML private TableColumn<Listing, String> col_psf;
+    @FXML
+    private TableColumn<Listing, String> col_furnish;
 
     @FXML
     private TableColumn<Listing, String> col_rent;
@@ -144,10 +135,8 @@ public class HomepageController implements Initializable {
         }
 
         String selectedType = propType.getSelectionModel().getSelectedItem();
-        //String selectedProj = projType.getSelectionModel().getSelectedItem();
         String selectedBed = bedroom.getSelectionModel().getSelectedItem();
         String selectedBath = bathroom.getSelectionModel().getSelectedItem();
-        //String selectedFac = facList.getSelectionModel().getSelectedItem();
         String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
 
         if (selectedType == null) {
@@ -204,13 +193,11 @@ public class HomepageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         propType.setItems(propertyList);
-        facList.setItems(facilitiesList);
-        price.setItems(sortPrice);
         bedroom.setItems(numBedrooms);
         bathroom.setItems(numBathrooms);
         furnishList.setItems(furniture);
 
-        col_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("repID"));
         col_name.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
         //col_projType.setCellValueFactory(new PropertyValueFactory<>("projType"));
@@ -218,7 +205,7 @@ public class HomepageController implements Initializable {
         col_bed.setCellValueFactory(new PropertyValueFactory<>("bed"));
         col_bath.setCellValueFactory(new PropertyValueFactory<>("bath"));
         col_area.setCellValueFactory(new PropertyValueFactory<>("area"));
-        //col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
+        col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
         //col_psf.setCellValueFactory(new PropertyValueFactory<>("psf"));
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
 
@@ -249,6 +236,7 @@ public class HomepageController implements Initializable {
         SimpleStringProperty furnish;
         //SimpleStringProperty psf;
         SimpleStringProperty rent;
+        SimpleStringProperty repID;
 
         public Listing(int index){
             this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
@@ -257,8 +245,17 @@ public class HomepageController implements Initializable {
             this.bed = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBedroom()));
             this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
             this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
-            this.furnish = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getFurnishing()));
+
+            if (PropertyList.get(index).getFurnishing() == 0) {
+                this.furnish = new SimpleStringProperty("Unfurnished");
+            } else if (PropertyList.get(index).getFurnishing() == 1) {
+                this.furnish = new SimpleStringProperty("Partially furnished");
+            } else {
+                this.furnish = new SimpleStringProperty("Fully furnished");
+            }
+
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
+            this.repID = new SimpleStringProperty(PropertyList.get(index).getRepresentativeID());
         }
 
         public String getID() {
@@ -293,6 +290,9 @@ public class HomepageController implements Initializable {
             return rent.get();
         }
 
+        public String getRepID() {
+            return repID.get();
+        }
     }
 
 }

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static com.kuthingalas.propertysifu.MainApplication.currentUserID;
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
 
@@ -22,8 +23,8 @@ import static com.kuthingalas.propertysifu.data.DataOperation.*;
 public class EditPropertyController {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
-    ObservableList<String> numBedrooms = FXCollections.observableArrayList("Studio","1","2","3","4","5+");
-    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5+");
+    ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
+    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Gym","Swimming Pool","Car park","Playground","Security");
     ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially furnished","Furnished");
     ObservableList<String> stat = FXCollections.observableArrayList("Available","Rented Out");
@@ -66,6 +67,31 @@ public class EditPropertyController {
         propArea.setText(String.valueOf(property.getArea()));
         propPSF.setText(String.valueOf(property.getPsfRate()));
         propRent.setText(String.valueOf(property.getRentalRate()));
+
+        if (!property.getFacilityList().isEmpty()) {
+            for (int i = 0; i < property.getFacilityList().size(); i++) {
+                switch (property.getFacilityList().get(i)) {
+                    case "Air-conditioning":
+                        fac1.setSelected(true);
+                        break;
+                    case "Car park":
+                        fac2.setSelected(true);
+                        break;
+                    case"Swimming Pool":
+                        fac3.setSelected(true);
+                        break;
+                    case "Gym":
+                        fac4.setSelected(true);
+                        break;
+                    case "Playground":
+                        fac5.setSelected(true);
+                        break;
+                    case "Security":
+                        fac6.setSelected(true);
+                        break;
+                }
+            }
+        }
 
         if (property.getFurnishing() == 0) {
             propFurnish.getSelectionModel().select("Unfurnished");
@@ -141,8 +167,6 @@ public class EditPropertyController {
                             errorAlert.setContentText("Enter rent price");
                             errorAlert.showAndWait();
                         } else {
-
-
                             // choose facility
                             if (fac1.isSelected()) {
                                 facList.add("Air-conditioning");
@@ -163,30 +187,79 @@ public class EditPropertyController {
                                 facList.add("Security");
                             }
 
+                            if (propFurnish.getSelectionModel().getSelectedItem().equals("Unfurnished")) {
+                                int furnish = 0;
+
+                                updatePropertyType(propID.getText(), propType.getSelectionModel().getSelectedItem());
+                                updatePropertyAddress(propID.getText(), firstAdd.getText(), secondAdd.getText());
+
+                                if (propStat.getSelectionModel().getSelectedItem().equals("Available")) {
+                                    stat = 1;
+                                    updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+                                } else {
+                                    updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+                                }
+
+                                updatePropertyFacilities(propID.getText(), facList);
+                                updatePropertyDetails(propID.getText(),
+                                        Integer.parseInt(propBed.getSelectionModel().getSelectedItem()),
+                                        Integer.parseInt(propBath.getSelectionModel().getSelectedItem()),
+                                        Integer.parseInt(propArea.getText()), furnish, Float.parseFloat(propPSF.getText()),
+                                        Float.parseFloat(propRent.getText()));
+
+                            } else if (propFurnish.getSelectionModel().getSelectedItem().equals("Partially furnished")) {
+                                int furnish = 1;
+
+                                updatePropertyType(propID.getText(), propType.getSelectionModel().getSelectedItem());
+                                updatePropertyAddress(propID.getText(), firstAdd.getText(), secondAdd.getText());
+
+                                if (propStat.getSelectionModel().getSelectedItem().equals("Available")) {
+                                    stat = 1;
+                                    updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+                                } else {
+                                    updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+                                }
+
+                                updatePropertyFacilities(propID.getText(), facList);
+                                updatePropertyDetails(propID.getText(),
+                                        Integer.parseInt(propBed.getSelectionModel().getSelectedItem()),
+                                        Integer.parseInt(propBath.getSelectionModel().getSelectedItem()),
+                                        Integer.parseInt(propArea.getText()), furnish, Float.parseFloat(propPSF.getText()),
+                                        Float.parseFloat(propRent.getText()));
+
+                            } else if (propFurnish.getSelectionModel().getSelectedItem().equals("Furnished")) {
+                                int furnish = 2;
+
+                                updatePropertyType(propID.getText(), propType.getSelectionModel().getSelectedItem());
+                                updatePropertyAddress(propID.getText(), firstAdd.getText(), secondAdd.getText());
+
+                                if (propStat.getSelectionModel().getSelectedItem().equals("Available")) {
+                                    stat = 1;
+                                    updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+                                } else {
+                                    updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+                                }
+
+                                updatePropertyFacilities(propID.getText(), facList);
+                                updatePropertyDetails(propID.getText(),
+                                        Integer.parseInt(propBed.getSelectionModel().getSelectedItem()),
+                                        Integer.parseInt(propBath.getSelectionModel().getSelectedItem()),
+                                        Integer.parseInt(propArea.getText()), furnish, Float.parseFloat(propPSF.getText()),
+                                        Float.parseFloat(propRent.getText()));
+
+                            }
+
+                            Parent root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
+
+                            Stage window = (Stage) agentConfirmBtn.getScene().getWindow();
+                            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
+                            window.setScene(new Scene(root,1182,665));
+
                         }
                     }
                 }
             }
         }
-
-        updatePropertyType(propID.getText(), propType.getSelectionModel().getSelectedItem());
-        updatePropertyAddress(propID.getText(), firstAdd.getText(), secondAdd.getText());
-
-        if (propStat.getSelectionModel().getSelectedItem().equals("Available")) {
-            stat = 1;
-            updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
-        } else {
-            updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
-        }
-
-        //updatePropertyFacilities(propID.getText());
-        //updatePropertyDetails(propID.getText());
-
-        Parent root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
-
-        Stage window = (Stage) agentConfirmBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,1182,665));
     }
 
 }

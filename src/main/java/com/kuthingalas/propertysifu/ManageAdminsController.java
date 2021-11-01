@@ -24,6 +24,7 @@ import static com.kuthingalas.propertysifu.usertype.User.UserList;
 import static com.kuthingalas.propertysifu.usertype.Admin.AdminList;
 
 
+
 public class ManageAdminsController implements Initializable {
 
     @FXML
@@ -71,6 +72,8 @@ public class ManageAdminsController implements Initializable {
 
         } else {
 
+
+
             removeAdmin(removeID);
             removeLogin(removeID);
 
@@ -116,7 +119,7 @@ public class ManageAdminsController implements Initializable {
 
             adminList.clear();
 
-            for (int i = 0; i < UserList.size(); i++) {
+            for (int i = 0; i < AdminList.size(); i++) {
                 adminList.add(new ListAdmin(i));
             }
 

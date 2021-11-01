@@ -215,7 +215,7 @@ public class AddPropertyController implements Initializable {
                                             window.setScene(new Scene(root, 1182, 665));
 
                                         } else {
-                                            if (firstAdd.getText().isEmpty()) {
+                                            if (propFurnish.getSelectionModel().getSelectedItem() == null) {
                                                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                                                 errorAlert.setHeaderText("Error");
                                                 errorAlert.setContentText("Choose furnishing");

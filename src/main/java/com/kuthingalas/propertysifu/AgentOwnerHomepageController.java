@@ -195,17 +195,38 @@ public class AgentOwnerHomepageController implements Initializable {
         SimpleStringProperty bed;
         SimpleStringProperty bath;
         SimpleStringProperty area;
-        //SimpleStringProperty furnish;
-        //SimpleStringProperty psf;
+        SimpleStringProperty furnish;
+        SimpleStringProperty psf;
         SimpleStringProperty rent;
 
         public AgentOwnerListing(int index){
             this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
             this.type = new SimpleStringProperty(PropertyList.get(index).getPropertyType());
             this.address = new SimpleStringProperty(PropertyList.get(index).getFirstAddress() + ", " + PropertyList.get(index).getSecondAddress());
+
+            /*
+            if (PropertyList.get(index).getFacilityList().isEmpty()) {
+                this.facilities = new ArrayList<>();
+            } else {
+                for (int i = 0; i < PropertyList.get(index).getFacilityList().size(); i++) {
+                    this.facilities.add(new SimpleStringProperty(PropertyList.get(index).getFacilityList().get(i)));
+                }
+            }
+
+            if (PropertyList.get(index).getFurnishing() == 0) {
+                this.furnish = new SimpleStringProperty("Unfurnished");
+            } else if (PropertyList.get(index).getFurnishing() == 1) {
+                this.furnish = new SimpleStringProperty("Partially furnished");
+            } else {
+                this.furnish = new SimpleStringProperty("Fully furnished");
+            }
+
+            */
+
             this.bed = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBedroom()));
             this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
             this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
+            //this.psf = new SimpleStringProperty(Float.toString(PropertyList.get(index).getPsfRate()));
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
         }
 
@@ -235,6 +256,18 @@ public class AgentOwnerHomepageController implements Initializable {
 
         public String getRent() {
             return rent.get();
+        }
+
+        public ArrayList<SimpleStringProperty> getFacilities() {
+            return facilities;
+        }
+
+        public String getFurnish() {
+            return furnish.get();
+        }
+
+        public String getPsf() {
+            return psf.get();
         }
 
     }

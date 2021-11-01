@@ -35,22 +35,14 @@
             <Font name="Californian FB" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="93.0" layoutY="132.0" text="Residential" />
-      <Label layoutX="578.0" layoutY="132.0" text="Amenities" />
-      <Label layoutX="838.0" layoutY="132.0" text="PSF" />
-      <Label layoutX="333.0" layoutY="132.0" text="Bedrooms" />
-      <Label layoutX="453.0" layoutY="132.0" text="Bathrooms" />
-      <Label layoutX="717.0" layoutY="132.0" text="Furniture" />
-      <Label layoutX="213.0" layoutY="132.0" text="Project" />
-      <Label layoutX="961.0" layoutY="132.0" text="Rent" />
-      <ComboBox fx:id="propType" layoutX="93.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Apartment" />
-      <ComboBox fx:id="bedroom" layoutX="332.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Studio" />
-      <ComboBox fx:id="bathroom" layoutX="453.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
-      <ComboBox fx:id="price" layoutX="838.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
-      <ComboBox fx:id="facList" layoutX="578.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
-      <ComboBox fx:id="furnishList" layoutX="717.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Furnished" />
-      <ComboBox layoutX="213.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" />
-      <ComboBox layoutX="961.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" />
+      <Label layoutX="331.0" layoutY="132.0" text="Residential" />
+      <Label layoutX="456.0" layoutY="132.0" text="Bedrooms" />
+      <Label layoutX="578.0" layoutY="132.0" text="Bathrooms" />
+      <Label layoutX="694.0" layoutY="132.0" text="Furniture" />
+      <ComboBox fx:id="propType" layoutX="332.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Apartment" />
+      <ComboBox fx:id="bedroom" layoutX="456.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
+      <ComboBox fx:id="bathroom" layoutX="578.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
+      <ComboBox fx:id="furnishList" layoutX="694.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Furnished" />
       <Label layoutX="853.0" layoutY="132.0" />
       <TableView fx:id="tbl" layoutX="104.0" layoutY="226.0" prefHeight="394.0" prefWidth="974.0">
         <columns>
@@ -58,10 +50,10 @@
            <TableColumn fx:id="col_address" prefWidth="306.0" text="Address" />
            <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="100.0" text="Bedrooms" />
            <TableColumn fx:id="col_bath" prefWidth="108.0" text="Bathrooms" />
-           <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="88.0" text="Area" />
-           <TableColumn fx:id="col_rent" prefWidth="97.0" text="Price" />
-            <TableColumn fx:id="col_btn" prefWidth="94.0" text="Furnish" />
-           <TableColumn fx:id="col_id" prefWidth="84.0" text="Agent" />
+           <TableColumn fx:id="col_area" minWidth="0.0" prefWidth="69.0" text="Area" />
+           <TableColumn fx:id="col_rent" prefWidth="62.0" text="Price" />
+            <TableColumn fx:id="col_furnish" prefWidth="128.0" text="Furnish" />
+           <TableColumn fx:id="col_id" prefWidth="104.0" text="Representative" />
         </columns>
       </TableView>
       <Button fx:id="adminPageBtn" layoutX="1065.0" layoutY="86.0" mnemonicParsing="false" onAction="#toTestAdmin" text="Test Admin" />
