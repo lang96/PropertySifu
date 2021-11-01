@@ -75,6 +75,12 @@ public class ManagePropertiesController implements Initializable {
     ObservableList list =  FXCollections.observableArrayList();
     ArrayList<AdminProperty> filterList;
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : initialize
+     *     Purpose         : to set initial value of the table
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -109,6 +115,12 @@ public class ManagePropertiesController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : adminRemoveProperty
+     *     Purpose         : to admin remove property
+     */
+
     @FXML
     public void adminRemoveProperty() {
 
@@ -141,6 +153,12 @@ public class ManagePropertiesController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : refreshList
+     *     Purpose         : to refresh list of the table
+     */
+
     @FXML
     private void refreshList() {
 
@@ -158,6 +176,12 @@ public class ManagePropertiesController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : filterList
+     *     Purpose         : to filter list of the table
+     */
 
     @FXML
     private void filterList() {
@@ -246,6 +270,12 @@ public class ManagePropertiesController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toCreateNewProperty
+     *     Purpose         : to go to toCreateNewProperty page
+     */
+
     public void toCreateNewProperty() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("createNewProperty.fxml"));
@@ -255,6 +285,12 @@ public class ManagePropertiesController implements Initializable {
         window.setScene(new Scene(root, 370, 800));
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAdminHomepage3
+     *     Purpose         : to go to adminHomepage page
+     */
+
     public void toAdminHomepage3() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
@@ -263,6 +299,12 @@ public class ManagePropertiesController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 700, 400));
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : AdminProperty
+     *     Purpose         : to hold object fits to tableview
+     */
 
     public class AdminProperty {
 

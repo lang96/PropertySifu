@@ -22,6 +22,12 @@ import java.util.ResourceBundle;
 
 
 
+/**
+ *     Programmer's Name: Shuhail & Arif
+ *     Method's Name    : AdminAddPropertyController
+ *     Purpose         : For other details further processing
+ */
+
 public class AdminAddPropertyController implements Initializable {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment", "Bungalow", "Condominium", "Semi-Detached", "Terrace/Link");
@@ -47,6 +53,12 @@ public class AdminAddPropertyController implements Initializable {
     @FXML
     private Button saveBtn, back5;
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toManageProperties2
+     *     Purpose         : To go back manage property page
+     */
+
     public void toManageProperties2() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("manageProperties.fxml"));
@@ -55,6 +67,13 @@ public class AdminAddPropertyController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 967, 544));
     }
+
+
+    /**
+     *     Programmer's Name: Shuhail & Arif
+     *     Method's Name    : initialize
+     *     Purpose         : To set an initial value for admin add property page
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -82,6 +101,12 @@ public class AdminAddPropertyController implements Initializable {
             });
         });
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : toConfirm
+     *     Purpose         : To confirm and save property details
+     */
 
     public void toConfirm() throws IOException {
 

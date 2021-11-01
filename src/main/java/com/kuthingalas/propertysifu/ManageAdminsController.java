@@ -41,6 +41,12 @@ public class ManageAdminsController implements Initializable {
 
     ObservableList adminList =  FXCollections.observableArrayList();
 
+    /**
+     *     Programmer's Name: Shuhail & Arif
+     *     Method's Name    : initialize
+     *     Purpose         : to set initial value on manage admin table
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -58,6 +64,12 @@ public class ManageAdminsController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : revokeAdmin
+     *     Purpose         : remove admin
+     */
 
     public void revokeAdmin() {
 
@@ -101,6 +113,12 @@ public class ManageAdminsController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : changeAccess
+     *     Purpose         : for admin change access of another admin
+     */
 
     public void changeAccess() {
 
@@ -153,6 +171,12 @@ public class ManageAdminsController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : toCreateAdmin
+     *     Purpose         : for admin create another admin
+     */
+
     public void toCreateAdmin() throws IOException {
 
         if (adminAccessLvl == 0) {
@@ -174,6 +198,12 @@ public class ManageAdminsController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAdminHomepage2
+     *     Purpose         : to go back to admin homepage
+     */
+
     public void toAdminHomepage2() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
@@ -182,6 +212,12 @@ public class ManageAdminsController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 700, 400));
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : ListAdmin
+     *     Purpose         : to hold object of ListAdmin
+     */
 
     public class ListAdmin{
 

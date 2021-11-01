@@ -32,6 +32,12 @@ public class AgentOwnerProfileController implements Initializable {
     @FXML
     public TextField profIDNum, profFName, profLName, profPhone, profPass, profOrg;
 
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : initialize
+     *     Purpose         : To set initial value of logged in user
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -64,6 +70,12 @@ public class AgentOwnerProfileController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAgentHomepage
+     *     Purpose         : To go to agent homepage and update the profile
+     */
+
     public void toAgentHomepage() throws IOException {
 
         for (int i = 0; i < UserList.size(); i++) {
@@ -87,6 +99,12 @@ public class AgentOwnerProfileController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 1182, 665));
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : logout2
+     *     Purpose         : To log out of the system
+     */
 
     public void logout2() throws IOException {
 

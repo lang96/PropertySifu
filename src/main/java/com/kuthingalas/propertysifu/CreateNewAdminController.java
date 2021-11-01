@@ -21,7 +21,11 @@ import java.util.ResourceBundle;
 
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
-
+/**
+ *     Programmer's Name: Shuhail & Arif
+ *     Method's Name    : CreateNewAdminController
+ *     Purpose         : To hold object
+ */
 
 public class CreateNewAdminController implements Initializable {
 
@@ -39,12 +43,24 @@ public class CreateNewAdminController implements Initializable {
     @FXML
     private Button back2, addAdmin;
 
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : initialize
+     *     Purpose         : Set initial value of admin
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         adminAccess.setItems(accessLvl);
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : createAdmin
+     *     Purpose         : create new admin
+     */
 
     @FXML
     public void createAdmin() throws IOException {
@@ -62,6 +78,13 @@ public class CreateNewAdminController implements Initializable {
         window.setScene(new Scene(root, 741, 417));
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : toManageAdmins2
+     *     Purpose         : to go back to manage admin page
+     */
+
 
     public void toManageAdmins2() throws IOException {
 

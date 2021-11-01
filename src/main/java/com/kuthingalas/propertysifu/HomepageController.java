@@ -82,6 +82,12 @@ public class HomepageController implements Initializable {
     ObservableList list =  FXCollections.observableArrayList();
     ArrayList<Listing> filterList = new ArrayList<>();
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toLogin
+     *     Purpose         : to go to loginpage
+     */
+
     @FXML
     public void toLogin() throws IOException {
 
@@ -92,6 +98,12 @@ public class HomepageController implements Initializable {
         window.setScene(new Scene(root,597,338));
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toTestAdmin
+     *     Purpose         : to go to adminHomepage
+     */
+
     @FXML
     public void toTestAdmin() throws IOException {
 
@@ -101,6 +113,12 @@ public class HomepageController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,700,400));
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : refreshList
+     *     Purpose         : to clear sorting data list
+     */
 
     @FXML
     private void refreshList() {
@@ -121,6 +139,12 @@ public class HomepageController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : filterList
+     *     Purpose         : to filter properties
+     */
 
     @FXML
     private void filterList() {
@@ -189,6 +213,12 @@ public class HomepageController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail & Arif
+     *     Method's Name    : initialize
+     *     Purpose         : to set initial value of table's data
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -222,6 +252,12 @@ public class HomepageController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : Listing
+     *     Purpose         : hold Listing object
+     */
 
     public class Listing{
 

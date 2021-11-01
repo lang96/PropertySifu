@@ -30,6 +30,12 @@ import java.util.ResourceBundle;
 
 
 
+/**
+ *     Programmer's Name: Shuhail & Arif
+ *     Method's Name    : AddPropertyController
+ *     Purpose         : For other details further processing
+ */
+
 public class AddPropertyController implements Initializable {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment", "Bungalow", "Condominium", "Semi-Detached", "Terrace/Link");
@@ -55,6 +61,13 @@ public class AddPropertyController implements Initializable {
 
     @FXML
     private CheckBox fac1, fac2, fac3, fac4, fac5, fac6;
+
+
+    /**
+     *     Programmer's Name: Shuhail & Arif
+     *     Method's Name    : initialize
+     *     Purpose         : To set an initial value of this page's choicebox
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,6 +97,12 @@ public class AddPropertyController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAgentHomepage
+     *     Purpose         : to go back to homepage
+     */
+
     public void toAgentHomepage() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
@@ -92,6 +111,12 @@ public class AddPropertyController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 1182, 665));
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : toConfirm
+     *     Purpose         : To confirm and save property details
+     */
 
     public void toConfirm() throws IOException {
 

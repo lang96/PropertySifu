@@ -84,7 +84,7 @@ public class TenantHomepageController implements Initializable {
     ArrayList<TenantListing> filterList = new ArrayList<>();
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : viewProperty
      *     Purpose         : This method is to view selected property.
      */
@@ -134,7 +134,7 @@ public class TenantHomepageController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Arif
      *     Method's Name    : refreshList
      *     Purpose         : This method is to clear the
      */
@@ -156,6 +156,12 @@ public class TenantHomepageController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : filterList
+     *     Purpose         : This method is filter list
+     */
 
     @FXML
     private void filterList() {
@@ -228,6 +234,12 @@ public class TenantHomepageController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Arif & Shuhail
+     *     Method's Name    : initialize
+     *     Purpose         : To set an initial value of table
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -257,6 +269,12 @@ public class TenantHomepageController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Arif & Shuhail
+     *     Method's Name    : TenantListing
+     *     Purpose         : To hold object to display to tableview
+     */
 
     public class TenantListing{
 
@@ -332,6 +350,12 @@ public class TenantHomepageController implements Initializable {
             return repID.get();
         }
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toProfile
+     *     Purpose         : This method is to go to view profile
+     */
 
     public void toProfile() throws IOException {
 

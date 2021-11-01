@@ -39,7 +39,7 @@ public class PendingUsersController implements Initializable {
 
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : initialize
      *     Purpose         : This method is to set initial value of table column
      */
@@ -65,7 +65,7 @@ public class PendingUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Arif
      *     Method's Name    : rejectUserReg
      *     Purpose         : This method is to set reject pending user registration
      */
@@ -115,7 +115,7 @@ public class PendingUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Arif & Shuhail
      *     Method's Name    : acceptUserReg
      *     Purpose         : This method is to set accept pending user registration
      */
@@ -168,7 +168,7 @@ public class PendingUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : toManageUsers2
      *     Purpose         : This method is to change scene
      */
@@ -183,9 +183,9 @@ public class PendingUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Arif
      *     Method's Name    : PendingUser
-     *     Purpose         : This method is to get Pending User Variables
+     *     Purpose         : Object for table view
      */
 
     public class PendingUser{

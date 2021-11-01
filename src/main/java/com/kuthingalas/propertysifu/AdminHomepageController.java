@@ -47,6 +47,11 @@ public class AdminHomepageController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAdminInfo
+     *     Purpose         : To go to admin info page
+     */
     // navigation
     public void toAdminInfo() throws IOException {
 
@@ -57,6 +62,11 @@ public class AdminHomepageController implements Initializable {
         window.setScene(new Scene(root, 717, 350));
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toManageAdmin
+     *     Purpose         : To go to manage admin page
+     */
 
     public void toManageAdmin() throws IOException {
 
@@ -67,6 +77,11 @@ public class AdminHomepageController implements Initializable {
         window.setScene(new Scene(root, 741, 417));
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toManageProperties
+     *     Purpose         : To go to manage properties  page
+     */
 
     public void toManageProperties() throws IOException {
 
@@ -77,6 +92,12 @@ public class AdminHomepageController implements Initializable {
         window.setScene(new Scene(root, 967, 544));
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toManageUsers
+     *     Purpose         : To go to manage users  page
+     */
+
     public void toManageUsers() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("manageUsers.fxml"));
@@ -85,6 +106,12 @@ public class AdminHomepageController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 762, 431));
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAdminEditProperty
+     *     Purpose         : To go to admin add comment page
+     */
 
     //Add comment
     public void toAdminEditProperty() throws IOException {

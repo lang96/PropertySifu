@@ -35,7 +35,7 @@ public class RegisterController {
     public PasswordField userPass;
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : toHome
      *     Purpose         : This method is to change scene and get user's variables
      */
@@ -70,7 +70,7 @@ public class RegisterController {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : toLoginPage
      *     Purpose         : This method is to change scene.
      */

@@ -23,6 +23,12 @@ public class MainApplication extends Application  {
 
     public static int adminAccessLvl; // if admin logged in, determine accessLvl
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : start
+     *     Purpose         : to run main programme
+     */
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));

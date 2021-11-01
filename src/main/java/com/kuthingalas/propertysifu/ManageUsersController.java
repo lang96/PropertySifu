@@ -39,7 +39,7 @@ public class ManageUsersController implements Initializable {
     ObservableList list =  FXCollections.observableArrayList();
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : initialize
      *     Purpose         : This method is use to an initial value for each Table Column
      */
@@ -69,7 +69,7 @@ public class ManageUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail&Arif
      *     Method's Name    : revokeUser
      *     Purpose         : This method is use to remove user from the system
      */
@@ -108,7 +108,7 @@ public class ManageUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : toPendingUsers
      *     Purpose         : This method is to change scene
      */
@@ -122,7 +122,7 @@ public class ManageUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail
      *     Method's Name    : toAdminHomepage4
      *     Purpose         : This method is to change scene
      */
@@ -136,9 +136,9 @@ public class ManageUsersController implements Initializable {
     }
 
     /**
-     *     Programmer's Name:
+     *     Programmer's Name: Shuhail & Arif
      *     Method's Name    : ManageUser
-     *     Purpose         : This method is to get Manage User Variables
+     *     Purpose         : To hold objects to display to tableview
      */
     public class ManageUser{
 

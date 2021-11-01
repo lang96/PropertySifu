@@ -18,7 +18,11 @@ import java.util.ArrayList;
 import static com.kuthingalas.propertysifu.MainApplication.currentUserID;
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
-
+/**
+ *     Programmer's Name: Arif & Shuhail
+ *     Method's Name    : EditPropertyController
+ *     Purpose         : Hold objects and for editing property
+ */
 
 public class EditPropertyController {
 
@@ -48,6 +52,12 @@ public class EditPropertyController {
     private ComboBox<String> propBath;
     @FXML
     private ComboBox<String> propFurnish;
+
+    /**
+     *     Programmer's Name: Arif & Shuhail
+     *     Method's Name    : initData
+     *     Purpose         : initialize data
+     */
 
     public void initData(Property property) {
 
@@ -119,6 +129,12 @@ public class EditPropertyController {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAgentHomepage
+     *     Purpose         : to back to homepage
+     */
+
     public void toAgentHomepage() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
@@ -127,6 +143,13 @@ public class EditPropertyController {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,1182,665));
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : toConfirm
+     *     Purpose         : to save updated property details
+     */
+
 
     public void toConfirm() throws IOException {
 

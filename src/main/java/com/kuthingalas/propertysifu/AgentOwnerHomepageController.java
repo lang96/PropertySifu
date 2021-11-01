@@ -61,6 +61,12 @@ public class AgentOwnerHomepageController implements Initializable {
     ObservableList list = FXCollections.observableArrayList();
     ArrayList<AgentOwnerListing> filterList = new ArrayList<>();
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : initialize
+     *     Purpose         : To set initial value of the table
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -90,6 +96,11 @@ public class AgentOwnerHomepageController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toProfile
+     *     Purpose         : To go to agent/owner view profile
+     */
 
     public void toProfile() throws IOException {
 
@@ -99,6 +110,12 @@ public class AgentOwnerHomepageController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : toEditProperty
+     *     Purpose         : To go to edit property page
+     */
 
     public void toEditProperty(ActionEvent event) throws IOException {
 
@@ -144,6 +161,12 @@ public class AgentOwnerHomepageController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toRemoveProperty
+     *     Purpose         : To go to remove property page
+     */
+
     public void toRemoveProperty(ActionEvent event) throws IOException {
 
         String removeID = tbl.getSelectionModel().getSelectedItem().getID();
@@ -177,6 +200,12 @@ public class AgentOwnerHomepageController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAddProp
+     *     Purpose         : To go to add property page
+     */
+
     public void toAddProp() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("addProperty.fxml"));
@@ -185,6 +214,12 @@ public class AgentOwnerHomepageController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,370,665));
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : toAddProp
+     *     Purpose         : Agent/Owner Listing Object
+     */
 
     public class AgentOwnerListing{
 

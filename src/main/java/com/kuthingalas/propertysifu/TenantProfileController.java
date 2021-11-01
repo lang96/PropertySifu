@@ -39,6 +39,12 @@ public class TenantProfileController implements Initializable {
     @FXML
     public TextField profID, profFName, profLName, profPhone, profPass;
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : initialize
+     *     Purpose         : This method is to set initial value of user logged in
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -55,6 +61,12 @@ public class TenantProfileController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : backHome
+     *     Purpose         : This method is to update changes of tenant profile and back to homepage
+     */
 
     public void backHome() throws IOException {
 
@@ -79,6 +91,12 @@ public class TenantProfileController implements Initializable {
             //  user chose CANCEL or closed the dialog
         }
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : logout
+     *     Purpose         : To logout
+     */
 
     public void logout() throws IOException {
 

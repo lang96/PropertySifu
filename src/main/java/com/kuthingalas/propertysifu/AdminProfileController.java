@@ -29,6 +29,12 @@ public class AdminProfileController implements Initializable {
     @FXML
     private Button back, logoutBtn3, confirmBtn;
 
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : initialize
+     *     Purpose         : To set admin profile
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -47,6 +53,13 @@ public class AdminProfileController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAdminHomepage
+     *     Purpose         : To go back to admin homepage
+     */
+
+
     public void toAdminHomepage() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
@@ -55,6 +68,12 @@ public class AdminProfileController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 700, 400));
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toConfirm
+     *     Purpose         : To update admin info
+     */
 
     public void toConfirm() throws IOException {
 
@@ -81,6 +100,12 @@ public class AdminProfileController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 700, 400));
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : logout3
+     *     Purpose         : To log out of the system
+     */
 
     public void logout3() throws IOException {
 

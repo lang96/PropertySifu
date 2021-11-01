@@ -36,6 +36,12 @@ public class ViewPropertyController implements Initializable {
     @FXML private Label agentContactLabel;
     @FXML private Label commentLabel;
 
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : initData
+     *     Purpose         : This method is to initialize data
+     */
+
 
     public void initData(Property property) {
 
@@ -91,6 +97,13 @@ public class ViewPropertyController implements Initializable {
         agentLabel.setText(agentName);
 
     }
+
+    /**
+     *     Programmer's Name: Arif
+     *     Method's Name    : changeScreenButtonPushed
+     *     Purpose         : This method is to go back to homepage
+     */
+
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {

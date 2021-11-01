@@ -47,6 +47,12 @@ public class LoginController {
     @FXML
     Button loginBtn, resetBtn, backBtn;
 
+    /**
+     *     Programmer's Name: Shuhail & Arif
+     *     Method's Name    : proceed
+     *     Purpose         : to check login info and password
+     */
+
     public void proceed() {
 
         ArrayList<String> IDArr = new ArrayList<>();
@@ -203,6 +209,12 @@ public class LoginController {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toRegister
+     *     Purpose         : to go to user register page
+     */
+
     @FXML
     public void toRegister() throws IOException {
 
@@ -214,6 +226,12 @@ public class LoginController {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toAgentRegister
+     *     Purpose         : to go to agentRegister page
+     */
+
     @FXML
     public void toAgentRegister() throws IOException {
 
@@ -224,6 +242,12 @@ public class LoginController {
         window.setScene(new Scene(root,597,338));
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toHomepage
+     *     Purpose         : to go to homePage
+     */
+
     @FXML
     public void toHomepage() throws IOException {
 
@@ -233,6 +257,12 @@ public class LoginController {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,1182,665));
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : actionPerformed
+     *     Purpose         : to set userpassword visible
+     */
 
     @FXML
     public void actionPerformed(ActionEvent e) {
@@ -246,6 +276,12 @@ public class LoginController {
             userPass.setPromptText("");
         }
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : reset
+     *     Purpose         : to clear textfield
+     */
 
     @FXML
     public void reset(ActionEvent event){

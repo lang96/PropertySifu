@@ -32,6 +32,12 @@ public class AgentOwnerRegisterController {
     @FXML
     Button loginBtn, resetBtn, confirmRegBtn, profile, confirmBtn, backBtn;
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toHome
+     *     Purpose         : For user to go homepage
+     */
+
     public void toHome() throws IOException {
 
         if (agentBox.isSelected()) {
@@ -79,6 +85,12 @@ public class AgentOwnerRegisterController {
 
     }
 
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : toLoginPage2
+     *     Purpose         : For user to go to Login Page
+     */
+
     public void toLoginPage2() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
@@ -87,6 +99,12 @@ public class AgentOwnerRegisterController {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 597, 338));
     }
+
+    /**
+     *     Programmer's Name: Shuhail
+     *     Method's Name    : Select
+     *     Purpose         : To make a textfield appear for Agent
+     */
 
     @FXML
     void Select(ActionEvent event) {
