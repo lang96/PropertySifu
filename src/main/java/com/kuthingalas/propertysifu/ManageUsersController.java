@@ -38,6 +38,11 @@ public class ManageUsersController implements Initializable {
 
     ObservableList list =  FXCollections.observableArrayList();
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : initialize
+     *     Purpose         : This method is use to an initial value for each Table Column
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -63,6 +68,11 @@ public class ManageUsersController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : revokeUser
+     *     Purpose         : This method is use to remove user from the system
+     */
     public void revokeUser() {
 
         String removeID = tblUser.getSelectionModel().getSelectedItem().getID();
@@ -97,6 +107,11 @@ public class ManageUsersController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : toPendingUsers
+     *     Purpose         : This method is to change scene
+     */
     public void toPendingUsers() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("pendingUsers.fxml"));
@@ -106,6 +121,11 @@ public class ManageUsersController implements Initializable {
         window.setScene(new Scene(root, 716, 403));
     }
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : toAdminHomepage4
+     *     Purpose         : This method is to change scene
+     */
     public void toAdminHomepage4() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
@@ -115,6 +135,11 @@ public class ManageUsersController implements Initializable {
         window.setScene(new Scene(root, 700, 400));
     }
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : ManageUser
+     *     Purpose         : This method is to get Manage User Variables
+     */
     public class ManageUser{
 
         SimpleStringProperty ID;

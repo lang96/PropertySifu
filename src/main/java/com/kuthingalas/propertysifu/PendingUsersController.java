@@ -35,6 +35,14 @@ public class PendingUsersController implements Initializable {
 
     ObservableList pendingList =  FXCollections.observableArrayList();
 
+
+
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : initialize
+     *     Purpose         : This method is to set initial value of table column
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -54,6 +62,12 @@ public class PendingUsersController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : rejectUserReg
+     *     Purpose         : This method is to set reject pending user registration
+     */
 
     public void rejectUserReg() {
 
@@ -87,6 +101,12 @@ public class PendingUsersController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : acceptUserReg
+     *     Purpose         : This method is to set accept pending user registration
+     */
 
     public void acceptUserReg() {
 
@@ -124,6 +144,12 @@ public class PendingUsersController implements Initializable {
 
     }
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : toManageUsers2
+     *     Purpose         : This method is to change scene
+     */
+
     public void toManageUsers2() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("manageUsers.fxml"));
@@ -132,6 +158,12 @@ public class PendingUsersController implements Initializable {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 762, 431));
     }
+
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : PendingUser
+     *     Purpose         : This method is to get Pending User Variables
+     */
 
     public class PendingUser{
 

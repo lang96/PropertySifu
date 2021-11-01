@@ -34,6 +34,12 @@ public class RegisterController {
     public TextField userID, phone, fName, lName;
     public PasswordField userPass;
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : toHome
+     *     Purpose         : This method is to change scene and get user's variables
+     */
+
     @FXML
     public void toHome() throws IOException {
 
@@ -62,6 +68,12 @@ public class RegisterController {
         }
 
     }
+
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : toLoginPage
+     *     Purpose         : This method is to change scene.
+     */
 
     public void toLoginPage() throws IOException {
 
