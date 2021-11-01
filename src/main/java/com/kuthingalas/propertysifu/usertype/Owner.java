@@ -6,6 +6,12 @@ import java.util.ArrayList;
 
 
 
+/**
+ *     Programmer's Name : Arif
+ *     Class's name    : Owner
+ *     Purpose         : Owner object
+ */
+
 /* agent has elevated access (additional features) */
 public class Owner extends User {
 
@@ -17,6 +23,13 @@ public class Owner extends User {
 
 
     // constructors
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Owner
+     *     Purpose         : Owner object constructor used for initialize purposes.
+     */
+
     public Owner(String userID, String pass, String fName, String lName, String phone, String id, ArrayList<Property> propertyList, int verified) {
 
         this.userID = userID;
@@ -32,6 +45,13 @@ public class Owner extends User {
     }
 
     // new owners added from add() has empty properties list and has ID auto-generated
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Owner
+     *     Purpose         : Owner object constructor used for creating new owners.
+     */
+
     public Owner(String userID, String pass, String fName, String lName, String phone, String id) {
 
         this.userID = userID;
@@ -81,6 +101,12 @@ public class Owner extends User {
 
         // list and JSON methods
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : setNewOwnerID
+     *     Purpose         : Generates new owner ID for subsequently created owner.
+     */
+
     public static String setNewOwnerID() { // ID structure designed for system with a maximum of 999 agents
 
         String newID = "";
@@ -107,13 +133,5 @@ public class Owner extends User {
     }
 
         // accompanying methods
-
-    // void addOwner()
-    // void updateProfile()
-    // void removeOwner()
-    // void addProperty()
-    // void updateProperty()
-    // void deactivateProperty()
-    // void removeProperty()
 
 }

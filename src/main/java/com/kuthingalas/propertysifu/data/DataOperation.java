@@ -9,7 +9,6 @@ import static com.kuthingalas.propertysifu.usertype.Admin.*;
 import static com.kuthingalas.propertysifu.usertype.User.*;
 import static com.kuthingalas.propertysifu.usertype.Agent.*;
 import static com.kuthingalas.propertysifu.usertype.Owner.*;
-import static com.kuthingalas.propertysifu.MainApplication.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,18 +21,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.kuthingalas.propertysifu.system.Property.*;
-import static com.kuthingalas.propertysifu.system.Property.Comment.*;
-import static com.kuthingalas.propertysifu.usertype.Admin.*;
-import static com.kuthingalas.propertysifu.usertype.User.*;
-import static com.kuthingalas.propertysifu.usertype.Agent.*;
-import static com.kuthingalas.propertysifu.usertype.Owner.*;
+
+
+/**
+ *     Programmer's Name : Arif
+ *     Class's name    : DataOperation
+ *     Purpose         : Contains all static data operation methods used throughout the program.
+ *                       These methods handle object creation, update and removal as well as writing,
+ *                       updating and removing the data from the respective JSON files.
+ */
 
 public class DataOperation {
 
     /* void initialize users from json
     - for admin, if there are no control admins - create one and initialize | else - initialize
     */
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : initializeAdmin
+     *     Purpose         : Initialize all admin data from JSON file and create admin objects accordingly.
+     */
 
     public static void initializeAdmin() {
 
@@ -101,6 +109,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : initializeUser
+     *     Purpose         : Initialize all user data from JSON file and create user objects accordingly.
+     */
 
     public static void initializeUser() {
 
@@ -213,6 +227,13 @@ public class DataOperation {
     // void initialize properties from json
 
         // PropertyList is initialized before UserList
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : initializeProperty
+     *     Purpose         : Initialize all property data from JSON file and create property objects accordingly.
+     */
+
     public static void initializeProperty() {
 
         JSONParser jsonParser = new JSONParser();
@@ -298,6 +319,12 @@ public class DataOperation {
 
     // void initialize comments from json
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : initializeComments
+     *     Purpose         : Initialize all comment data from JSON file and create comment objects accordingly.
+     */
+
     public static void initializeComments() {
 
         JSONParser jsonParser = new JSONParser();
@@ -337,6 +364,12 @@ public class DataOperation {
     }
 
     // void add users to json
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : addAdmin
+     *     Purpose         : Creates a new admin object and adds to static AdminList as well as JSON file respectively.
+     */
 
     public static void addAdmin(String id, String pass, int access) {
 
@@ -389,6 +422,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : addTenant
+     *     Purpose         : Creates a new tenant object and adds to static UserList as well as JSON file respectively.
+     */
 
     public static void addTenant(String id, String pass, String fName, String lName, String phone) {
 
@@ -451,6 +490,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : addAgent
+     *     Purpose         : Creates a new agent object and adds to static UserList as well as JSON file respectively.
+     */
 
     public static void addAgent(String pass, String fName, String lName, String phone, String idNum, String org) {
 
@@ -516,6 +561,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : addOwner
+     *     Purpose         : Creates a new owner object and adds to static UserList as well as JSON file respectively.
+     */
 
     public static void addOwner(String pass, String fName, String lName, String phone, String idNum) {
 
@@ -583,6 +634,12 @@ public class DataOperation {
     }
 
     // void add properties to json
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : addProperty
+     *     Purpose         : Creates a new property object and adds to static PropertyList as well as JSON file respectively.
+     */
 
     public static void addProperty(String type, String firstAdd, String secondAdd,
                                    ArrayList<String> facList, int bed, int bath, int area, int furnish,
@@ -661,8 +718,6 @@ public class DataOperation {
 
             PropertyList.add(new Property(id, type, firstAdd, secondAdd, facList, bed, bath, area, furnish, psf, rent, rep));
 
-            // once a new property listing is created, it must be added to the property list of its respective representative
-
             try (FileWriter fileWrite = new FileWriter(System.getProperty("user.dir") +
                     "\\src\\main\\java\\com\\kuthingalas\\propertysifu\\data\\" + "propertyData.json")) {
 
@@ -682,6 +737,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : addComment
+     *     Purpose         : Creates a new comment object and adds to static CommentList as well as JSON file respectively.
+     */
 
     public static void addComment(String user, String desc) {
 
@@ -732,6 +793,13 @@ public class DataOperation {
 
     // void add login data to json
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : addLogin
+     *     Purpose         : Creates the login data for a new admin created or for users who have been
+     *                       verified by admin, and adds it to JSON file respectively.
+     */
+
     public static void addLogin(String id, String pass, String type) {
 
         JSONParser jsonParser = new JSONParser();
@@ -775,6 +843,12 @@ public class DataOperation {
     }
 
     // void delete users from json
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : removeAdmin
+     *     Purpose         : Removes the specified admin object from static AdminList and JSON file respectively.
+     */
 
     public static void removeAdmin(String id) {
 
@@ -848,6 +922,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : removeUser
+     *     Purpose         : Removes the specified user object from static UserList and JSON file respectively.
+     */
 
     public static void removeUser(String id) {
 
@@ -942,6 +1022,12 @@ public class DataOperation {
 
     // void delete property from json
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : removeProperty
+     *     Purpose         : Removes the specified property object from static PropertyList and JSON file respectively.
+     */
+
     public static void removeProperty(String id) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1004,8 +1090,6 @@ public class DataOperation {
 
                 PropertyList.remove(listRemoveIndex);
 
-                // once a property listing is removed, it must be removed from the property list of its respective representative
-
                 IDArr.remove(jsonRemoveIndex);
                 typeArr.remove(jsonRemoveIndex);
                 firstAddressArr.remove(jsonRemoveIndex);
@@ -1066,6 +1150,12 @@ public class DataOperation {
     }
 
     // void remove comment from json
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : removeComment
+     *     Purpose         : Removes the specified comment object from static CommentList and JSON file respectively.
+     */
 
     public static void removeComment(String id) {
 
@@ -1142,6 +1232,14 @@ public class DataOperation {
 
     // void remove from login data (when revoked by admin)
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : removeLogin
+     *     Purpose         : Removes the login data for a removed admin, for users who have been
+     *                       removed by admin or for users whose registration have been revoked,
+     *                       and removes it from the JSON file accordingly.
+     */
+
     public static void removeLogin(String id) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1200,6 +1298,12 @@ public class DataOperation {
     }
 
     // void update user list after changes
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateAdmin
+     *     Purpose         : Updates specified admin ID or access level to static AdminList and JSON file respectively.
+     */
 
     public static void updateAdmin(String oldID, String newID, int access) {
 
@@ -1272,6 +1376,12 @@ public class DataOperation {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateAdminPass
+     *     Purpose         : Updates specified admin password to static AdminList and JSON file respectively.
+     */
+
     public static void updateAdminPass(String id, String pass) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1339,6 +1449,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateTenant
+     *     Purpose         : Updates specified tenant details to static UserList and JSON file respectively.
+     */
 
     public static void updateTenant(String oldID, String newID, String fName, String lName, String phone) {
 
@@ -1418,6 +1534,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateAgent
+     *     Purpose         : Updates specified agent details to static UserList and JSON file respectively.
+     */
 
     public static void updateAgent(String id, String fName, String lName, String phone, String idNum, String org) {
 
@@ -1503,6 +1625,12 @@ public class DataOperation {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateOwner
+     *     Purpose         : Updates specified owner details to static UserList and JSON file respectively.
+     */
+
     public static void updateOwner(String id, String fName, String lName, String phone, String idNum) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1583,6 +1711,12 @@ public class DataOperation {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateUserPass
+     *     Purpose         : Updates specified user password to static UserList and JSON file respectively.
+     */
+
     public static void updateUserPass(String id, String pass) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1650,6 +1784,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateUserVerified
+     *     Purpose         : Updates specified user verification status to static UserList and JSON file respectively.
+     */
 
     public static void updateUserVerified(String id) {
 
@@ -1721,6 +1861,12 @@ public class DataOperation {
 
     // void update property list after changes
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updatePropertyType
+     *     Purpose         : Updates specified property type to static PropertyList and JSON file respectively.
+     */
+
     public static void updatePropertyType(String id, String type) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1788,6 +1934,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updatePropertyAddress
+     *     Purpose         : Updates specified property address to static PropertyList and JSON file respectively.
+     */
 
     public static void updatePropertyAddress(String id, String firstAdd, String secondAdd) {
 
@@ -1865,6 +2017,12 @@ public class DataOperation {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updatePropertyStatus
+     *     Purpose         : Updates specified property status to static PropertyList and JSON file respectively.
+     */
+
     public static void updatePropertyStatus(String id, int stat, String statDesc) {
 
         JSONParser jsonParser = new JSONParser();
@@ -1938,6 +2096,12 @@ public class DataOperation {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updatePropertyFacilities
+     *     Purpose         : Updates specified property facilities list to static PropertyList and JSON file respectively.
+     */
+
     public static void updatePropertyFacilities(String id, ArrayList<String> facList) {
 
         JSONParser jsonParser = new JSONParser();
@@ -2007,6 +2171,12 @@ public class DataOperation {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updatePropertyDetails
+     *     Purpose         : Updates specified property details to static PropertyList and JSON file respectively.
+     */
 
     public static void updatePropertyDetails(String id, int bed, int bath, int area, int furnish, float psf, float rent) {
 
@@ -2097,6 +2267,12 @@ public class DataOperation {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updatePropertyComments
+     *     Purpose         : Updates specified property comments list to static PropertyList and JSON file respectively.
+     */
+
     public static void updatePropertyComments(String id, ArrayList<String> commentList) {
 
         JSONParser jsonParser = new JSONParser();
@@ -2169,6 +2345,12 @@ public class DataOperation {
 
     // void update comment
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateComment
+     *     Purpose         : Updates specified comment description to static CommentList and JSON file respectively.
+     */
+
     public static void updateComment(String id, String desc) {
 
         JSONParser jsonParser = new JSONParser();
@@ -2239,6 +2421,12 @@ public class DataOperation {
 
     // void update login
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : updateLogin
+     *     Purpose         : Updates specified login details to JSON file respectively.
+     */
+
     public static void updateLogin(String oldID, String newID, String pass) {
 
         JSONParser jsonParser = new JSONParser();
@@ -2294,10 +2482,6 @@ public class DataOperation {
         } catch (ParseException f) {
             f.printStackTrace();
         }
-
-    }
-
-    public static void main(String[] args) {
 
     }
 

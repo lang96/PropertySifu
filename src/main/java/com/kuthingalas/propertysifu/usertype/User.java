@@ -6,6 +6,12 @@ import java.util.ArrayList;
 
 
 
+/**
+ *     Programmer's Name : Arif
+ *     Class's name    : User
+ *     Purpose         : User object
+ */
+
 public abstract class User {
 
     // protected members
@@ -53,7 +59,6 @@ public abstract class User {
         return properties;
     }
 
-
         // setters
     public void setUserID(String userID) {
         this.userID = userID;
@@ -81,20 +86,7 @@ public abstract class User {
         String organization = org;
     }
 
-    /*
-    public void setProperties(ArrayList<Property> properties) {
-        ArrayList<Property> propertyList = properties;
-    } // to be overridden
-    */
-
         // toString
-    /*
-    public String toString() {
-
-        return String.format("%-15s  %-11s  %-6s \n", adminID, adminPass, String.valueOf(accessLvl));
-
-    }
-    */
 
         // list and JSON methods
 

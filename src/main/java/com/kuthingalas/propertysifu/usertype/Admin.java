@@ -3,22 +3,13 @@ package com.kuthingalas.propertysifu.usertype;
 import java.util.ArrayList;
 
 
-
-/* Admin has the highest access (all features)
-
-- ensure there is only one control admin (holds control over all admins & cannot be removed)
-
-feature list
-
-- special menu
-- reject or delete user registration
--
-
-- login
+/**
+ *     Programmer's Name : Arif
+ *     Class's name    : Admin
+ *     Purpose         : Admin object
+ */
 
 
-
-*/
 
 public class Admin {
 
@@ -30,6 +21,13 @@ public class Admin {
     public static ArrayList<Admin> AdminList = new ArrayList<>();
 
     // constructors
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Admin
+     *     Purpose         : Admin object constructor for control admin.
+     */
+
     public Admin(String id, String pass, boolean control) { // control admin - def id = melon, def pass = juicy123
 
         this.adminID = id;
@@ -42,6 +40,12 @@ public class Admin {
         }
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : initializeAdmin
+     *     Purpose         : Admin object constructor for regular admin.
+     */
 
     public Admin(String id, String pass) {
 

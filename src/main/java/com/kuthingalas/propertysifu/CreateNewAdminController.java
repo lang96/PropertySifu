@@ -70,6 +70,7 @@ public class CreateNewAdminController implements Initializable {
         int access = Integer.parseInt(adminAccess.getSelectionModel().getSelectedItem());
 
         addAdmin(id, pass, access);
+        addLogin(id, pass, "Admin");
 
         Parent root = FXMLLoader.load(getClass().getResource("manageAdmin.fxml"));
 

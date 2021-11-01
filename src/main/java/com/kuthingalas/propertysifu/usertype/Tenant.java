@@ -2,15 +2,26 @@ package com.kuthingalas.propertysifu.usertype;
 
 
 
+/**
+ *     Programmer's Name : Arif
+ *     Class's name    : Tenant
+ *     Purpose         : Tenant object
+ */
+
 public class Tenant extends User {
 
     // private members
-    //private String; // change accordingly
 
     // public members
 
-
     // constructors
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Tenant
+     *     Purpose         : Tenant object constructor for initialize purposes.
+     */
+
     public Tenant(String username, String pass, String fName, String lName, String phone, int verified) {
 
         this.userID = username; // user can set their own custom username/userID
@@ -24,6 +35,13 @@ public class Tenant extends User {
     }
 
     // new tenants added from add() is yet to be verified by admin
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Tenant
+     *     Purpose         : Tenant object constructor used for creating new owners.
+     */
+
     public Tenant(String username, String pass, String fName, String lName, String phone) {
 
         this.userID = username; // user can set their own custom username/userID
@@ -40,25 +58,12 @@ public class Tenant extends User {
 
         // getters
 
-
         // setters
 
-
         // toString
-    /*
-    public String toString() {
-
-        return String.format("%-15s  %-11s  %-6s \n", adminID, adminPass, String.valueOf(accessLvl));
-
-    }
-    */
 
         // list and JSON methods
 
         // accompanying methods
-
-    // void addTenant()
-    // void updateProfile()
-    // void removeTenant()
 
 }

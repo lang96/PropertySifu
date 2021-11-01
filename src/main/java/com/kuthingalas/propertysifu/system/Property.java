@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 
 
+/**
+ *     Programmer's Name : Arif
+ *     Class's name    : Property
+ *     Purpose         : Property object
+ */
+
 public class Property {
 
     // private members
@@ -21,6 +27,12 @@ public class Property {
     // public members
     public static ArrayList<Property> PropertyList = new ArrayList<>();
 
+    /**
+     *     Programmer's Name : Arif
+     *     Class's name    : Comment
+     *     Purpose         : Comment object
+     */
+
     public static class Comment {
 
         // private members
@@ -30,6 +42,13 @@ public class Property {
         public static ArrayList<Comment> CommentList = new ArrayList<>();
 
         // constructor
+
+        /**
+         *     Programmer's Name : Arif
+         *     Method's name    : Comment
+         *     Purpose         : Comment object constructor
+         */
+
         public Comment(String id, String user, String desc) {
 
             this.commentID = id;
@@ -66,6 +85,12 @@ public class Property {
 
         // list and JSON methods
 
+        /**
+         *     Programmer's Name : Arif
+         *     Method's name    : setNewCommentID
+         *     Purpose         : Generates new comment ID for subsequently created comments.
+         */
+
         public static String setNewCommentID() { // ID structure designed for a maximum of 999 comments throughout system
 
             String newID = "";
@@ -87,6 +112,13 @@ public class Property {
     }
 
     // constructors
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Property
+     *     Purpose         : Property object constructor used for initialize purposes.
+     */
+
     public Property(String id, String type, String firstAdd, String secondAdd, int stat, String statDesc,
                     ArrayList<String> facList, int bed, int bath, int area, int furnish,
                     float psf, float rent, String rep, ArrayList<String> comment)
@@ -111,6 +143,13 @@ public class Property {
     }
 
     // new properties added from add() is visible by default, has empty comments list and has ID auto-generated
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Property
+     *     Purpose         : Property object constructor used for creating new properties.
+     */
+
     public Property(String id, String type, String firstAdd, String secondAdd,
                     ArrayList<String> facList, int bed, int bath, int area,
                     int furnish, float psf, float rent, String rep)
@@ -133,6 +172,12 @@ public class Property {
         this.commentID = new ArrayList<>();
 
     }
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Property
+     *     Purpose         : Property object empty constructor
+     */
 
     public Property() {}
 
@@ -247,6 +292,12 @@ public class Property {
     }
 
         // list and JSON methods
+
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : setNewPropertyID
+     *     Purpose         : Generates new property ID for subsequently created properties.
+     */
 
     public static String setNewPropertyID() { // ID structure designed for system with a maximum of 999 properties
 
