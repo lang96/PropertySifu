@@ -83,6 +83,12 @@ public class TenantHomepageController implements Initializable {
     ObservableList list =  FXCollections.observableArrayList();
     ArrayList<TenantListing> filterList = new ArrayList<>();
 
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : viewProperty
+     *     Purpose         : This method is to view selected property.
+     */
+
     @FXML
     public void viewProperty(ActionEvent event) throws IOException
     {
@@ -126,6 +132,12 @@ public class TenantHomepageController implements Initializable {
         }
 
     }
+
+    /**
+     *     Programmer's Name:
+     *     Method's Name    : refreshList
+     *     Purpose         : This method is to clear the
+     */
 
     @FXML
     private void refreshList() {
