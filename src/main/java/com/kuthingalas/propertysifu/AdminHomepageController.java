@@ -28,19 +28,24 @@ import static com.kuthingalas.propertysifu.usertype.Admin.*;
 import static com.kuthingalas.propertysifu.usertype.User.*;
 import static com.kuthingalas.propertysifu.usertype.Agent.*;
 import static com.kuthingalas.propertysifu.usertype.Owner.*;
-
-public class AdminHomepageController {
-
+import static com.kuthingalas.propertysifu.MainApplication.*;
 
 
-    @FXML
-    private Button manageAdminBtn, managePropertiesBtn, manageUsersBtn, adminInfoBtn, editAdminBtn, createAdminBtn, createNewPropertyBtn, adminEditPropertyBtn,logoutBtn3;
+
+public class AdminHomepageController implements Initializable {
 
     @FXML
-    private TextField collectUserID, collectUserPass, collectUserFName, collectUserLName, collectUserPhone, collectUserIDNum, collectUserOrg;
+    private Button manageAdminBtn, managePropertiesBtn, manageUsersBtn, adminInfoBtn, createNewPropertyBtn, adminEditPropertyBtn,logoutBtn3;
 
+    @FXML
+    private Label collectAdminID;
 
-    //@FXML private option collectUserType;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        collectAdminID.setText(currentUserID);
+
+    }
 
     // navigation
     public void toAdminInfo() throws IOException {
@@ -81,33 +86,6 @@ public class AdminHomepageController {
         window.setScene(new Scene(root, 762, 431));
     }
 
-    public void toEditAdmin() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("editAdmin.fxml"));
-
-        Stage window = (Stage) editAdminBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 597, 338));
-    }
-
-    public void toCreateAdmin() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("createNewAdmin.fxml"));
-
-        Stage window = (Stage) createAdminBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 278, 380));
-    }
-
-    public void toCreateNewProperty() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("createNewProperty.fxml"));
-
-        Stage window = (Stage) createNewPropertyBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 370, 800));
-    }
-
     //Add comment
     public void toAdminEditProperty() throws IOException {
 
@@ -123,26 +101,7 @@ public class AdminHomepageController {
 
     ///////////////////Back Button Functions///////////////////////////
     @FXML
-    private Button back, back1, back2, back3, back4, back5, back6, back7, back8, back9;
-
-    public void toAdminHomepage() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
-
-        Stage window = (Stage) back.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 700, 400));
-    }
-
-
-    public void toAdminHomepage2() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
-
-        Stage window = (Stage) back1.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 700, 400));
-    }
+    private Button back2, back3, back4, back5, back6, back7, back8, back9;
 
     public void toManageAdmins3() throws IOException {
 
@@ -151,15 +110,6 @@ public class AdminHomepageController {
         Stage window = (Stage) back3.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 741, 417));
-    }
-
-    public void toAdminHomepage3() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
-
-        Stage window = (Stage) back4.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 700, 400));
     }
 
     public void toManageProperties3() throws IOException {
@@ -179,28 +129,5 @@ public class AdminHomepageController {
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 762, 431));
     }
-
-    public void logout3() throws IOException {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setHeaderText("Log Out");
-        alert.setContentText("Are you sure?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-
-            Stage window = (Stage) logoutBtn3.getScene().getWindow();
-            window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-            window.setScene(new Scene(root, 1182, 665));
-        } else {
-            //  user chose CANCEL or closed the dialog
-        }
-    }
-
-    //////////////////////////////////////////////////////////////////
-
-    ////////////////////////Combobox/////////////////////
 
 }

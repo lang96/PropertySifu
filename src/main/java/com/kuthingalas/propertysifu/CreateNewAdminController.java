@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -17,19 +19,40 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+
+
+
 public class CreateNewAdminController implements Initializable {
 
     ObservableList<String> accessLvl = FXCollections.observableArrayList("0","1");
 
     @FXML
     private ComboBox<String> adminAccess;
+
     @FXML
-    private Button back2;
+    private TextField adminID;
+
+    @FXML
+    private PasswordField adminPass;
+
+    @FXML
+    private Button back2, addAdmin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         adminAccess.setItems(accessLvl);
+
+    }
+
+    public void createAdmin() {
+
+        String id = adminID.getText();
+        String pass = adminPass.getText();
+        int access = Integer.parseInt(adminAccess.getSelectionModel().getSelectedItem());
+
+        addAdmin(id, pass, access);
 
     }
 

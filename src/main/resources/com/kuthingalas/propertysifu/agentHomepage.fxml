@@ -47,7 +47,7 @@
                 <Image url="@../../../raw/accicon.jpg" />
             </image>
         </ImageView>
-        <Button layoutX="565.0" layoutY="626.0" mnemonicParsing="false" text="Remove" />
+        <Button fx:id="removePropBtn" layoutX="565.0" layoutY="626.0" onAction="#toRemoveProperty" mnemonicParsing="false" text="Remove" />
       <Label layoutX="560.0" layoutY="19.0" text="Agent" />
       <Button fx:id="editPropBtn" layoutX="461.0" layoutY="626.0" mnemonicParsing="false" onAction="#toEditProperty" text="Edit Prop" />
       <Button fx:id="agentAddPropBtn" layoutX="662.0" layoutY="626.0" mnemonicParsing="false" onAction="#toAddProp" text="Add" />

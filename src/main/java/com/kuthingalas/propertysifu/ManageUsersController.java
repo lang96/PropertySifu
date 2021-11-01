@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -20,18 +17,24 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.kuthingalas.propertysifu.MainApplication.currentUserID;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+import static com.kuthingalas.propertysifu.system.Property.PropertyList;
 import static com.kuthingalas.propertysifu.usertype.User.UserList;
+
+
+
 
 public class ManageUsersController implements Initializable {
 
     @FXML
-    private Button pendingUsersBtn, addUsersBtn, back7, back8;
+    private Button pendingUsersBtn, removeUsersBtn, back7, back8;
 
     @FXML
     private TableView<ManageUser> tblUser;
 
     @FXML
-    private TableColumn<ManageUser, String> col_id, col_type, col_FName, col_LName, col_phone, col_idNum, col_org, col_verified;
+    private TableColumn<ManageUser, String> col_id, col_type, col_FName, col_LName, col_phone, col_idNum, col_org;
 
     ObservableList list =  FXCollections.observableArrayList();
 
@@ -45,23 +48,52 @@ public class ManageUsersController implements Initializable {
         col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         col_idNum.setCellValueFactory(new PropertyValueFactory<>("idNum"));
         col_org.setCellValueFactory(new PropertyValueFactory<>("org"));
-        col_verified.setCellValueFactory(new PropertyValueFactory<>("verified"));
 
         for (int i = 0; i < UserList.size(); i++) {
-            list.add(new ManageUser(i));
+            if (UserList.get(i).getVerified() == 1) {
+                list.add(new ManageUser(i));
+            }
         }
 
         if(list.isEmpty()) {
-            tblUser.setPlaceholder(new Label("No users found."));
+            tblUser.setPlaceholder(new Label("No verified users found."));
         } else {
             tblUser.setItems(list);
         }
 
     }
 
-    public void addUser() {
+    public void revokeUser() {
 
+        String removeID = tblUser.getSelectionModel().getSelectedItem().getID();
 
+        if (removeID == null && removeID.isEmpty()) { // not working
+
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("No user selected!");
+            errorAlert.showAndWait();
+
+        } else {
+
+            removeUser(removeID);
+            removeLogin(removeID);
+
+            list.clear();
+
+            for (int i = 0; i < UserList.size(); i++) {
+                if (UserList.get(i).getVerified() == 1) {
+                    list.add(new ManageUser(i));
+                }
+            }
+
+            if(list.isEmpty()) {
+                tblUser.setPlaceholder(new Label("No users found."));
+            } else {
+                tblUser.setItems(list);
+            }
+
+        }
 
     }
 
@@ -72,15 +104,6 @@ public class ManageUsersController implements Initializable {
         Stage window = (Stage) pendingUsersBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root, 716, 403));
-    }
-
-    public void toAddUsers() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("addUsers.fxml"));
-
-        Stage window = (Stage) addUsersBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root, 276, 597));
     }
 
     public void toAdminHomepage4() throws IOException {

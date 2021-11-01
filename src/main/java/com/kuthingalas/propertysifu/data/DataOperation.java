@@ -3,6 +3,14 @@ package com.kuthingalas.propertysifu.data;
 import com.kuthingalas.propertysifu.system.Property;
 import com.kuthingalas.propertysifu.usertype.*;
 
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.Comment.*;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.usertype.Agent.*;
+import static com.kuthingalas.propertysifu.usertype.Owner.*;
+import static com.kuthingalas.propertysifu.MainApplication.*;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -330,7 +338,7 @@ public class DataOperation {
 
     // void add users to json
 
-    public static void addAdmin(String id, String pass, boolean control) {
+    public static void addAdmin(String id, String pass, int access) {
 
         JSONParser jsonParser = new JSONParser();
 
@@ -344,17 +352,17 @@ public class DataOperation {
             JSONArray passArr = (JSONArray) adminData.get("pass");
             JSONArray accessLvlArr = (JSONArray) adminData.get("accessLvl");
 
-            int accessLvl;
+            boolean control;
 
-            if (control) {
-                accessLvl = 1;
+            if (access == 0) {
+                control = false;
             } else {
-                accessLvl = 0;
+                control = true;
             }
 
             IDArr.add(id);
             passArr.add(pass);
-            accessLvlArr.add(accessLvl);
+            accessLvlArr.add(String.valueOf(access));
 
             adminData.put("accessLvl", accessLvlArr);
             adminData.put("pass", passArr);
@@ -623,12 +631,12 @@ public class DataOperation {
             statusArr.add("1");
             statDescArr.add("Available");
             facArr.add(facList);
-            bedArr.add(bed);
-            bathArr.add(bath);
-            areaArr.add(area);
-            furnishArr.add(furnish);
-            psfArr.add(psf);
-            rentArr.add(rent);
+            bedArr.add(String.valueOf(bed));
+            bathArr.add(String.valueOf(bath));
+            areaArr.add(String.valueOf(area));
+            furnishArr.add(String.valueOf(furnish));
+            psfArr.add(String.valueOf(psf));
+            rentArr.add(String.valueOf(rent));
             repIDArr.add(rep);
             commentIDArr.add(new JSONArray());
 
@@ -851,7 +859,7 @@ public class DataOperation {
             Object obj = jsonParser.parse(reader);
             JSONObject userData = (JSONObject) obj;
 
-            JSONArray IDArr = (JSONArray) userData.get("ID");
+            JSONArray IDArr = (JSONArray) userData.get("userID");
             JSONArray passArr = (JSONArray) userData.get("pass");
             JSONArray typeArr = (JSONArray) userData.get("type");
             JSONArray fNameArr = (JSONArray) userData.get("fName");
@@ -859,6 +867,7 @@ public class DataOperation {
             JSONArray phoneArr = (JSONArray) userData.get("phone");
             JSONArray idNumArr = (JSONArray) userData.get("idNum");
             JSONArray orgArr = (JSONArray) userData.get("org");
+            JSONArray verifiedArr = (JSONArray) userData.get("verified");
 
             String idCompare = "";
             int jsonRemoveIndex = 0;
@@ -895,7 +904,9 @@ public class DataOperation {
                 phoneArr.remove(jsonRemoveIndex);
                 idNumArr.remove(jsonRemoveIndex);
                 orgArr.remove(jsonRemoveIndex);
+                verifiedArr.remove(jsonRemoveIndex);
 
+                userData.put("verified", verifiedArr);
                 userData.put("org", orgArr);
                 userData.put("idNum", idNumArr);
                 userData.put("phone", phoneArr);
@@ -992,6 +1003,8 @@ public class DataOperation {
                 }
 
                 PropertyList.remove(listRemoveIndex);
+
+                // once a property listing is removed, it must be removed from the property list of its respective representative
 
                 IDArr.remove(jsonRemoveIndex);
                 typeArr.remove(jsonRemoveIndex);

@@ -11,21 +11,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static com.kuthingalas.propertysifu.system.Property.PropertyList;
 import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
 import static com.kuthingalas.propertysifu.MainApplication.*;
 
 
@@ -36,10 +35,7 @@ public class AgentOwnerHomepageController implements Initializable {
     private Button profile;
 
     @FXML
-    private Button editPropBtn;
-
-    @FXML
-    private Button agentAddPropBtn;
+    private Button editPropBtn, agentAddPropBtn, removePropBtn;
 
     @FXML private TableView<AgentOwnerListing> tbl;
 
@@ -85,7 +81,11 @@ public class AgentOwnerHomepageController implements Initializable {
             }
         }
 
-        tbl.setItems(list);
+        if(list.isEmpty()) {
+            tbl.setPlaceholder(new Label("No properties found."));
+        } else {
+            tbl.setItems(list);
+        }
 
     }
 
@@ -143,6 +143,39 @@ public class AgentOwnerHomepageController implements Initializable {
 
     }
 
+    public void toRemoveProperty(ActionEvent event) throws IOException {
+
+        String removeID = tbl.getSelectionModel().getSelectedItem().getID();
+
+        if (removeID == null && removeID.isEmpty()) { // not working
+
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("No property selected!");
+            errorAlert.showAndWait();
+
+        } else {
+
+            removeProperty(removeID);
+
+            list.clear();
+
+            for (int i = 0; i < PropertyList.size(); i++) {
+                if (PropertyList.get(i).getRepresentativeID().equals(currentUserID)) {
+                    list.add(new AgentOwnerListing(i));
+                }
+            }
+
+            if(list.isEmpty()) {
+                tbl.setPlaceholder(new Label("No properties found."));
+            } else {
+                tbl.setItems(list);
+            }
+
+        }
+
+    }
+
     public void toAddProp() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("addProperty.fxml"));
@@ -158,7 +191,7 @@ public class AgentOwnerHomepageController implements Initializable {
         SimpleStringProperty type;
         SimpleStringProperty address;
         //SimpleStringProperty projType;
-        //SimpleStringProperty facilities;
+        ArrayList<SimpleStringProperty> facilities;
         SimpleStringProperty bed;
         SimpleStringProperty bath;
         SimpleStringProperty area;

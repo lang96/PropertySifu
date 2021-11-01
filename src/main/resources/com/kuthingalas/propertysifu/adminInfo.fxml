@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AdminHomepageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AdminProfileController">
    <children>
       <ImageView fitHeight="422.0" fitWidth="717.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,15 +30,10 @@
             <Font name="Californian FB" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="163.0" layoutY="228.0" text="Access Level">
-         <font>
-            <Font name="Californian FB" size="24.0" />
-         </font>
-      </Label>
-      <TextField layoutX="413.0" layoutY="103.0" />
-      <TextField layoutX="413.0" layoutY="230.0" />
-      <PasswordField layoutX="413.0" layoutY="167.0" />
-      <Button fx:id="back" layoutX="338.0" layoutY="309.0" mnemonicParsing="false" onAction="#toAdminHomepage" text="Back" />
+      <TextField fx:id="adminID" layoutX="413.0" layoutY="103.0" />
+      <PasswordField fx:id="adminPass" layoutX="413.0" layoutY="167.0" />
+      <Button fx:id="back" layoutX="266.0" layoutY="309.0" mnemonicParsing="false" onAction="#toAdminHomepage" text="Back" />
       <Button fx:id="logoutBtn3" layoutX="644.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout3" text="Log Out" />
+      <Button fx:id="confirmBtn" layoutX="372.0" layoutY="309.0" mnemonicParsing="false" onAction="#toConfirm" text="Confirm" />
    </children>
 </AnchorPane>

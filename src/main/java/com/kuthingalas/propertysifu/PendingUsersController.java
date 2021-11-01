@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -21,11 +18,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.kuthingalas.propertysifu.usertype.User.UserList;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+
+
 
 public class PendingUsersController implements Initializable {
 
     @FXML
-    private Button back8;
+    private Button acceptBtn, rejectBtn, back8;
 
     @FXML
     private TableView<PendingUser> tblPending;
@@ -57,13 +57,70 @@ public class PendingUsersController implements Initializable {
 
     public void rejectUserReg() {
 
-        //tblPending.getSelectionModel().getSelectedItem();
+        String removeID = tblPending.getSelectionModel().getSelectedItem().getID();
+
+        if (removeID == null && removeID.isEmpty()) { // not working
+
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("No user selected!");
+            errorAlert.showAndWait();
+
+        } else {
+
+            removeUser(removeID);
+
+            pendingList.clear();
+
+            for (int i = 0; i < UserList.size(); i++) {
+                if (UserList.get(i).getVerified() == 0) {
+                    pendingList.add(new PendingUser(i));
+                }
+            }
+
+            if(pendingList.isEmpty()) {
+                tblPending.setPlaceholder(new Label("No unverified users found."));
+            } else {
+                tblPending.setItems(pendingList);
+            }
+
+        }
 
     }
 
     public void acceptUserReg() {
 
+        String verifyID = tblPending.getSelectionModel().getSelectedItem().getID();
+        String verifyPass = tblPending.getSelectionModel().getSelectedItem().getPass();
+        String verifyType = tblPending.getSelectionModel().getSelectedItem().getType();
 
+        if (verifyID == null && verifyID.isEmpty()) { // not working
+
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("No user selected!");
+            errorAlert.showAndWait();
+
+        } else {
+
+            updateUserVerified(verifyID);
+            addLogin(verifyID, verifyPass, verifyType);
+
+            pendingList.clear();
+
+            for (int i = 0; i < UserList.size(); i++) {
+                if (UserList.get(i).getVerified() == 0) {
+                    pendingList.add(new PendingUser(i));
+                }
+            }
+
+            if(pendingList.isEmpty()) {
+                tblPending.setPlaceholder(new Label("No unverified users found."));
+            } else {
+                tblPending.setItems(pendingList);
+            }
+
+        }
 
     }
 
@@ -79,17 +136,23 @@ public class PendingUsersController implements Initializable {
     public class PendingUser{
 
         SimpleStringProperty ID;
+        SimpleStringProperty pass;
         SimpleStringProperty type;
         SimpleStringProperty verified;
 
         public PendingUser(int index){
             this.ID = new SimpleStringProperty(UserList.get(index).getUserID());
+            this.pass = new SimpleStringProperty(UserList.get(index).getUserPass());
             this.type = new SimpleStringProperty(UserList.get(index).getUserType());
             this.verified = new SimpleStringProperty(String.valueOf(UserList.get(index).getVerified()));
         }
 
         public String getID() {
             return ID.get();
+        }
+
+        public String getPass() {
+            return pass.get();
         }
 
         public String getType() {

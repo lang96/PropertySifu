@@ -7,14 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
@@ -49,8 +48,13 @@ public class EditPropertyController {
     @FXML
     private ComboBox<String> propFurnish;
 
-
     public void initData(Property property) {
+
+        propType.setItems(propertyList);
+        propBed.setItems(numBedrooms);
+        propBath.setItems(numBathrooms);
+        propFurnish.setItems(furniture);
+        propStat.setItems(stat);
 
         propID.setText(property.getPropertyID());
         propType.getSelectionModel().select(property.getPropertyType());
@@ -71,6 +75,22 @@ public class EditPropertyController {
             propFurnish.getSelectionModel().select("Furnished");
         }
 
+        propPSF.textProperty().addListener((observable, oldValue, newValue) -> {
+            propArea.textProperty().addListener((observable2, oldValue2, newValue2) -> {
+                try {
+                    propRent.setText(String.valueOf(Float.parseFloat(newValue2) * Float.parseFloat(newValue)));
+                } catch (Exception e) {}
+            });
+        });
+
+        propArea.textProperty().addListener((observable, oldValue, newValue) -> {
+            propPSF.textProperty().addListener((observable2, oldValue2, newValue2) -> {
+                try {
+                    propRent.setText(String.valueOf(Float.parseFloat(newValue2) * Float.parseFloat(newValue)));
+                } catch (Exception e) {}
+            });
+        });
+
     }
 
     public void toAgentHomepage() throws IOException {
@@ -84,11 +104,83 @@ public class EditPropertyController {
 
     public void toConfirm() throws IOException {
 
-        //updatePropertyType();
-        //updatePropertyAddress();
-        //updatePropertyStatus();
-        //updatePropertyFacilities();
-        //updatePropertyDetails();
+        int stat = 0;
+        ArrayList<String> facList = new ArrayList<>();
+
+        // handle empty address line error
+        if (firstAdd.getText().isEmpty()) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("Enter address");
+            errorAlert.showAndWait();
+        } else {
+            if (secondAdd.getText().isEmpty()) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Error");
+                errorAlert.setContentText("Enter address");
+                errorAlert.showAndWait();
+            } else {
+                // handle empty area error
+                if (propArea.getText().isEmpty()) {
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setHeaderText("Error");
+                    errorAlert.setContentText("Enter area");
+                    errorAlert.showAndWait();
+                } else {
+                    // handle empty psf error
+                    if (propPSF.getText().isEmpty()) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Error");
+                        errorAlert.setContentText("Enter psf rate");
+                        errorAlert.showAndWait();
+                    } else {
+                        // handle empty rent error
+                        if (propRent.getText().isEmpty()) {
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                            errorAlert.setHeaderText("Error");
+                            errorAlert.setContentText("Enter rent price");
+                            errorAlert.showAndWait();
+                        } else {
+
+
+                            // choose facility
+                            if (fac1.isSelected()) {
+                                facList.add("Air-conditioning");
+                            }
+                            if (fac2.isSelected()) {
+                                facList.add("Car park");
+                            }
+                            if (fac3.isSelected()) {
+                                facList.add("Swimming Pool");
+                            }
+                            if (fac4.isSelected()) {
+                                facList.add("Gym");
+                            }
+                            if (fac5.isSelected()) {
+                                facList.add("Playground");
+                            }
+                            if (fac6.isSelected()) {
+                                facList.add("Security");
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        updatePropertyType(propID.getText(), propType.getSelectionModel().getSelectedItem());
+        updatePropertyAddress(propID.getText(), firstAdd.getText(), secondAdd.getText());
+
+        if (propStat.getSelectionModel().getSelectedItem().equals("Available")) {
+            stat = 1;
+            updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+        } else {
+            updatePropertyStatus(propID.getText(), stat, propStat.getSelectionModel().getSelectedItem());
+        }
+
+        //updatePropertyFacilities(propID.getText());
+        //updatePropertyDetails(propID.getText());
 
         Parent root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
 

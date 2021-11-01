@@ -1,6 +1,17 @@
 package com.kuthingalas.propertysifu;
 
-import com.kuthingalas.propertysifu.usertype.User;
+import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.usertype.*;
+
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.Comment.*;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.usertype.Agent.*;
+import static com.kuthingalas.propertysifu.usertype.Owner.*;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+import static com.kuthingalas.propertysifu.MainApplication.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,14 +29,12 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static com.kuthingalas.propertysifu.usertype.User.*;
-import static com.kuthingalas.propertysifu.data.DataOperation.*;
-import static com.kuthingalas.propertysifu.MainApplication.*;
+
 
 public class TenantProfileController implements Initializable {
 
     @FXML
-    private Button profile, confirmBtn , logoutBtn;
+    private Button confirmBtn , logoutBtn;
 
     @FXML
     public TextField profID, profFName, profLName, profPhone, profPass;
@@ -72,6 +81,9 @@ public class TenantProfileController implements Initializable {
     }
 
     public void logout() throws IOException {
+
+        currentUserID = "";
+        currentUserType = "";
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Log Out");

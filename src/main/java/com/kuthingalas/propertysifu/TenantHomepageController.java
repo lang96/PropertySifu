@@ -1,6 +1,16 @@
 package com.kuthingalas.propertysifu;
 
 import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.usertype.*;
+
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.Comment.*;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.usertype.Agent.*;
+import static com.kuthingalas.propertysifu.usertype.Owner.*;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+import static com.kuthingalas.propertysifu.MainApplication.*;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -22,21 +32,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static com.kuthingalas.propertysifu.system.Property.PropertyList;
-import static com.kuthingalas.propertysifu.usertype.User.*;
+
 
 public class TenantHomepageController implements Initializable {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
-    ObservableList<String> numBedrooms = FXCollections.observableArrayList("Studio","1","2","3","4","5+");
-    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5+");
+    ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
+    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Gym","Swimming Pool","Car park","Playground","Security");
     ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially furnished","Furnished");
     ObservableList<String> sortPSF = FXCollections.observableArrayList("Low to High","High to Low");
     ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
 
     @FXML
-    private Button profile, adminPageBtn, refreshBtn, viewPropertyBtn, filterBtn;
+    private Button profile, refreshBtn, filterBtn;
 
     @FXML
     public ComboBox<String> propType;
@@ -71,13 +80,16 @@ public class TenantHomepageController implements Initializable {
     private TableColumn<TenantListing, String> col_furnish;
     @FXML
     private TableColumn<TenantListing, String> col_area;
+
     // @FXML private TableColumn<Listing, String> col_psf;
+
     @FXML
     private TableColumn<TenantListing, String> col_rent;
 
     ObservableList list =  FXCollections.observableArrayList();
     ArrayList<TenantListing> filterList = new ArrayList<>();
 
+    @FXML
     public void viewProperty(ActionEvent event) throws IOException
     {
         String compareID = tbl.getSelectionModel().getSelectedItem().getID();
@@ -114,10 +126,8 @@ public class TenantHomepageController implements Initializable {
             //This line gets the Stage information
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-
             window.setScene(tableViewScene);
             window.show();
-
 
         }
 
@@ -133,7 +143,11 @@ public class TenantHomepageController implements Initializable {
             list.add(new TenantListing(i));
         }
 
-        tbl.setItems(list);
+        if(list.isEmpty()) {
+            tbl.setPlaceholder(new Label("No properties found."));
+        } else {
+            tbl.setItems(list);
+        }
 
     }
 
@@ -209,46 +223,6 @@ public class TenantHomepageController implements Initializable {
 
     }
 
-    @FXML
-    private void propTypeList(){
-
-    }
-
-    @FXML
-    private void projTypeList(){
-
-    }
-
-    @FXML
-    private void bedList(){
-
-    }
-
-    @FXML
-    private void bathList(){
-
-    }
-
-    @FXML
-    private void facList(){
-
-    }
-
-    @FXML
-    private void furnishList(){
-
-    }
-
-    @FXML
-    private void psfList(){
-
-    }
-
-    @FXML
-    private void priceList(){
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -275,7 +249,11 @@ public class TenantHomepageController implements Initializable {
             list.add(new TenantListing(i));
         }
 
-        tbl.setItems(list);
+        if(list.isEmpty()) {
+            tbl.setPlaceholder(new Label("No properties found."));
+        } else {
+            tbl.setItems(list);
+        }
 
     }
 

@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.kuthingalas.propertysifu.MainApplication.currentUserID;
+import static com.kuthingalas.propertysifu.MainApplication.currentUserType;
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 import static com.kuthingalas.propertysifu.usertype.User.UserList;
 
@@ -88,6 +89,9 @@ public class AgentOwnerProfileController implements Initializable {
     }
 
     public void logout2() throws IOException {
+
+        currentUserID = "";
+        currentUserType = "";
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Log Out");

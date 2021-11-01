@@ -1,6 +1,16 @@
 package com.kuthingalas.propertysifu;
 
 import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.usertype.*;
+
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.Comment.*;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.usertype.Agent.*;
+import static com.kuthingalas.propertysifu.usertype.Owner.*;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+import static com.kuthingalas.propertysifu.MainApplication.*;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -22,28 +32,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
 
-import static com.kuthingalas.propertysifu.system.Property.*;
-
 
 
 public class HomepageController implements Initializable {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
-    ObservableList<String> numBedrooms = FXCollections.observableArrayList("Studio","1","2","3","4","5+");
-    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5+");
-    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Water heater","Gym","Swimming Pool","Car park","Playground","Security","Sports court");
+    ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
+    ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
+    // textfield projType to sort - optional
+    ObservableList<String> facilitiesList = FXCollections.observableArrayList("Air-conditioning","Gym","Swimming Pool","Car park","Playground","Security");
     ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially","Furnished");
     ObservableList<String> sortPSF = FXCollections.observableArrayList("Low to High","High to Low");
     ObservableList<String> sortPrice = FXCollections.observableArrayList("Low to High","High to Low");
 
     @FXML
-    private Button adminPageBtn, refreshBtn, viewPropertyBtn, filterBtn;
+    private Button adminPageBtn, refreshBtn, filterBtn;
 
     @FXML
     private Hyperlink toLogBtn;
-
-    @FXML
-    private Label lbl;
 
     @FXML
     public ComboBox<String> propType;
@@ -76,7 +82,9 @@ public class HomepageController implements Initializable {
     private TableColumn<Listing, String> col_bath;
     @FXML
     private TableColumn<Listing, String> col_area;
+
     // @FXML private TableColumn<Listing, String> col_psf;
+
     @FXML
     private TableColumn<Listing, String> col_rent;
 
@@ -93,6 +101,7 @@ public class HomepageController implements Initializable {
         window.setScene(new Scene(root,597,338));
     }
 
+    @FXML
     public void toTestAdmin() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
@@ -102,40 +111,6 @@ public class HomepageController implements Initializable {
         window.setScene(new Scene(root,700,400));
     }
 
-    //tak jadi lagi, nak initialize data tak lepas - rename
-    public void viewProperty(ActionEvent event) throws IOException
-    {
-        String compareID = tbl.getSelectionModel().getSelectedItem().getID();
-
-
-
-        Property selectedProperty = new Property();
-        for (int i = 0; i < PropertyList.size(); i++) {
-
-            if (PropertyList.get(i).getPropertyID().equals(compareID)) {
-                selectedProperty = PropertyList.get(i);
-                break;
-            }
-
-        }
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("propDetails.fxml"));
-        Parent tableViewParent = loader.load();
-
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        //access the controller and call a method
-        ViewPropertyController controller = loader.getController();
-        controller.initData(selectedProperty);
-
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        window.setScene(tableViewScene);
-        window.show();
-    }
-
     @FXML
     private void refreshList() {
 
@@ -143,10 +118,16 @@ public class HomepageController implements Initializable {
         filterList.clear();
 
         for (int i = 0; i < PropertyList.size(); i++) {
-            list.add(new Listing(i));
+            if (PropertyList.get(i).getStatus() == 1) {
+                list.add(new Listing(i));
+            }
         }
 
-        tbl.setItems(list);
+        if(list.isEmpty()) {
+            tbl.setPlaceholder(new Label("No properties found."));
+        } else {
+            tbl.setItems(list);
+        }
 
     }
 
@@ -156,61 +137,58 @@ public class HomepageController implements Initializable {
         list.clear();
         filterList.clear();
 
+        for (int i = 0; i < PropertyList.size(); i++) {
+            if (PropertyList.get(i).getStatus() == 1) {
+                filterList.add(new Listing(i));
+            }
+        }
+
         String selectedType = propType.getSelectionModel().getSelectedItem();
         //String selectedProj = projType.getSelectionModel().getSelectedItem();
         String selectedBed = bedroom.getSelectionModel().getSelectedItem();
-        //String selectedBath = bathroom.getSelectionModel().getSelectedItem();
+        String selectedBath = bathroom.getSelectionModel().getSelectedItem();
         //String selectedFac = facList.getSelectionModel().getSelectedItem();
-        //String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
-        //String selectedPSF = psf.getSelectionModel().getSelectedItem();
-        //String selectedRent = price.getSelectionModel().getSelectedItem();
+        String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
 
-        if (selectedType != null) { // type /
-
-            for (int i = 0; i < PropertyList.size(); i++) {
-                if (PropertyList.get(i).getPropertyType().equals(selectedType)) {
-                    filterList.add(new Listing(i));
+        if (selectedType == null) {
+            // skip type filter
+        } else {
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getType().equals(selectedType)) {
+                    filterList.remove(i);
                 }
             }
+        }
 
-            if (selectedBed != null) { // type /, bed /
-
-                for (int j = 0; j < filterList.size(); j++) {
-                    if (filterList.get(j).getBed().equals(selectedBed)) {
-                        System.out.println(filterList.get(j).getBed());
-                        continue;
-                    } else {
-                        filterList.remove(j);
-                    }
+        if (selectedBed == null) {
+            // skip bed filter
+        } else {
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getBed().equals(selectedBed)) {
+                    filterList.remove(i);
                 }
-
-            } else {
-
-                // filter list skips bedroom
-
             }
+        }
 
-        } else { // type not selected
-
-            if (selectedBed != null) { // type X, bed /
-
-                for (int i = 0; i < PropertyList.size(); i++) {
-                    if (PropertyList.get(i).getBedroom() == Integer.parseInt(selectedBed)) {
-                        filterList.add(new Listing(i));
-                    }
+        if (selectedBath == null) {
+            // skip bath filter
+        } else {
+            for (int i = 0; i < filterList.size(); i++) {
+                if (!filterList.get(i).getBath().equals(selectedBath)) {
+                    filterList.remove(i);
                 }
-
-            } else {
-
-                // filter list empty
-
             }
+        }
 
+        if (selectedFurnish == null) {
+            // skip furnish filter
+        } else {
+            // slightly different filter format
         }
 
         if (!filterList.isEmpty()) {
-            for (int z = 0; z < filterList.size(); z++) {
-                list.add(filterList.get(z));
+            for (int i = 0; i < filterList.size(); i++) {
+                list.add(filterList.get(i));
             }
         }
 
@@ -219,46 +197,6 @@ public class HomepageController implements Initializable {
         } else {
             tbl.setItems(list);
         }
-
-    }
-
-    @FXML
-    private void propTypeList(){
-
-    }
-
-    @FXML
-    private void projTypeList(){
-
-    }
-
-    @FXML
-    private void bedList(){
-
-    }
-
-    @FXML
-    private void bathList(){
-
-    }
-
-    @FXML
-    private void facList(){
-
-    }
-
-    @FXML
-    private void furnishList(){
-
-    }
-
-    @FXML
-    private void psfList(){
-
-    }
-
-    @FXML
-    private void priceList(){
 
     }
 
@@ -285,10 +223,16 @@ public class HomepageController implements Initializable {
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
 
         for (int i = 0; i < PropertyList.size(); i++) {
-            list.add(new Listing(i));
+            if (PropertyList.get(i).getStatus() == 1) {
+                list.add(new Listing(i));
+            }
         }
 
-        tbl.setItems(list);
+        if(list.isEmpty()) {
+            tbl.setPlaceholder(new Label("No properties found."));
+        } else {
+            tbl.setItems(list);
+        }
 
     }
 
@@ -302,7 +246,7 @@ public class HomepageController implements Initializable {
         SimpleStringProperty bed;
         SimpleStringProperty bath;
         SimpleStringProperty area;
-        //SimpleStringProperty furnish;
+        SimpleStringProperty furnish;
         //SimpleStringProperty psf;
         SimpleStringProperty rent;
 
@@ -313,6 +257,7 @@ public class HomepageController implements Initializable {
             this.bed = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBedroom()));
             this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
             this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
+            this.furnish = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getFurnishing()));
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
         }
 
@@ -338,6 +283,10 @@ public class HomepageController implements Initializable {
 
         public String getArea() {
             return area.get();
+        }
+
+        public String getFurnish() {
+            return furnish.get();
         }
 
         public String getRent() {

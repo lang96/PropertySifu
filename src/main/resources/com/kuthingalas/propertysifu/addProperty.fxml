@@ -24,25 +24,24 @@
       </Label>
       <Label layoutX="54.0" layoutY="156.0" text="Type" />
       <Label layoutX="54.0" layoutY="217.0" text="Address" />
-      <Label layoutX="54.0" layoutY="293.0" text="Status" />
       <Label layoutX="54.0" layoutY="362.0" text="Facilities" />
-      <Label layoutX="54.0" layoutY="454.0" text="Details" />
-      <ComboBox fx:id="propType2" layoutX="145.0" layoutY="152.0" prefWidth="150.0" promptText="Bungalow" />
-      <TextField layoutX="146.0" layoutY="213.0" promptText="First Line" />
-      <TextField layoutX="146.0" layoutY="249.0" promptText="Second Line" />
-      <ComboBox fx:id="status2" layoutX="146.0" layoutY="289.0" prefWidth="150.0" promptText="Active" />
-      <CheckBox layoutX="146.0" layoutY="362.0" mnemonicParsing="false" text="Park" />
-      <CheckBox layoutX="238.0" layoutY="362.0" mnemonicParsing="false" text="Gymnasium" />
-      <CheckBox layoutX="146.0" layoutY="389.0" mnemonicParsing="false" text="Prayer Room" />
-      <CheckBox layoutX="238.0" layoutY="389.0" mnemonicParsing="false" text="Others" />
-      <CheckBox layoutX="146.0" layoutY="418.0" mnemonicParsing="false" text="Swimming Pool" />
-      <ComboBox fx:id="bedroom2" layoutX="144.0" layoutY="450.0" prefHeight="25.0" prefWidth="96.0" promptText="Bedroom" />
-      <ComboBox fx:id="bathroom2" layoutX="144.0" layoutY="482.0" prefHeight="25.0" prefWidth="96.0" promptText="Bathroom" />
-      <ComboBox fx:id="furnishList2" layoutX="144.0" layoutY="513.0" prefHeight="25.0" prefWidth="96.0" promptText="Furnish" />
-      <TextField layoutX="250.0" layoutY="450.0" prefHeight="25.0" prefWidth="119.0" promptText="Area" />
-      <TextField layoutX="250.0" layoutY="482.0" prefHeight="25.0" prefWidth="119.0" promptText="PSF" />
-      <TextField layoutX="250.0" layoutY="513.0" prefHeight="25.0" prefWidth="119.0" promptText="Price / Area x PSF" />
-      <Button fx:id="back10" layoutX="99.0" layoutY="616.0" mnemonicParsing="false" onAction="#toagentHomepage" text="Back" />
-      <Button layoutX="214.0" layoutY="616.0" mnemonicParsing="false" text="Save" />
+      <Label layoutX="54.0" layoutY="494.0" text="Details" />
+      <ComboBox fx:id="propType" layoutX="124.0" layoutY="150.0" prefWidth="150.0" />
+      <TextField fx:id="firstAdd" layoutX="125.0" layoutY="211.0" promptText="First Line" />
+      <TextField fx:id="secondAdd" layoutX="125.0" layoutY="247.0" promptText="Second Line" />
+      <CheckBox fx:id="fac1" layoutX="126.0" layoutY="362.0" mnemonicParsing="false" text="Air-conditioning" />
+      <CheckBox fx:id="fac2" layoutX="126.0" layoutY="389.0" mnemonicParsing="false" text="Car park" />
+      <CheckBox fx:id="fac5" layoutX="245.0" layoutY="392.0" mnemonicParsing="false" text="Playground" />
+      <CheckBox fx:id="fac3" layoutX="126.0" layoutY="418.0" mnemonicParsing="false" text="Swimming Pool" />
+      <ComboBox fx:id="propBed" layoutX="124.0" layoutY="490.0" prefHeight="25.0" prefWidth="96.0" promptText="Bedroom" />
+      <ComboBox fx:id="propBath" layoutX="124.0" layoutY="522.0" prefHeight="25.0" prefWidth="96.0" promptText="Bathroom" />
+      <ComboBox fx:id="propFurnish" layoutX="124.0" layoutY="553.0" prefHeight="25.0" prefWidth="96.0" promptText="Furnish" />
+      <TextField fx:id="propArea" layoutX="230.0" layoutY="490.0" prefHeight="25.0" prefWidth="119.0" promptText="Area" />
+      <TextField fx:id="propPSF" layoutX="230.0" layoutY="522.0" prefHeight="25.0" prefWidth="119.0" promptText="PSF" />
+      <TextField fx:id="propRent" editable="false" layoutX="230.0" layoutY="553.0" prefHeight="25.0" prefWidth="119.0" promptText="Price / Area x PSF" />
+      <Button fx:id="agentConfirmBtn" layoutX="224.0" layoutY="640.0" mnemonicParsing="false" onAction="#toConfirm" text="Confirm" />
+      <Button fx:id="agentBackHomeBtn" layoutX="115.0" layoutY="640.0" mnemonicParsing="false" onAction="#toAgentHomepage" text="Back" />
+      <CheckBox fx:id="fac6" layoutX="245.0" layoutY="418.0" mnemonicParsing="false" text="Security" />
+      <CheckBox fx:id="fac4" layoutX="245.0" layoutY="362.0" mnemonicParsing="false" text="Gym" />
    </children>
 </AnchorPane>

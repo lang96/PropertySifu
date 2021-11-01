@@ -38,6 +38,7 @@ public class MainApplication extends Application  {
         initializeAdmin();
         initializeProperty();
         initializeUser();
+        initializeComments();
 
         launch();
 

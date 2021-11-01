@@ -38,12 +38,12 @@
     <Label layoutX="719.0" layoutY="132.0" text="Furniture" />
     <Label layoutX="215.0" layoutY="132.0" text="Project" />
     <Label layoutX="963.0" layoutY="132.0" text="Rent" />
-    <ComboBox fx:id="propType" layoutX="95.0" layoutY="149.0" onAction="#propTypeList" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
-    <ComboBox fx:id="bedroom" layoutX="334.0" layoutY="149.0" onAction="#bedList" prefHeight="25.0" prefWidth="110.0" promptText="1" />
-    <ComboBox fx:id="bathroom" layoutX="455.0" layoutY="149.0" onAction="#bathList" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
-    <ComboBox fx:id="price" layoutX="840.0" layoutY="150.0" onAction="#priceList" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
-    <ComboBox fx:id="facList" layoutX="580.0" layoutY="150.0" onAction="#projTypeList" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
-    <ComboBox fx:id="furnishList" layoutX="719.0" layoutY="150.0" onAction="#furnishList" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />
+    <ComboBox fx:id="propType" layoutX="95.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Bungalow" />
+    <ComboBox fx:id="bedroom" layoutX="334.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
+    <ComboBox fx:id="bathroom" layoutX="455.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Bathrooms" />
+    <ComboBox fx:id="price" layoutX="840.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
+    <ComboBox fx:id="facList" layoutX="580.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
+    <ComboBox fx:id="furnishList" layoutX="719.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Unfurnished" />
     <TableView fx:id="tbl" layoutX="104.0" layoutY="220.0" prefHeight="394.0" prefWidth="974.0">
         <columns>
             <TableColumn fx:id="col_name" prefWidth="75.0" text="Type" />
@@ -57,6 +57,8 @@
         </columns>
     </TableView>
       <Button fx:id="profile" layoutX="1071.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="25.0" prefWidth="97.0" text=" Profile" />
+    <Button fx:id="refreshBtn" layoutX="578.0" layoutY="186.0" mnemonicParsing="false" onAction="#refreshList" prefHeight="25.0" prefWidth="58.0" text="Refresh" />
+    <Button fx:id="filterBtn" layoutX="505.0" layoutY="186.0" mnemonicParsing="false" onAction="#filterList" prefHeight="25.0" prefWidth="58.0" text="Filter" />
       <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="1078.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/accicon.jpg" />

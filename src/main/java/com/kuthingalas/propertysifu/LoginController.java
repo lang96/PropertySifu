@@ -1,5 +1,17 @@
 package com.kuthingalas.propertysifu;
 
+import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.usertype.*;
+
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.Comment.*;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.usertype.Agent.*;
+import static com.kuthingalas.propertysifu.usertype.Owner.*;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+import static com.kuthingalas.propertysifu.MainApplication.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,29 +30,22 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static com.kuthingalas.propertysifu.usertype.Admin.*;
-import static com.kuthingalas.propertysifu.usertype.User.*;
-import static com.kuthingalas.propertysifu.MainApplication.*;
-
 
 
 public class LoginController {
 
     @FXML
-    private CheckBox checkPass, ownerBox, agentBox;
+    private CheckBox checkPass;
 
     @FXML
     private Hyperlink regBtn, signupBtn;
-
-    @FXML
-    private Label orglbl;
 
     @FXML
     public TextField userID, phone, org, fName, lName;
     public PasswordField userPass;
 
     @FXML
-    Button loginBtn, resetBtn, confirmRegBtn, profile, confirmBtn, backBtn;
+    Button loginBtn, resetBtn, backBtn;
 
     public void proceed() {
 
@@ -220,7 +225,7 @@ public class LoginController {
     }
 
     @FXML
-    public void tohomePage() throws IOException {
+    public void toHomepage() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 

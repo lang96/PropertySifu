@@ -43,12 +43,12 @@
       <Label layoutX="717.0" layoutY="132.0" text="Furniture" />
       <Label layoutX="213.0" layoutY="132.0" text="Project" />
       <Label layoutX="961.0" layoutY="132.0" text="Rent" />
-      <ComboBox fx:id="propType" layoutX="93.0" layoutY="149.0" onAction="#propTypeList" prefHeight="25.0" prefWidth="110.0" promptText="Apartment" />
-      <ComboBox fx:id="bedroom" layoutX="332.0" layoutY="149.0" onAction="#bedList" prefHeight="25.0" prefWidth="110.0" promptText="Studio" />
-      <ComboBox fx:id="bathroom" layoutX="453.0" layoutY="149.0" onAction="#bathList" prefHeight="25.0" prefWidth="110.0" promptText="1" />
-      <ComboBox fx:id="price" layoutX="838.0" layoutY="150.0" onAction="#priceList" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
-      <ComboBox fx:id="facList" layoutX="578.0" layoutY="150.0" onAction="#facList" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
-      <ComboBox fx:id="furnishList" layoutX="717.0" layoutY="150.0" onAction="#furnishList" prefHeight="25.0" prefWidth="110.0" promptText="Furnished" />
+      <ComboBox fx:id="propType" layoutX="93.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Apartment" />
+      <ComboBox fx:id="bedroom" layoutX="332.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="Studio" />
+      <ComboBox fx:id="bathroom" layoutX="453.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" promptText="1" />
+      <ComboBox fx:id="price" layoutX="838.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Low to High" />
+      <ComboBox fx:id="facList" layoutX="578.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" promptText="Swimming Pool" />
+      <ComboBox fx:id="furnishList" layoutX="717.0" layoutY="150.0" prefHeight="25.0" prefWidth="110.0" promptText="Furnished" />
       <ComboBox layoutX="213.0" layoutY="149.0" prefHeight="25.0" prefWidth="110.0" />
       <ComboBox layoutX="961.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" />
       <Label layoutX="853.0" layoutY="132.0" />

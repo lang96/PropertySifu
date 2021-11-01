@@ -26,8 +26,8 @@
           <TableColumn fx:id="col_showType" minWidth="0.0" prefWidth="264.0" text="User Type" />
         </columns>
       </TableView>
-      <Button layoutX="408.0" layoutY="371.0" mnemonicParsing="false" text="Accept" />
+      <Button fx:id="acceptBtn" layoutX="287.0" layoutY="371.0" mnemonicParsing="false" onAction="#acceptUserReg" text="Accept" />
       <Button fx:id="back8" layoutX="6.0" layoutY="371.0" mnemonicParsing="false" onAction="#toManageUsers2" text="Back" />
-      <Button layoutX="294.0" layoutY="371.0" mnemonicParsing="false" text="Reject" />
+      <Button fx:id="rejectBtn" layoutX="380.0" layoutY="371.0" mnemonicParsing="false" onAction="#rejectUserReg" text="Reject" />
    </children>
 </AnchorPane>

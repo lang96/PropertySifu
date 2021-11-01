@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AdminHomepageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.ManageAdminsController">
    <children>
       <ImageView fitHeight="420.0" fitWidth="741.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,10 +22,9 @@
           <TableColumn prefWidth="348.0" text="Access Level" />
         </columns>
       </TableView>
-      <Button layoutX="278.0" layoutY="376.0" mnemonicParsing="false" text="Remove" />
-      <Button fx:id="editAdminBtn" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#toEditAdmin" text="Edit" />
+      <Button fx:id="revokeAdminBtn" layoutX="278.0" layoutY="376.0" mnemonicParsing="false" onAction="#revokeAdmin" text="Remove" />
       <Button fx:id="createAdminBtn" layoutX="619.0" layoutY="14.0" mnemonicParsing="false" onAction="#toCreateAdmin" text="Create New" />
-      <Button layoutX="395.0" layoutY="376.0" mnemonicParsing="false" text="Change Access" />
+      <Button fx:id="changeAccessBtn" layoutX="395.0" layoutY="376.0" mnemonicParsing="false" onAction="#changeAccess" text="Change Access" />
       <Button fx:id="back1" layoutX="18.0" layoutY="376.0" mnemonicParsing="false" onAction="#toAdminHomepage2" text="Back" />
       <Label layoutX="291.0" layoutY="13.0" text="Manage Admins">
          <font>

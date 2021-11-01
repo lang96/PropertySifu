@@ -1,5 +1,17 @@
 package com.kuthingalas.propertysifu;
 
+import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.usertype.*;
+
+import static com.kuthingalas.propertysifu.system.Property.*;
+import static com.kuthingalas.propertysifu.system.Property.Comment.*;
+import static com.kuthingalas.propertysifu.usertype.Admin.*;
+import static com.kuthingalas.propertysifu.usertype.User.*;
+import static com.kuthingalas.propertysifu.usertype.Agent.*;
+import static com.kuthingalas.propertysifu.usertype.Owner.*;
+import static com.kuthingalas.propertysifu.data.DataOperation.*;
+import static com.kuthingalas.propertysifu.MainApplication.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,8 +22,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
-
-import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
 
 

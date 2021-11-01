@@ -7,28 +7,31 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.AdminHomepageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.ManagePropertiesController">
    <children>
       <ImageView fitHeight="559.0" fitWidth="967.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/house.jpg" />
          </image>
       </ImageView>
-      <TableView layoutX="67.0" layoutY="45.0" prefHeight="452.0" prefWidth="794.0">
+      <TableView fx:id="tblAdminProp" layoutY="46.0" prefHeight="452.0" prefWidth="967.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Type" />
-          <TableColumn prefWidth="206.0" text="Address" />
-            <TableColumn text="Bedrooms" />
-            <TableColumn prefWidth="71.0" text="Bathrooms" />
-            <TableColumn text="Area" />
-            <TableColumn text="Price" />
-            <TableColumn prefWidth="97.0" text="Furnish" />
-            <TableColumn prefWidth="104.0" text="Agent" />
+            <TableColumn fx:id="col_id" prefWidth="49.0" text="ID" />
+          <TableColumn fx:id="col_name" prefWidth="118.0" text="Type" />
+          <TableColumn fx:id="col_address" prefWidth="234.0" text="Address" />
+            <TableColumn fx:id="col_bed" prefWidth="67.0" text="Bedrooms" />
+            <TableColumn fx:id="col_bath" prefWidth="71.0" text="Bathrooms" />
+            <TableColumn fx:id="col_area" prefWidth="52.0" text="Area" />
+            <TableColumn prefWidth="99.0" text="Furnish" />
+            <TableColumn prefWidth="63.0" text="PSF (RM)" />
+            <TableColumn fx:id="col_rent" prefWidth="70.0" text="Price (RM)" />
+            <TableColumn fx:id="col_repID" prefWidth="59.0" text="Rep ID" />
+            <TableColumn fx:id="col_stat" prefWidth="84.0" text="Status" />
         </columns>
       </TableView>
-      <Button layoutX="580.0" layoutY="505.0" mnemonicParsing="false" text="Remove" />
-      <Button fx:id="createNewPropertyBtn" layoutX="794.0" layoutY="8.0" mnemonicParsing="false" onAction="#toCreateNewProperty" text="Create" />
-      <Button fx:id="adminEditPropertyBtn" layoutX="883.0" layoutY="8.0" mnemonicParsing="false" onAction="#toAdminEditProperty" text="Edit" />
-      <Button fx:id="back4" layoutX="26.0" layoutY="505.0" mnemonicParsing="false" onAction="#toAdminHomepage3" text="Back" />
+      <Button layoutX="894.0" layoutY="505.0" mnemonicParsing="false" text="Remove" />
+      <Button fx:id="createNewPropertyBtn" layoutX="459.0" layoutY="505.0" mnemonicParsing="false" onAction="#toCreateNewProperty" text="Create" />
+      <Button fx:id="back4" layoutX="10.0" layoutY="505.0" mnemonicParsing="false" onAction="#toAdminHomepage3" text="Back" />
+      <Button layoutX="916.0" layoutY="14.0" mnemonicParsing="false" text="View" />
    </children>
 </AnchorPane>
