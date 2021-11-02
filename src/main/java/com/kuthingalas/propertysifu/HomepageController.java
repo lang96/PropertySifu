@@ -34,6 +34,8 @@ import java.util.ArrayList;
 
 
 
+
+
 public class HomepageController implements Initializable {
 
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
@@ -96,22 +98,6 @@ public class HomepageController implements Initializable {
         Stage window = (Stage) toLogBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
         window.setScene(new Scene(root,597,338));
-    }
-
-    /**
-     *     Programmer's Name: Shuhail
-     *     Method's Name    : toTestAdmin
-     *     Purpose         : to go to adminHomepage
-     */
-
-    @FXML
-    public void toTestAdmin() throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
-
-        Stage window = (Stage) adminPageBtn.getScene().getWindow();
-        window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,700,400));
     }
 
     /**

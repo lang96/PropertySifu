@@ -7,69 +7,69 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="585.0" prefWidth="274.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.ViewPropertyController">
+<AnchorPane prefHeight="593.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kuthingalas.propertysifu.ViewPropertyController">
 
     <children>
-      <ImageView fitHeight="621.0" fitWidth="270.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="607.0" fitWidth="1056.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../raw/house3.jpg" />
+            <Image url="@../../../raw/house.jpg" />
          </image>
       </ImageView>
-          <Label layoutX="14.0" layoutY="6.0" text="Property Details">
+          <Label layoutX="412.0" layoutY="14.0" text="Property Details">
               <font>
                   <Font size="36.0" />
               </font>
           </Label>
-      <Button layoutX="121.0" layoutY="514.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Back" />
-      <Label fx:id="firstAddLabel" layoutX="97.0" layoutY="97.0" text="First Address">
+      <Button contentDisplay="CENTER" layoutX="513.0" layoutY="497.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Back" />
+      <Label fx:id="firstAddLabel" contentDisplay="CENTER" layoutX="471.0" layoutY="90.0" text="First Address">
          <font>
             <Font name="Californian FB" size="14.0" />
          </font></Label>
-      <Label fx:id="secondAddLabel" layoutX="88.0" layoutY="123.0" text="Second Address">
+      <Label fx:id="secondAddLabel" contentDisplay="CENTER" layoutX="464.0" layoutY="118.0" text="Second Address">
          <font>
             <Font name="Californian FB" size="14.0" />
          </font></Label>
-      <Label fx:id="propTypeLabel" layoutX="107.0" layoutY="163.0" text="Type">
+      <Label fx:id="propTypeLabel" layoutX="495.0" layoutY="151.0" text="Type">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label fx:id="bedLabel" layoutX="175.0" layoutY="199.0" text="Bedrooms">
+      <Label fx:id="bedLabel" contentDisplay="CENTER" layoutX="552.0" layoutY="189.0" text="Bedrooms">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label fx:id="bathLabel" layoutX="173.0" layoutY="217.0" text="Bathrooms">
+      <Label fx:id="bathLabel" contentDisplay="CENTER" layoutX="552.0" layoutY="213.0" text="Bathrooms">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label fx:id="furnishingLabel" layoutX="102.0" layoutY="266.0" text="Furnishing">
+      <Label fx:id="furnishingLabel" contentDisplay="CENTER" layoutX="502.0" layoutY="255.0" text="Furnishing">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label layoutX="108.0" layoutY="293.0" text="Facilities">
+      <Label fx:id="facilitiesLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="464.0" layoutY="287.0" text="Facilities">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="areaLabel" layoutX="146.0" layoutY="329.0" text="Area">
+      <Label fx:id="areaLabel" contentDisplay="CENTER" layoutX="552.0" layoutY="327.0" text="Area">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label fx:id="psfLabel" layoutX="148.0" layoutY="354.0" text="PSF">
+      <Label fx:id="psfLabel" contentDisplay="CENTER" layoutX="554.0" layoutY="352.0" text="PSF">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label fx:id="rentLabel" layoutX="145.0" layoutY="380.0" text="Price">
+      <Label fx:id="rentLabel" contentDisplay="CENTER" layoutX="551.0" layoutY="378.0" text="Price">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label fx:id="agentLabel" layoutX="68.0" layoutY="440.0" text="Agent Name">
+      <Label fx:id="agentLabel" contentDisplay="CENTER" layoutX="498.0" layoutY="420.0" text="Agent Name">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label layoutX="82.0" layoutY="329.0" text="Area" />
-      <Label layoutX="84.0" layoutY="355.0" text="PSF" />
-      <Label layoutX="81.0" layoutY="381.0" text="Price" />
-      <Label layoutX="54.0" layoutY="199.0" text="Bedrooms" />
-      <Label layoutX="55.0" layoutY="217.0" text="Bathrooms" />
+      <Label layoutX="488.0" layoutY="327.0" text="Area" />
+      <Label layoutX="490.0" layoutY="353.0" text="PSF" />
+      <Label layoutX="487.0" layoutY="379.0" text="Price" />
+      <Label layoutX="442.0" layoutY="189.0" text="Bedrooms" />
+      <Label layoutX="442.0" layoutY="213.0" text="Bathrooms" />
 <!--        <Button layoutX="621.0" layoutY="516.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Back" />-->
     </children>
 </AnchorPane>

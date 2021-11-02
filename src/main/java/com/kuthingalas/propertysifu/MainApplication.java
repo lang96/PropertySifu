@@ -14,6 +14,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ *     Programmer's Name: Shuhail
+ *     Class Name    : MainApplication
+ *     Purpose         : This class which represents the entire program's instance
+ *                       implements the Model-View-Controller. It uses subclassing OOP concept.
+ */
+
 
 
 public class MainApplication extends Application  {

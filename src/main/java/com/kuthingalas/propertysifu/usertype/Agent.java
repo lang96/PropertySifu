@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  *     Programmer's Name : Arif
  *     Class's name    : Agent
- *     Purpose         : Agent object
+ *     Purpose         : Agent object. This class uses composition and polymorphism OOP concept.
  */
 
 /* Agent has elevated access (additional features) */

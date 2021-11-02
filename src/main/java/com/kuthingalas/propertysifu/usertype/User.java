@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  *     Programmer's Name : Arif
  *     Class's name    : User
- *     Purpose         : User object
+ *     Purpose         : User object. This class uses abstract factory design pattern.
  */
 
 public abstract class User {

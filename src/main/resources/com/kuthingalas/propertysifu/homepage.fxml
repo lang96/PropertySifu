@@ -56,7 +56,6 @@
            <TableColumn fx:id="col_id" prefWidth="104.0" text="Agent/Owner" />
         </columns>
       </TableView>
-      <Button fx:id="adminPageBtn" layoutX="1065.0" layoutY="86.0" mnemonicParsing="false" onAction="#toTestAdmin" text="Test Admin" />
       <Button fx:id="refreshBtn" layoutX="578.0" layoutY="186.0" mnemonicParsing="false" onAction="#refreshList" prefHeight="25.0" prefWidth="58.0" text="Refresh" />
       <Button fx:id="filterBtn" layoutX="505.0" layoutY="186.0" mnemonicParsing="false" onAction="#filterList" prefHeight="25.0" prefWidth="58.0" text="Filter" />
 <!--      <ComboBox fx:id="comb" layoutX="830.0" layoutY="215.0" onAction="#Select" prefWidth="150.0" />-->
