@@ -45,6 +45,27 @@ public class Agent extends User {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Agent
+     *     Purpose         : Agent object constructor used for initialize purposes.
+     */
+
+    public Agent(String userID, String pass, String fName, String lName, String phone, String id, String org, int verified) {
+
+        this.userID = userID;
+        this.userPass = pass;
+        this.fName = fName;
+        this.lName = lName;
+        this.phoneNum = phone;
+        this.idNum = id;
+        this.organization = org;
+        this.properties = new ArrayList<>();
+        this.userType = "Agent";
+        this.verified = verified;
+
+    }
+
     // new agents added from add() has empty properties list and has ID auto-generated
 
     /**
@@ -68,28 +89,25 @@ public class Agent extends User {
 
     }
 
+    public Agent() {}
+
     // methods
 
         // getters
-    @Override
     public String getIdNum() {
         return idNum;
     }
-    @Override
     public String getOrganization() {
         return organization;
     }
-    @Override
     public ArrayList<Property> getProperties() {
         return properties;
     }
 
         // setters
-    @Override
     public void setIdNum(String idNum) {
         this.idNum = idNum;
     }
-    @Override
     public void setOrganization(String organization) {
         this.organization = organization;
     }
@@ -114,11 +132,11 @@ public class Agent extends User {
 
     /**
      *     Programmer's Name : Arif
-     *     Method's name    : setNewAgentID
+     *     Method's name    : setNewID
      *     Purpose         : Generates new agent ID for subsequently created agents.
      */
 
-    public static String setNewAgentID() { // ID structure designed for system with a maximum of 999 agents
+    public static String setNewID() { // ID structure designed for system with a maximum of 999 agents
 
         String newID = "";
         int totalAgents = 0;

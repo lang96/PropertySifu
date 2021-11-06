@@ -61,7 +61,7 @@
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
-      <Label fx:id="agentLabel" contentDisplay="CENTER" layoutX="498.0" layoutY="420.0" text="Agent Name">
+      <Label fx:id="agentLabel" contentDisplay="CENTER" layoutX="530.0" layoutY="422.0" text="Agent Name">
           <font>
               <Font name="Californian FB" size="14.0" />
           </font></Label>
@@ -70,6 +70,7 @@
       <Label layoutX="487.0" layoutY="379.0" text="Price" />
       <Label layoutX="442.0" layoutY="189.0" text="Bedrooms" />
       <Label layoutX="442.0" layoutY="213.0" text="Bathrooms" />
+      <Label layoutX="442.0" layoutY="422.0" text="Agent/Owner : " />
 <!--        <Button layoutX="621.0" layoutY="516.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Back" />-->
     </children>
 </AnchorPane>

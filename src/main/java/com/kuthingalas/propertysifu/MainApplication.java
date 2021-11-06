@@ -5,6 +5,8 @@ import static com.kuthingalas.propertysifu.usertype.User.*;
 import static com.kuthingalas.propertysifu.system.Property.*;
 import static com.kuthingalas.propertysifu.data.DataOperation.*;
 
+import com.kuthingalas.propertysifu.usertype.Agent;
+import com.kuthingalas.propertysifu.usertype.Owner;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

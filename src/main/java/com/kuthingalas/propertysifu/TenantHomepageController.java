@@ -39,7 +39,7 @@ public class TenantHomepageController implements Initializable {
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
-    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially furnished","Furnished");
+    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially furnished","Fully furnished");
 
     @FXML
     private Button profile, refreshBtn, filterBtn;
@@ -145,8 +145,15 @@ public class TenantHomepageController implements Initializable {
         list.clear();
         filterList.clear();
 
+        propType.valueProperty().set(null);
+        bedroom.valueProperty().set(null);
+        bathroom.valueProperty().set(null);
+        furnishList.valueProperty().set(null);
+
         for (int i = 0; i < PropertyList.size(); i++) {
-            list.add(new TenantListing(i));
+            if (PropertyList.get(i).getStatus() == 1) {
+                list.add(new TenantListing(i));
+            }
         }
 
         if(list.isEmpty()) {
@@ -168,61 +175,67 @@ public class TenantHomepageController implements Initializable {
 
         list.clear();
         filterList.clear();
+        TenantListing prop = new TenantListing();
 
         for (int i = 0; i < PropertyList.size(); i++) {
             if (PropertyList.get(i).getStatus() == 1) {
-                filterList.add(new TenantListing(i));
+                list.add(new TenantListing(i));
             }
         }
 
-        String selectedType = propType.getSelectionModel().getSelectedItem();
-        String selectedBed = bedroom.getSelectionModel().getSelectedItem();
-        String selectedBath = bathroom.getSelectionModel().getSelectedItem();
-        String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
-
-        if (selectedType == null) {
+        if (!propType.getSelectionModel().isEmpty()) {
+            String selectedType = propType.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < list.size(); i++) {
+                prop = (TenantListing) list.get(i);
+                if (prop.getType().equals(selectedType)) {
+                    filterList.add(prop);
+                }
+            }
+        } else {
             // skip type filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getType().equals(selectedType)) {
-                    filterList.remove(i);
-                }
-            }
         }
 
-        if (selectedBed == null) {
+        if (!bedroom.getSelectionModel().isEmpty()) {
+            String selectedBed = bedroom.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < list.size(); i++) {
+                prop = (TenantListing) list.get(i);
+                if (prop.getBed().equals(selectedBed)) {
+                    filterList.add(prop);
+                }
+            }
+        } else {
             // skip bed filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getBed().equals(selectedBed)) {
-                    filterList.remove(i);
-                }
-            }
         }
 
-        if (selectedBath == null) {
+        if (!bathroom.getSelectionModel().isEmpty()) {
+            String selectedBath = bathroom.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < list.size(); i++) {
+                prop = (TenantListing) list.get(i);
+                if (prop.getBath().equals(selectedBath)) {
+                    filterList.add(prop);
+                }
+            }
+        } else {
             // skip bath filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getBath().equals(selectedBath)) {
-                    filterList.remove(i);
-                }
-            }
         }
 
-        if (selectedFurnish == null) {
-            // skip furnish filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getFurnish().equals(selectedFurnish)) {
-                    filterList.remove(i);
+        if (!furnishList.getSelectionModel().isEmpty()) {
+            String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < list.size(); i++) {
+                prop = (TenantListing) list.get(i);
+                if (prop.getFurnish().equals(selectedFurnish)) {
+                    filterList.add(prop);
                 }
             }
+        } else {
+            // skip furnish filter
         }
+
+        list.clear();
 
         if (!filterList.isEmpty()) {
-            for (int z = 0; z < filterList.size(); z++) {
-                list.add(filterList.get(z));
+            for (int i = 0; i < filterList.size(); i++) {
+                list.add(filterList.get(i));
             }
         }
 
@@ -313,6 +326,8 @@ public class TenantHomepageController implements Initializable {
             }
 
         }
+
+        public TenantListing() {}
 
         public String getID() {
             return ID.get();

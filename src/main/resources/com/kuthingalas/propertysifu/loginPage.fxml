@@ -35,6 +35,7 @@
          </font>
       </Label>
       <PasswordField fx:id="userPass" layoutX="232.0" layoutY="172.0" />
+      <TextField fx:id="showPass" layoutX="232.0" layoutY="173.0" visible="false" />
       <CheckBox fx:id="checkPass" layoutX="401.0" layoutY="177.0" mnemonicParsing="false" onAction="#actionPerformed" text="Show Password" />
       <Button fx:id="loginBtn" layoutX="311.0" layoutY="217.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
       <Button fx:id="resetBtn" layoutX="210.0" layoutY="217.0" mnemonicParsing="false" onAction="#reset" text="Reset" />

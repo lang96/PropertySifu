@@ -35,10 +35,10 @@
                 <TableColumn fx:id="col_bed" minWidth="0.0" prefWidth="110.0" text="Bedrooms" />
                 <TableColumn fx:id="col_bath" prefWidth="122.0" text="Bathrooms" />
                 <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="161.0" text="Address" />
-                <TableColumn fx:id="col_rent" prefWidth="111.0" text="Price" />
-            <TableColumn prefWidth="96.0" text="PSF" />
+                <TableColumn fx:id="col_rent" prefWidth="111.0" text="Price (RM)" />
+            <TableColumn fx:id="col_psf" prefWidth="96.0" text="PSF (RM)" />
             <TableColumn fx:id="col_area" prefWidth="172.0" text="Area" />
-            <TableColumn prefWidth="107.0" text="Status" />
+            <TableColumn fx:id="col_stat" prefWidth="107.0" text="Status" />
             </columns>
         </TableView>
         <Button fx:id="profile" layoutX="1071.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="25.0" prefWidth="97.0" text=" Profile" />
@@ -47,8 +47,8 @@
                 <Image url="@../../../raw/accicon.jpg" />
             </image>
         </ImageView>
-        <Button fx:id="removePropBtn" layoutX="565.0" layoutY="626.0" onAction="#toRemoveProperty" mnemonicParsing="false" text="Remove" />
-      <Label layoutX="560.0" layoutY="19.0" text="Agent" />
+        <Button fx:id="removePropBtn" layoutX="565.0" layoutY="626.0" mnemonicParsing="false" onAction="#toRemoveProperty" text="Remove" />
+      <Label layoutX="560.0" layoutY="19.0" text="Agent / Owner" />
       <Button fx:id="editPropBtn" layoutX="461.0" layoutY="626.0" mnemonicParsing="false" onAction="#toEditProperty" text="Edit Prop" />
       <Button fx:id="agentAddPropBtn" layoutX="662.0" layoutY="626.0" mnemonicParsing="false" onAction="#toAddProp" text="Add" />
 

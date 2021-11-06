@@ -41,7 +41,7 @@ public class LoginController {
     private Hyperlink regBtn, signupBtn;
 
     @FXML
-    public TextField userID, phone, org, fName, lName;
+    public TextField userID, phone, org, fName, lName, showPass;
     public PasswordField userPass;
 
     @FXML
@@ -103,7 +103,13 @@ public class LoginController {
         }
 
         String username = userID.getText();
-        String pass = userPass.getText();
+        String pass = "";
+
+        if (checkPass.isSelected()) {
+            pass = showPass.getText();
+        } else {
+            pass = userPass.getText();
+        }
 
         boolean found = false;
         int idIndex = 0;
@@ -138,6 +144,8 @@ public class LoginController {
                     // go to admin homepage
                     try {
                         root = FXMLLoader.load(getClass().getResource("adminHomepage.fxml"));
+                        Stage window = (Stage) loginBtn.getScene().getWindow();
+                        window.setScene(new Scene(root,700,400));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -155,6 +163,8 @@ public class LoginController {
                     // go to agent/owner homepage
                     try {
                         root = FXMLLoader.load(getClass().getResource("agentHomepage.fxml"));
+                        Stage window = (Stage) loginBtn.getScene().getWindow();
+                        window.setScene(new Scene(root,1182,665));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -167,14 +177,13 @@ public class LoginController {
                     // go to tenant homepage
                     try {
                         root = FXMLLoader.load(getClass().getResource("tenantHomepage.fxml"));
+                        Stage window = (Stage) loginBtn.getScene().getWindow();
+                        window.setScene(new Scene(root,1182,665));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
                 }
-
-                Stage window = (Stage) loginBtn.getScene().getWindow();
-                window.setScene(new Scene(root,1182,665));
 
             } else {
 
@@ -268,12 +277,13 @@ public class LoginController {
     public void actionPerformed(ActionEvent e) {
 
         if (checkPass.isSelected()){
-            userPass.setPromptText(userPass.getText());
-            userPass.setText("");
-
+            showPass.setText(userPass.getText());
+            showPass.setVisible(true);
+            userPass.setVisible(false);
         }else {
-            userPass.setText(userPass.getPromptText());
-            userPass.setPromptText("");
+            userPass.setText(showPass.getText());
+            showPass.setVisible(false);
+            userPass.setVisible(true);
         }
     }
 

@@ -51,10 +51,11 @@ public class AgentOwnerHomepageController implements Initializable {
     @FXML
     private TableColumn<AgentOwnerListing, String> col_bath;
     @FXML
-    private TableColumn<AgentOwnerListing, String> col_furnish;
+    private TableColumn<AgentOwnerListing, String> col_stat;
     @FXML
     private TableColumn<AgentOwnerListing, String> col_area;
-    // @FXML private TableColumn<Listing, String> col_psf;
+    @FXML
+    private TableColumn<AgentOwnerListing, String> col_psf;
     @FXML
     private TableColumn<AgentOwnerListing, String> col_rent;
 
@@ -78,8 +79,8 @@ public class AgentOwnerHomepageController implements Initializable {
         col_bed.setCellValueFactory(new PropertyValueFactory<>("bed"));
         col_bath.setCellValueFactory(new PropertyValueFactory<>("bath"));
         col_area.setCellValueFactory(new PropertyValueFactory<>("area"));
-        //col_furnish.setCellValueFactory(new PropertyValueFactory<>("furnish"));
-        //col_psf.setCellValueFactory(new PropertyValueFactory<>("psf"));
+        col_stat.setCellValueFactory(new PropertyValueFactory<>("stat"));
+        col_psf.setCellValueFactory(new PropertyValueFactory<>("psf"));
         col_rent.setCellValueFactory(new PropertyValueFactory<>("rent"));
 
         for (int i = 0; i < PropertyList.size(); i++) {
@@ -212,7 +213,7 @@ public class AgentOwnerHomepageController implements Initializable {
 
         Stage window = (Stage) agentAddPropBtn.getScene().getWindow();
         window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-        window.setScene(new Scene(root,370,665));
+        window.setScene(new Scene(root,370,800));
     }
 
     /**
@@ -234,6 +235,7 @@ public class AgentOwnerHomepageController implements Initializable {
         SimpleStringProperty furnish;
         SimpleStringProperty psf;
         SimpleStringProperty rent;
+        SimpleStringProperty stat;
 
         public AgentOwnerListing(int index){
             this.ID = new SimpleStringProperty(PropertyList.get(index).getPropertyID());
@@ -262,8 +264,9 @@ public class AgentOwnerHomepageController implements Initializable {
             this.bed = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBedroom()));
             this.bath = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getBathroom()));
             this.area = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getArea()));
-            //this.psf = new SimpleStringProperty(Float.toString(PropertyList.get(index).getPsfRate()));
+            this.psf = new SimpleStringProperty(Float.toString(PropertyList.get(index).getPsfRate()));
             this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
+            this.stat = new SimpleStringProperty(Integer.toString(PropertyList.get(index).getStatus()));
         }
 
         public String getID() {
@@ -306,6 +309,9 @@ public class AgentOwnerHomepageController implements Initializable {
             return psf.get();
         }
 
+        public String getStat() {
+            return stat.get();
+        }
     }
 
 }

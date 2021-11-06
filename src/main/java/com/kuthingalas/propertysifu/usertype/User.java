@@ -90,6 +90,38 @@ public abstract class User {
 
         // list and JSON methods
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : setNewID
+     *     Purpose         : Generates new ID for subsequently created users.
+     *                       (To be overridden by agent and owner class - polymorphism)
+     */
+
+    public static String setNewID() {
+
+        String newID = "";
+        int totalUsers = 0;
+
+        for (int i = 0; i < UserList.size(); i++) {
+
+            if (UserList.get(i).getUserType().equals("UserType")) {
+                totalUsers++;
+            }
+
+        }
+
+        if (totalUsers < 9) {
+            newID = "USERCODE00" + (totalUsers + 1);
+        } else if (totalUsers < 99) {
+            newID = "USERCODE0" + (totalUsers + 1);
+        } else {
+            newID = "USERCODE" + (totalUsers + 1);
+        }
+
+        return newID;
+
+    }
+
         // accompanying methods
 
 }

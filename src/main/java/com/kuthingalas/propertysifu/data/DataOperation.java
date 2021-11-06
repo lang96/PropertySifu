@@ -173,12 +173,12 @@ public class DataOperation {
                                     UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org, properties, verified));
                                     break;
                                 } else {
-                                    UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org));
+                                    UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org, verified));
                                     break;
                                 }
 
                             } else {
-                                UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org));
+                                UserList.add(new Agent(ID, pass, fName, lName, phone, idNum, org, verified));
                                 break;
                             }
 
@@ -196,12 +196,12 @@ public class DataOperation {
                                     UserList.add(new Owner(ID, pass, fName, lName, phone, idNum, properties, verified));
                                     break;
                                 } else {
-                                    UserList.add(new Owner(ID, pass, fName, lName, phone, idNum));
+                                    UserList.add(new Owner(ID, pass, fName, lName, phone, idNum, verified));
                                     break;
                                 }
 
                             } else {
-                                UserList.add(new Owner(ID, pass, fName, lName, phone, idNum));
+                                UserList.add(new Owner(ID, pass, fName, lName, phone, idNum, verified));
                                 break;
                             }
 
@@ -518,7 +518,7 @@ public class DataOperation {
             JSONArray verifiedArr = (JSONArray) userData.get("verified");
 
             // generating agent ID based on existing number of agent
-            String id = setNewAgentID();
+            String id = Agent.setNewID();
 
             IDArr.add(id);
             passArr.add(pass);
@@ -589,7 +589,7 @@ public class DataOperation {
             JSONArray verifiedArr = (JSONArray) userData.get("verified");
 
             // generating owner ID based on existing number of owners
-            String id = setNewOwnerID();
+            String id = Owner.setNewID();
 
             IDArr.add(id);
             passArr.add(pass);

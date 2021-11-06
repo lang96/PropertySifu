@@ -44,6 +44,26 @@ public class Owner extends User {
 
     }
 
+    /**
+     *     Programmer's Name : Arif
+     *     Method's name    : Owner
+     *     Purpose         : Owner object constructor used for initialize purposes.
+     */
+
+    public Owner(String userID, String pass, String fName, String lName, String phone, String id, int verified) {
+
+        this.userID = userID;
+        this.userPass = pass;
+        this.fName = fName;
+        this.lName = lName;
+        this.phoneNum = phone;
+        this.idNum = id;
+        this.properties = new ArrayList<>();
+        this.userType = "Owner";
+        this.verified = verified;
+
+    }
+
     // new owners added from add() has empty properties list and has ID auto-generated
 
     /**
@@ -66,20 +86,19 @@ public class Owner extends User {
 
     }
 
+    public Owner() {}
+
     // methods
 
         // getters
-    @Override
     public String getIdNum() {
             return idNum;
     }
-    @Override
     public ArrayList<Property> getProperties() {
         return properties;
     }
 
-    // setters
-    @Override
+        // setters
     public void setIdNum(String idNum) {
         this.idNum = idNum;
     }
@@ -103,11 +122,11 @@ public class Owner extends User {
 
     /**
      *     Programmer's Name : Arif
-     *     Method's name    : setNewOwnerID
+     *     Method's name    : setNewID
      *     Purpose         : Generates new owner ID for subsequently created owner.
      */
 
-    public static String setNewOwnerID() { // ID structure designed for system with a maximum of 999 agents
+    public static String setNewID() { // ID structure designed for system with a maximum of 999 owners
 
         String newID = "";
         int totalOwners = 0;

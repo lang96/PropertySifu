@@ -199,7 +199,7 @@ public class AdminAddPropertyController implements Initializable {
 
                                             Stage window = (Stage) saveBtn.getScene().getWindow();
                                             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-                                            window.setScene(new Scene(root, 1182, 665));
+                                            window.setScene(new Scene(root, 967, 544));
 
                                         } else if (propFurnish.getSelectionModel().getSelectedItem().equals("Partially furnished")) {
                                             int furnish = 1;
@@ -213,7 +213,7 @@ public class AdminAddPropertyController implements Initializable {
 
                                             Stage window = (Stage) saveBtn.getScene().getWindow();
                                             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-                                            window.setScene(new Scene(root, 1182, 665));
+                                            window.setScene(new Scene(root, 967, 544));
 
                                         } else if (propFurnish.getSelectionModel().getSelectedItem().equals("Furnished")) {
                                             int furnish = 2;
@@ -227,7 +227,7 @@ public class AdminAddPropertyController implements Initializable {
 
                                             Stage window = (Stage) saveBtn.getScene().getWindow();
                                             window.getIcons().add(new Image(this.getClass().getResource("/raw/house2.jpg").toString()));
-                                            window.setScene(new Scene(root, 1182, 665));
+                                            window.setScene(new Scene(root, 967, 544));
 
                                         } else {
                                             if (propFurnish.getSelectionModel().getSelectedItem() == null) {

@@ -1,6 +1,9 @@
 package com.kuthingalas.propertysifu;
 
 import com.kuthingalas.propertysifu.system.Property;
+import com.kuthingalas.propertysifu.usertype.Admin;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,8 +33,9 @@ public class ManagePropertiesController implements Initializable {
     ObservableList<String> propertyList = FXCollections.observableArrayList("Apartment","Bungalow","Condominium","Semi-Detached","Terrace/Link");
     ObservableList<String> numBedrooms = FXCollections.observableArrayList("1","2","3","4","5");
     ObservableList<String> numBathrooms = FXCollections.observableArrayList("1","2","3","4","5");
-    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially","Furnished");
+    ObservableList<String> furniture = FXCollections.observableArrayList("Unfurnished","Partially furnished","Fully furnished");
     ObservableList<String> statList = FXCollections.observableArrayList("Active","Inactive");
+    ObservableList<String> psfList = FXCollections.observableArrayList("<RM1/psf","RM1-2/psf",">RM2/psf");
 
     @FXML
     private Button createNewPropertyBtn, back4, refreshBtn, filterBtn;
@@ -46,6 +50,8 @@ public class ManagePropertiesController implements Initializable {
     private ComboBox<String> furnishList;
     @FXML
     private ComboBox<String> status;
+    @FXML
+    private ComboBox<String> psf;
 
     @FXML private TableView<AdminProperty> tblAdminProp;
 
@@ -64,9 +70,9 @@ public class ManagePropertiesController implements Initializable {
     @FXML
     private TableColumn<AdminProperty, String> col_repID;
     @FXML
-    private TableColumn<AdminProperty, String> col_psf;
+    private TableColumn<AdminProperty, Float> col_psf;
     @FXML
-    private TableColumn<AdminProperty, String> col_rent;
+    private TableColumn<AdminProperty, Float> col_rent;
     @FXML
     private TableColumn<AdminProperty, String> col_stat;
     @FXML
@@ -87,8 +93,8 @@ public class ManagePropertiesController implements Initializable {
         propType.setItems(propertyList);
         bedroom.setItems(numBedrooms);
         bathroom.setItems(numBathrooms);
-        furnishList.setItems(furniture);
         status.setItems(statList);
+        psf.setItems(psfList);
 
         col_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -165,6 +171,12 @@ public class ManagePropertiesController implements Initializable {
         list.clear();
         filterList = new ArrayList<>();
 
+        propType.valueProperty().set(null);
+        bedroom.valueProperty().set(null);
+        bathroom.valueProperty().set(null);
+        psf.valueProperty().set(null);
+        status.valueProperty().set(null);
+
         for (int i = 0; i < PropertyList.size(); i++) {
             list.add(new AdminProperty(i));
         }
@@ -188,73 +200,90 @@ public class ManagePropertiesController implements Initializable {
 
         list.clear();
         filterList = new ArrayList<>();
+        AdminProperty prop = new AdminProperty();
 
         for (int i = 0; i < PropertyList.size(); i++) {
-            filterList.add(new AdminProperty(i));
+            list.add(new AdminProperty(i));
         }
 
-        String selectedType = propType.getSelectionModel().getSelectedItem();
-        String selectedBed = bedroom.getSelectionModel().getSelectedItem();
-        String selectedBath = bathroom.getSelectionModel().getSelectedItem();
-        String selectedFurnish = furnishList.getSelectionModel().getSelectedItem();
-        String selectedStatus = status.getSelectionModel().getSelectedItem();
         String rawStatus = "";
 
-        if (selectedType == null) {
+        if (!propType.getSelectionModel().isEmpty()) {
+            String selectedType = propType.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < list.size(); i++) {
+                prop = (AdminProperty) list.get(i);
+                if (prop.getType().equals(selectedType)) {
+                    filterList.add(prop);
+                }
+            }
+        } else {
             // skip type filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getType().equals(selectedType)) {
-                    filterList.remove(i);
-                }
-            }
         }
 
-        if (selectedBed == null) {
+        if (!bedroom.getSelectionModel().isEmpty()) {
+            String selectedBed = bedroom.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < list.size(); i++) {
+                prop = (AdminProperty) list.get(i);
+                if (prop.getBed().equals(selectedBed)) {
+                    filterList.add(prop);
+                }
+            }
+        } else {
             // skip bed filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getBed().equals(selectedBed)) {
-                    filterList.remove(i);
-                }
-            }
         }
 
-        if (selectedBath == null) {
+        if (!bathroom.getSelectionModel().isEmpty()) {
+            String selectedBath = bathroom.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < list.size(); i++) {
+                prop = (AdminProperty) list.get(i);
+                if (prop.getBath().equals(selectedBath)) {
+                    filterList.add(prop);
+                }
+            }
+        } else {
             // skip bath filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getBath().equals(selectedBath)) {
-                    filterList.remove(i);
-                }
-            }
         }
 
-        if (selectedFurnish == null) {
-            // skip furnish filter
-        } else {
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getFurnish().equals(selectedFurnish)) {
-                    filterList.remove(i);
+        if (!psf.getSelectionModel().isEmpty()) {
+            for (int i = 0; i < list.size(); i++) {
+                prop = (AdminProperty) list.get(i);
+                if (psf.getSelectionModel().getSelectedItem().equals("<RM1/psf")) {
+                    if (prop.getPsf() < 1) {
+                        filterList.add(prop);
+                    }
+                } else if (psf.getSelectionModel().getSelectedItem().equals("RM1-2/psf")) {
+                    if (prop.getPsf() >= 1 && prop.getPsf() <= 2) {
+                        filterList.add(prop);
+                    }
+                } else {
+                    if (prop.getPsf() > 2) {
+                        filterList.add(prop);
+                    }
                 }
             }
+        } else {
+            // skip psf filter
         }
 
-        if (selectedStatus == null) {
-            // skip status filter
-        } else {
+        if (!status.getSelectionModel().isEmpty()) {
             if (status.getSelectionModel().getSelectedItem().equals("Active")) {
                 rawStatus = "1";
             } else {
                 rawStatus = "0";
             }
 
-            for (int i = 0; i < filterList.size(); i++) {
-                if (!filterList.get(i).getStat().equals(rawStatus)) {
-                    filterList.remove(i);
+            for (int i = 0; i < list.size(); i++) {
+                prop = (AdminProperty) list.get(i);
+                if (prop.getStat().equals(rawStatus)) {
+                    filterList.add(prop);
                 }
             }
+
+        } else {
+            // skip status filter
         }
+
+        list.clear();
 
         if (!filterList.isEmpty()) {
             for (int i = 0; i < filterList.size(); i++) {
@@ -317,8 +346,8 @@ public class ManagePropertiesController implements Initializable {
         SimpleStringProperty bath;
         SimpleStringProperty area;
         SimpleStringProperty furnish;
-        SimpleStringProperty psf;
-        SimpleStringProperty rent;
+        SimpleFloatProperty psf;
+        SimpleFloatProperty rent;
         SimpleStringProperty repID;
         SimpleStringProperty stat;
 
@@ -339,11 +368,13 @@ public class ManagePropertiesController implements Initializable {
                 this.furnish = new SimpleStringProperty("Fully furnished");
             }
 
-            this.psf = new SimpleStringProperty(Float.toString(PropertyList.get(index).getPsfRate()));
-            this.rent = new SimpleStringProperty(Float.toString(PropertyList.get(index).getRentalRate()));
+            this.psf = new SimpleFloatProperty(PropertyList.get(index).getPsfRate());
+            this.rent = new SimpleFloatProperty(PropertyList.get(index).getRentalRate());
             this.repID = new SimpleStringProperty(PropertyList.get(index).getRepresentativeID());
             this.stat = new SimpleStringProperty(String.valueOf(PropertyList.get(index).getStatus()));
         }
+
+        public AdminProperty() {}
 
         public String getID() {
             return ID.get();
@@ -377,11 +408,11 @@ public class ManagePropertiesController implements Initializable {
             return furnish.get();
         }
 
-        public String getPsf() {
+        public Float getPsf() {
             return psf.get();
         }
 
-        public String getRent() {
+        public Float getRent() {
             return rent.get();
         }
 
