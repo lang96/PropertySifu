@@ -6,9 +6,9 @@
 
 *Team Co-leader : Shuhail Azri*
 
-**Project Completion Status : In Progress**
+**Project Completion Status : Completed**
 
 *Project Completion Breakdown*
 
-- Backend | 10 %
-- GUI | 10 %
+- Backend | 100 %
+- GUI | 100 %
